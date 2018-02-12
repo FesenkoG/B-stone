@@ -7,3 +7,36 @@
 //
 
 import Foundation
+
+class CurrentUserData {
+    
+    static let instance = CurrentUserData()
+    
+    var age: Int?
+    
+    var placeOfLiving: PlaceOfLiving?
+    
+    var habitSunbathing: Bool?
+    var habitSmoking: Bool?
+    var habitSport: Bool?
+    var habitDiet: Bool?
+    var habitMakeup: Bool?
+    var habitCoffee: Bool?
+    
+    var wrinklesForehead: Bool?
+    var wrinklesInterbrow: Bool?
+    var wrinklesUnderEye: Bool?
+    var wrinklesSmile: Bool?
+    
+    var inflamationsForehead: Bool?
+    var inflamationsNose: Bool?
+    var inflamationsCheeks: Bool?
+    var inflamationsAroundNose: Bool?
+    var inflamationsChin: Bool?
+    
+    var allergic: Allergic?
+    
+    var email: String?
+    var password: String?
+    
+}

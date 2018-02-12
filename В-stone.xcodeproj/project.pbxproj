@@ -26,6 +26,10 @@
 		66EF7CE920207514008FBAE2 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CE820207514008FBAE2 /* UIViewControllerExt.swift */; };
 		66EF7CEB20208718008FBAE2 /* InflamationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CEA20208718008FBAE2 /* InflamationsVC.swift */; };
 		66EF7CED20208742008FBAE2 /* LifestyleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CEC20208742008FBAE2 /* LifestyleVC.swift */; };
+		66EF7CEF2023752B008FBAE2 /* WhereLiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CEE2023752B008FBAE2 /* WhereLiveVC.swift */; };
+		66EF7CF12023758C008FBAE2 /* AllergicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CF02023758C008FBAE2 /* AllergicVC.swift */; };
+		66EF7D1A202850FD008FBAE2 /* CurrentUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7D19202850FC008FBAE2 /* CurrentUserData.swift */; };
+		66EF7D1D20285146008FBAE2 /* UserAnswersEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7D1C20285146008FBAE2 /* UserAnswersEnum.swift */; };
 		D3573B7CC9D7E2E0DA55985C /* Pods___stone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4191588C5B10948EF1B4AEDD /* Pods___stone.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +57,10 @@
 		66EF7CE820207514008FBAE2 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		66EF7CEA20208718008FBAE2 /* InflamationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflamationsVC.swift; sourceTree = "<group>"; };
 		66EF7CEC20208742008FBAE2 /* LifestyleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifestyleVC.swift; sourceTree = "<group>"; };
+		66EF7CEE2023752B008FBAE2 /* WhereLiveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereLiveVC.swift; sourceTree = "<group>"; };
+		66EF7CF02023758C008FBAE2 /* AllergicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergicVC.swift; sourceTree = "<group>"; };
+		66EF7D19202850FC008FBAE2 /* CurrentUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserData.swift; sourceTree = "<group>"; };
+		66EF7D1C20285146008FBAE2 /* UserAnswersEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnswersEnum.swift; sourceTree = "<group>"; };
 		76B1E350E2F51B78C61D1642 /* Pods-В-stone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +79,7 @@
 		66EF7CB0201F550A008FBAE2 = {
 			isa = PBXGroup;
 			children = (
+				66EF7D1B20285121008FBAE2 /* Enumerations */,
 				66EF7CE7202074F9008FBAE2 /* Extensions */,
 				66EF7CE22020666D008FBAE2 /* Services */,
 				66EF7CD3201F5820008FBAE2 /* View */,
@@ -110,12 +119,14 @@
 				66EF7CC0201F550B008FBAE2 /* SecondViewController.swift */,
 				66EF7CD1201F571D008FBAE2 /* StartVC.swift */,
 				66EF7CD6201F6B11008FBAE2 /* CreateLoginVC.swift */,
+				66EF7CDC201FB4EE008FBAE2 /* ItWasSentVC.swift */,
 				66EF7CD8201FB29A008FBAE2 /* WelcomeVC.swift */,
 				66EF7CDA201FB3C9008FBAE2 /* HowOldAreYouVC.swift */,
-				66EF7CDC201FB4EE008FBAE2 /* ItWasSentVC.swift */,
+				66EF7CEE2023752B008FBAE2 /* WhereLiveVC.swift */,
+				66EF7CEC20208742008FBAE2 /* LifestyleVC.swift */,
 				66EF7CDE201FBA9E008FBAE2 /* WrinklesVC.swift */,
 				66EF7CEA20208718008FBAE2 /* InflamationsVC.swift */,
-				66EF7CEC20208742008FBAE2 /* LifestyleVC.swift */,
+				66EF7CF02023758C008FBAE2 /* AllergicVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -133,6 +144,7 @@
 			children = (
 				66EF7CE32020667E008FBAE2 /* AuthService.swift */,
 				66EF7CE5202066DC008FBAE2 /* DataService.swift */,
+				66EF7D19202850FC008FBAE2 /* CurrentUserData.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -143,6 +155,14 @@
 				66EF7CE820207514008FBAE2 /* UIViewControllerExt.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		66EF7D1B20285121008FBAE2 /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+				66EF7D1C20285146008FBAE2 /* UserAnswersEnum.swift */,
+			);
+			path = Enumerations;
 			sourceTree = "<group>";
 		};
 		87A8F9681879C946B8A31205 /* Pods */ = {
@@ -298,8 +318,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66EF7CEF2023752B008FBAE2 /* WhereLiveVC.swift in Sources */,
 				66EF7CED20208742008FBAE2 /* LifestyleVC.swift in Sources */,
+				66EF7CF12023758C008FBAE2 /* AllergicVC.swift in Sources */,
 				66EF7CD7201F6B11008FBAE2 /* CreateLoginVC.swift in Sources */,
+				66EF7D1A202850FD008FBAE2 /* CurrentUserData.swift in Sources */,
 				66EF7CEB20208718008FBAE2 /* InflamationsVC.swift in Sources */,
 				66EF7CC1201F550B008FBAE2 /* SecondViewController.swift in Sources */,
 				66EF7CDB201FB3C9008FBAE2 /* HowOldAreYouVC.swift in Sources */,
@@ -308,6 +331,7 @@
 				66EF7CBD201F550A008FBAE2 /* AppDelegate.swift in Sources */,
 				66EF7CE42020667E008FBAE2 /* AuthService.swift in Sources */,
 				66EF7CBF201F550B008FBAE2 /* FirstViewController.swift in Sources */,
+				66EF7D1D20285146008FBAE2 /* UserAnswersEnum.swift in Sources */,
 				66EF7CD2201F571D008FBAE2 /* StartVC.swift in Sources */,
 				66EF7CE920207514008FBAE2 /* UIViewControllerExt.swift in Sources */,
 				66EF7CDF201FBA9E008FBAE2 /* WrinklesVC.swift in Sources */,

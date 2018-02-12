@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+enum PlaceOfLiving: String {
+    case countryside
+    case mountain
+    case megapolis
+    case sea
+}
+
+enum Allergic: String {
+    case haveNotKnow
+    case haveKnow
+    case notHave
+    case notKnow
+}
+

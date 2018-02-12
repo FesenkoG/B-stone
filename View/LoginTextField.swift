@@ -11,9 +11,13 @@ import UIKit
 class LoginTextField: UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.attributedPlaceholder = NSAttributedString(string: self.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        var placeholderr = self.placeholder
+        if placeholderr == nil {
+            placeholderr = ""
+        }
+        self.attributedPlaceholder = NSAttributedString(string: placeholderr!, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         self.layer.borderColor = UIColor.white.cgColor
-        self.layer.borderWidth = 2.0
+        self.layer.borderWidth = 1.0
         
 
     }

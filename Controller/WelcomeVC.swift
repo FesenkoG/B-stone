@@ -12,18 +12,14 @@ class WelcomeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    @IBAction func nextBtnWasPressed(_ sender: Any) {
+        guard let howOldVC = storyboard?.instantiateViewController(withIdentifier: "HowOldAreYouVC") as? HowOldAreYouVC else { return }
+        presentDetail(howOldVC)
     }
     
-    @IBAction func unwindBtnWasPressed(_ sender: Any) {
-        performSegue(withIdentifier: "unwindToStart", sender: nil)
-    }
-    
-
 }

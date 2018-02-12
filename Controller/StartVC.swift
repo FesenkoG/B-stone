@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import Firebase
 
 class StartVC: UIViewController {
     
     
+    @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var loginTextField: LoginTextField!
     @IBOutlet weak var passwordTextField: LoginTextField!
-    
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {}
-    
+        
+    @IBOutlet weak var signInBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -28,24 +29,43 @@ class StartVC: UIViewController {
     }
     
     @IBAction func forgotThePasswordBtnWasPressed(_ sender: Any) {
-        guard let blankVC = storyboard?.instantiateViewController(withIdentifier: "ItWasSentVC") as? ItWasSentVC else { return }
-        presentDetail(blankVC)
-    }
-    
-    @IBAction func signInBtnWasPressed(_ sender: Any) {
-        if loginTextField.text != nil && passwordTextField.text != nil {
-            AuthService.instance.loginUser(email: loginTextField.text!, password: passwordTextField.text!, handler: { (success) in
-                if success {
-                    
-                    //войти на следующий экран
-                } else {
-                    //показать пользователю, что он ввел некорректный пароль
-                }
-            })
+        Auth.auth().sendPasswordReset(withEmail: loginTextField.text!) { (error) in
+            if let error = error {
+                self.errorLbl.text = error.localizedDescription
+            } else {
+                guard let blankVC = self.storyboard?.instantiateViewController(withIdentifier: "ItWasSentVC") as? ItWasSentVC else { return }
+                self.presentDetail(blankVC)
+            }
         }
     }
     
-    
-    
-    
+    @IBAction func signInBtnWasPressed(_ sender: Any) {
+        signInBtn.isEnabled = false
+        
+        
+        if loginTextField.text != nil && passwordTextField.text != nil {
+            CurrentUserData.instance.email = loginTextField.text
+            CurrentUserData.instance.password = passwordTextField.text
+            
+            AuthService.instance.loginUser(email: loginTextField.text!, password: passwordTextField.text!, handler: { (success, error) in
+                if success {
+                    let quiz = DataService.instance.checkIfCurrentUserHaveQuizCompleted()
+                    
+                    if quiz {
+                        // входим на экран
+                        print("я тут")
+                    } else {
+                        
+                        guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
+                            return
+                        }
+                        self.presentDetail(welcomeVC)
+                    }
+                } else {
+                    self.errorLbl.text = error?.localizedDescription
+                }
+            })
+            signInBtn.isEnabled = true
+        }
+    }
 }

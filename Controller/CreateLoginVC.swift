@@ -12,9 +12,11 @@ class CreateLoginVC: UIViewController {
 
     @IBOutlet weak var loginTextField: LoginTextField!
     @IBOutlet weak var passwordTextField: LoginTextField!
+    @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var emailTextField: LoginTextField!
     @IBOutlet weak var acceptedBtn: UIButton!
     
+    @IBOutlet weak var nextBtn: UIButton!
     var accepted = false
     
     override func viewDidLoad() {
@@ -36,17 +38,23 @@ class CreateLoginVC: UIViewController {
             acceptedBtn.setImage(UIImage(named: "ChooseCircleFalse"), for: .normal)
         }
     }
+    
     @IBAction func nextBtnWasPressed(_ sender: Any) {
+        nextBtn.isEnabled = false
         if accepted, emailTextField.text != nil, passwordTextField.text != nil, loginTextField.text != nil {
-            AuthService.instance.registerUser(email: emailTextField.text!, password: passwordTextField.text!, username: loginTextField.text!, handler: { (success) in
+            AuthService.instance.registerUser(email: emailTextField.text!, password: passwordTextField.text!, username: loginTextField.text!, handler: { (success, error) in
                 if success {
-                    //Перейти на следующий экран
+                    self.nextBtn.isEnabled = true
+                    CurrentUserData.instance.email = self.emailTextField.text
+                    CurrentUserData.instance.password = self.passwordTextField.text
                     guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
                         return
                     }
                     self.presentDetail(welcomeVC)
                 } else {
-                    //Сказать пользователю, что что-то не так
+                    self.errorLbl.isHidden = false
+                    self.errorLbl.text = error?.localizedDescription
+                    self.nextBtn.isEnabled = true
                 }
             })
         }
