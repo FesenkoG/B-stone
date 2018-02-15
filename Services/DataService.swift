@@ -28,18 +28,38 @@ class DataService {
         handler(true)
     }
     
-    func checkIfCurrentUserHaveQuizCompleted() -> Bool {
-        
-        var returnedValue = false
+    func checkIfCurrentUserHaveQuizCompleted(handler: @escaping (_ status: Bool) -> ()) {
+        var result = false
         REF_QUIZES.observeSingleEvent(of: .value) { (quizesSnapshot) in
             guard let quizesSpanshot = quizesSnapshot.children.allObjects as? [DataSnapshot] else { return }
             for quiz in quizesSpanshot {
                 let userId = quiz.childSnapshot(forPath: "userId").value as! String
                 if userId == Auth.auth().currentUser?.uid {
-                    returnedValue = true
+                    result = true
+                    CurrentUserData.instance.age = quiz.childSnapshot(forPath: "age").value as! Int
+                    CurrentUserData.instance.allergic = Allergic(rawValue: quiz.childSnapshot(forPath: "allergicReactions").value as! String)
+                    CurrentUserData.instance.habitCoffee = quiz.childSnapshot(forPath: "habitCoffee").value as! Bool
+                    CurrentUserData.instance.habitDiet = quiz.childSnapshot(forPath: "habitDiet").value as! Bool
+                    CurrentUserData.instance.habitSport = quiz.childSnapshot(forPath: "habitSport").value as! Bool
+                    CurrentUserData.instance.habitMakeup = quiz.childSnapshot(forPath: "habitMakeup").value as! Bool
+                    CurrentUserData.instance.habitSmoking = quiz.childSnapshot(forPath: "habitSmoking").value as! Bool
+                    CurrentUserData.instance.habitSunbathing = quiz.childSnapshot(forPath: "habitSunbathing").value as! Bool
+                    CurrentUserData.instance.wrinklesForehead = quiz.childSnapshot(forPath: "wrinklesForehead").value as! Bool
+                    CurrentUserData.instance.wrinklesSmile = quiz.childSnapshot(forPath: "wrinklesSmile").value as! Bool
+                    CurrentUserData.instance.wrinklesUnderEye = quiz.childSnapshot(forPath: "wrinklesUnderEye").value as! Bool
+                    CurrentUserData.instance.wrinklesInterbrow = quiz.childSnapshot(forPath: "wrinklesInterbrow").value as! Bool
+                    CurrentUserData.instance.inflamationsAroundNose = quiz.childSnapshot(forPath: "inflamationsAroundNose").value as! Bool
+                    CurrentUserData.instance.inflamationsChin = quiz.childSnapshot(forPath: "inflamationsChin").value as! Bool
+                    CurrentUserData.instance.inflamationsNose = quiz.childSnapshot(forPath: "inflamationsNose").value as! Bool
+                    CurrentUserData.instance.inflamationsCheeks = quiz.childSnapshot(forPath: "inflamationsCheeks").value as! Bool
+                    CurrentUserData.instance.inflamationsForehead = quiz.childSnapshot(forPath: "inflamationsForehead").value as! Bool
+                    CurrentUserData.instance.placeOfLiving = PlaceOfLiving(rawValue: quiz.childSnapshot(forPath: "placeOfLiving").value as! String)
+                    handler(true)
                 }
             }
+            if !result {
+                handler(false)
+            }
         }
-        return returnedValue
     }
 }

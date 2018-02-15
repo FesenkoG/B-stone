@@ -49,18 +49,30 @@ class StartVC: UIViewController {
             
             AuthService.instance.loginUser(email: loginTextField.text!, password: passwordTextField.text!, handler: { (success, error) in
                 if success {
-                    let quiz = DataService.instance.checkIfCurrentUserHaveQuizCompleted()
-                    
-                    if quiz {
-                        // входим на экран
-                        print("я тут")
-                    } else {
-                        
-                        guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
-                            return
+                    DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: { (success) in
+                        if success {
+                            // входим на экран
+                            print("я тут")
+                            print(CurrentUserData.instance.habitSport)
+                        } else {
+                            guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
+                                return
+                            }
+                            self.presentDetail(welcomeVC)
                         }
-                        self.presentDetail(welcomeVC)
-                    }
+                    })
+                    
+//                    if quiz {
+//                        // входим на экран
+//                        print("я тут")
+//                        print(CurrentUserData.instance.habitSport)
+//                    } else {
+//
+//                        guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
+//                            return
+//                        }
+//                        self.presentDetail(welcomeVC)
+//                    }
                 } else {
                     self.errorLbl.text = error?.localizedDescription
                 }

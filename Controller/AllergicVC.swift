@@ -47,13 +47,16 @@ class AllergicVC: UIViewController {
         }
         
         AuthService.instance.loginUser(email: CurrentUserData.instance.email!, password: CurrentUserData.instance.password!) { (success, error) in
-            CurrentUserData.instance.password = nil
-            DataService.instance.uploadUserData(handler: { (success) in
-                if success {
-                    //Перейти на следующий экран
-                    print("Все хорошо")
-                }
-            })
+            if success {
+                CurrentUserData.instance.password = nil
+                DataService.instance.uploadUserData(handler: { (success) in
+                    if success {
+                        //Перейти на следующий экран
+                        print("Все хорошо")
+                    }
+                })
+            }
+            
         }
         
         

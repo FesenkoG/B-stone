@@ -17,7 +17,7 @@ class LoginTextField: UITextField {
         }
         self.attributedPlaceholder = NSAttributedString(string: placeholderr!, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         self.layer.borderColor = UIColor.white.cgColor
-        self.layer.borderWidth = 1.0
+        self.layer.borderWidth = 1.5
         
 
     }
