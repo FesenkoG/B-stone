@@ -15,8 +15,8 @@ class CreateLoginVC: UIViewController {
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var emailTextField: LoginTextField!
     @IBOutlet weak var acceptedBtn: UIButton!
-    
     @IBOutlet weak var nextBtn: UIButton!
+    
     var accepted = false
     
     override func viewDidLoad() {

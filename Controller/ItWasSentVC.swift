@@ -11,7 +11,6 @@ import UIKit
 class ItWasSentVC: UIViewController {
     
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        dismissDetail()
+        performSegue(withIdentifier: "unwindToStart", sender: nil)
     }
-    
 }

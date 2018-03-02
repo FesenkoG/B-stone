@@ -25,6 +25,21 @@ class InflamationsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let c = CurrentUserData.instance.inflamationsChin, c == true {
+            setImage(acceptionStatus: &chinAccepted, image: chinBtn)
+        }
+        if let c = CurrentUserData.instance.inflamationsNose, c == true {
+            setImage(acceptionStatus: &noseAccepted, image: noseBtn)
+        }
+        if let c = CurrentUserData.instance.inflamationsCheeks, c == true {
+            setImage(acceptionStatus: &cheeksAccepted, image: cheeksBtn)
+        }
+        if let c = CurrentUserData.instance.inflamationsForehead, c == true {
+            setImage(acceptionStatus: &foreheadAccepted, image: foreheadBtn)
+        }
+        if let c = CurrentUserData.instance.inflamationsAroundNose, c == true {
+            setImage(acceptionStatus: &aroundAccepted, image: aroundBtn)
+        }
         
     }
     

@@ -22,3 +22,8 @@ enum Allergic: String {
     case notKnow
 }
 
+enum cameFrom {
+    case loginVC
+    case editVC
+}
+

@@ -20,6 +20,11 @@ class AllergicVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let alrgc = CurrentUserData.instance.allergic {
+            allergic = alrgc
+            setChoise(choise: allergic!)
+        }
+        
 
     }
     
@@ -48,19 +53,20 @@ class AllergicVC: UIViewController {
         
         AuthService.instance.loginUser(email: CurrentUserData.instance.email!, password: CurrentUserData.instance.password!) { (success, error) in
             if success {
-                CurrentUserData.instance.password = nil
                 DataService.instance.uploadUserData(handler: { (success) in
                     if success {
-                        //Перейти на следующий экран
-                        print("Все хорошо")
+                        //Это не работает!!
+                        guard let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as? HomeVC else { return }
+                        
+                        self.presentDetail(homeVC)
+                        //Не работает!!
                     }
                 })
             }
-            
+
         }
-        
-        
     }
+    
     @IBAction func backBtnWasPressed(_ sender: Any) {
         dismissDetail()
     }

@@ -15,8 +15,10 @@ class StartVC: UIViewController {
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var loginTextField: LoginTextField!
     @IBOutlet weak var passwordTextField: LoginTextField!
-        
     @IBOutlet weak var signInBtn: UIButton!
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -29,14 +31,11 @@ class StartVC: UIViewController {
     }
     
     @IBAction func forgotThePasswordBtnWasPressed(_ sender: Any) {
-        Auth.auth().sendPasswordReset(withEmail: loginTextField.text!) { (error) in
-            if let error = error {
-                self.errorLbl.text = error.localizedDescription
-            } else {
-                guard let blankVC = self.storyboard?.instantiateViewController(withIdentifier: "ItWasSentVC") as? ItWasSentVC else { return }
-                self.presentDetail(blankVC)
-            }
+        guard let enterEmailVC = storyboard?.instantiateViewController(withIdentifier: "EnterEmailVC") as? EnterEmailVC else { return }
+        if let text = loginTextField.text {
+            enterEmailVC.configureVC(text: text)
         }
+        presentDetail(enterEmailVC)
     }
     
     @IBAction func signInBtnWasPressed(_ sender: Any) {
@@ -51,7 +50,7 @@ class StartVC: UIViewController {
                 if success {
                     DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: { (success) in
                         if success {
-                            // входим на экран
+                            self.performSegue(withIdentifier: "toTabBar", sender: nil)
                             print("я тут")
                             print(CurrentUserData.instance.habitSport)
                         } else {

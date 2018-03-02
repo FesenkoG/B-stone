@@ -7,9 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66BA938F2036F4B200C08154 /* BluetoothVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA938E2036F4B200C08154 /* BluetoothVC.swift */; };
+		66BA93912036F4CE00C08154 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA93902036F4CE00C08154 /* SettingsVC.swift */; };
+		66BA93932036F50300C08154 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA93922036F50300C08154 /* HomeVC.swift */; };
+		66BA93952036F51E00C08154 /* AdviceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA93942036F51E00C08154 /* AdviceVC.swift */; };
+		66BA9397203DA40800C08154 /* EnterEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA9396203DA40800C08154 /* EnterEmailVC.swift */; };
+		66BA93DC2046991100C08154 /* article1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93DB2046991100C08154 /* article1.txt */; };
+		66BA93DE20469F9200C08154 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA93DD20469F9200C08154 /* ArticleCell.swift */; };
+		66BA93E62046DD4C00C08154 /* article3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93DF2046DD4A00C08154 /* article3.txt */; };
+		66BA93E72046DD4C00C08154 /* article6.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93E02046DD4B00C08154 /* article6.txt */; };
+		66BA93E82046DD4C00C08154 /* article2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93E12046DD4B00C08154 /* article2.txt */; };
+		66BA93E92046DD4C00C08154 /* article7.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93E22046DD4B00C08154 /* article7.txt */; };
+		66BA93EA2046DD4C00C08154 /* article5.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93E32046DD4B00C08154 /* article5.txt */; };
+		66BA93EB2046DD4C00C08154 /* article8.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93E42046DD4B00C08154 /* article8.txt */; };
+		66BA93EC2046DD4C00C08154 /* article4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93E52046DD4B00C08154 /* article4.txt */; };
 		66EF7CBD201F550A008FBAE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CBC201F550A008FBAE2 /* AppDelegate.swift */; };
-		66EF7CBF201F550B008FBAE2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CBE201F550B008FBAE2 /* FirstViewController.swift */; };
-		66EF7CC1201F550B008FBAE2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CC0201F550B008FBAE2 /* SecondViewController.swift */; };
 		66EF7CC4201F550B008FBAE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66EF7CC2201F550B008FBAE2 /* Main.storyboard */; };
 		66EF7CC6201F550B008FBAE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66EF7CC5201F550B008FBAE2 /* Assets.xcassets */; };
 		66EF7CC9201F550B008FBAE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66EF7CC7201F550B008FBAE2 /* LaunchScreen.storyboard */; };
@@ -29,17 +41,29 @@
 		66EF7CEF2023752B008FBAE2 /* WhereLiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CEE2023752B008FBAE2 /* WhereLiveVC.swift */; };
 		66EF7CF12023758C008FBAE2 /* AllergicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CF02023758C008FBAE2 /* AllergicVC.swift */; };
 		66EF7D1A202850FD008FBAE2 /* CurrentUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7D19202850FC008FBAE2 /* CurrentUserData.swift */; };
-		66EF7D1D20285146008FBAE2 /* UserAnswersEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7D1C20285146008FBAE2 /* UserAnswersEnum.swift */; };
+		66EF7D1D20285146008FBAE2 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7D1C20285146008FBAE2 /* Enums.swift */; };
 		D3573B7CC9D7E2E0DA55985C /* Pods___stone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4191588C5B10948EF1B4AEDD /* Pods___stone.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.release.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.release.xcconfig"; sourceTree = "<group>"; };
 		4191588C5B10948EF1B4AEDD /* Pods___stone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___stone.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66BA938E2036F4B200C08154 /* BluetoothVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothVC.swift; sourceTree = "<group>"; };
+		66BA93902036F4CE00C08154 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		66BA93922036F50300C08154 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		66BA93942036F51E00C08154 /* AdviceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdviceVC.swift; sourceTree = "<group>"; };
+		66BA9396203DA40800C08154 /* EnterEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailVC.swift; sourceTree = "<group>"; };
+		66BA93DB2046991100C08154 /* article1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article1.txt; sourceTree = "<group>"; };
+		66BA93DD20469F9200C08154 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
+		66BA93DF2046DD4A00C08154 /* article3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article3.txt; sourceTree = "<group>"; };
+		66BA93E02046DD4B00C08154 /* article6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article6.txt; sourceTree = "<group>"; };
+		66BA93E12046DD4B00C08154 /* article2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article2.txt; sourceTree = "<group>"; };
+		66BA93E22046DD4B00C08154 /* article7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article7.txt; sourceTree = "<group>"; };
+		66BA93E32046DD4B00C08154 /* article5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article5.txt; sourceTree = "<group>"; };
+		66BA93E42046DD4B00C08154 /* article8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article8.txt; sourceTree = "<group>"; };
+		66BA93E52046DD4B00C08154 /* article4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article4.txt; sourceTree = "<group>"; };
 		66EF7CB9201F550A008FBAE2 /* В-stone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "В-stone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66EF7CBC201F550A008FBAE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		66EF7CBE201F550B008FBAE2 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		66EF7CC0201F550B008FBAE2 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		66EF7CC3201F550B008FBAE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		66EF7CC5201F550B008FBAE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66EF7CC8201F550B008FBAE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,7 +84,7 @@
 		66EF7CEE2023752B008FBAE2 /* WhereLiveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereLiveVC.swift; sourceTree = "<group>"; };
 		66EF7CF02023758C008FBAE2 /* AllergicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergicVC.swift; sourceTree = "<group>"; };
 		66EF7D19202850FC008FBAE2 /* CurrentUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserData.swift; sourceTree = "<group>"; };
-		66EF7D1C20285146008FBAE2 /* UserAnswersEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnswersEnum.swift; sourceTree = "<group>"; };
+		66EF7D1C20285146008FBAE2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		76B1E350E2F51B78C61D1642 /* Pods-В-stone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,9 +100,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66BA93D92046925F00C08154 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				66BA93DB2046991100C08154 /* article1.txt */,
+				66BA93E12046DD4B00C08154 /* article2.txt */,
+				66BA93DF2046DD4A00C08154 /* article3.txt */,
+				66BA93E52046DD4B00C08154 /* article4.txt */,
+				66BA93E32046DD4B00C08154 /* article5.txt */,
+				66BA93E02046DD4B00C08154 /* article6.txt */,
+				66BA93E22046DD4B00C08154 /* article7.txt */,
+				66BA93E42046DD4B00C08154 /* article8.txt */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
 		66EF7CB0201F550A008FBAE2 = {
 			isa = PBXGroup;
 			children = (
+				66BA93D92046925F00C08154 /* Files */,
 				66EF7D1B20285121008FBAE2 /* Enumerations */,
 				66EF7CE7202074F9008FBAE2 /* Extensions */,
 				66EF7CE22020666D008FBAE2 /* Services */,
@@ -115,11 +155,10 @@
 		66EF7CD0201F56C3008FBAE2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				66EF7CBE201F550B008FBAE2 /* FirstViewController.swift */,
-				66EF7CC0201F550B008FBAE2 /* SecondViewController.swift */,
 				66EF7CD1201F571D008FBAE2 /* StartVC.swift */,
 				66EF7CD6201F6B11008FBAE2 /* CreateLoginVC.swift */,
 				66EF7CDC201FB4EE008FBAE2 /* ItWasSentVC.swift */,
+				66BA9396203DA40800C08154 /* EnterEmailVC.swift */,
 				66EF7CD8201FB29A008FBAE2 /* WelcomeVC.swift */,
 				66EF7CDA201FB3C9008FBAE2 /* HowOldAreYouVC.swift */,
 				66EF7CEE2023752B008FBAE2 /* WhereLiveVC.swift */,
@@ -127,6 +166,10 @@
 				66EF7CDE201FBA9E008FBAE2 /* WrinklesVC.swift */,
 				66EF7CEA20208718008FBAE2 /* InflamationsVC.swift */,
 				66EF7CF02023758C008FBAE2 /* AllergicVC.swift */,
+				66BA938E2036F4B200C08154 /* BluetoothVC.swift */,
+				66BA93902036F4CE00C08154 /* SettingsVC.swift */,
+				66BA93922036F50300C08154 /* HomeVC.swift */,
+				66BA93942036F51E00C08154 /* AdviceVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -135,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				66EF7CD4201F583C008FBAE2 /* LoginTextField.swift */,
+				66BA93DD20469F9200C08154 /* ArticleCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -160,7 +204,7 @@
 		66EF7D1B20285121008FBAE2 /* Enumerations */ = {
 			isa = PBXGroup;
 			children = (
-				66EF7D1C20285146008FBAE2 /* UserAnswersEnum.swift */,
+				66EF7D1C20285146008FBAE2 /* Enums.swift */,
 			);
 			path = Enumerations;
 			sourceTree = "<group>";
@@ -244,10 +288,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66BA93E82046DD4C00C08154 /* article2.txt in Resources */,
 				66EF7CC9201F550B008FBAE2 /* LaunchScreen.storyboard in Resources */,
+				66BA93E62046DD4C00C08154 /* article3.txt in Resources */,
+				66BA93DC2046991100C08154 /* article1.txt in Resources */,
+				66BA93E92046DD4C00C08154 /* article7.txt in Resources */,
 				66EF7CE1202065CD008FBAE2 /* GoogleService-Info.plist in Resources */,
 				66EF7CC6201F550B008FBAE2 /* Assets.xcassets in Resources */,
 				66EF7CC4201F550B008FBAE2 /* Main.storyboard in Resources */,
+				66BA93EB2046DD4C00C08154 /* article8.txt in Resources */,
+				66BA93E72046DD4C00C08154 /* article6.txt in Resources */,
+				66BA93EC2046DD4C00C08154 /* article4.txt in Resources */,
+				66BA93EA2046DD4C00C08154 /* article5.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,24 +371,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				66EF7CEF2023752B008FBAE2 /* WhereLiveVC.swift in Sources */,
+				66BA93952036F51E00C08154 /* AdviceVC.swift in Sources */,
 				66EF7CED20208742008FBAE2 /* LifestyleVC.swift in Sources */,
 				66EF7CF12023758C008FBAE2 /* AllergicVC.swift in Sources */,
+				66BA9397203DA40800C08154 /* EnterEmailVC.swift in Sources */,
 				66EF7CD7201F6B11008FBAE2 /* CreateLoginVC.swift in Sources */,
 				66EF7D1A202850FD008FBAE2 /* CurrentUserData.swift in Sources */,
 				66EF7CEB20208718008FBAE2 /* InflamationsVC.swift in Sources */,
-				66EF7CC1201F550B008FBAE2 /* SecondViewController.swift in Sources */,
 				66EF7CDB201FB3C9008FBAE2 /* HowOldAreYouVC.swift in Sources */,
 				66EF7CE6202066DC008FBAE2 /* DataService.swift in Sources */,
+				66BA93DE20469F9200C08154 /* ArticleCell.swift in Sources */,
+				66BA93932036F50300C08154 /* HomeVC.swift in Sources */,
 				66EF7CDD201FB4EE008FBAE2 /* ItWasSentVC.swift in Sources */,
 				66EF7CBD201F550A008FBAE2 /* AppDelegate.swift in Sources */,
 				66EF7CE42020667E008FBAE2 /* AuthService.swift in Sources */,
-				66EF7CBF201F550B008FBAE2 /* FirstViewController.swift in Sources */,
-				66EF7D1D20285146008FBAE2 /* UserAnswersEnum.swift in Sources */,
+				66EF7D1D20285146008FBAE2 /* Enums.swift in Sources */,
 				66EF7CD2201F571D008FBAE2 /* StartVC.swift in Sources */,
 				66EF7CE920207514008FBAE2 /* UIViewControllerExt.swift in Sources */,
 				66EF7CDF201FBA9E008FBAE2 /* WrinklesVC.swift in Sources */,
 				66EF7CD9201FB29A008FBAE2 /* WelcomeVC.swift in Sources */,
 				66EF7CD5201F583C008FBAE2 /* LoginTextField.swift in Sources */,
+				66BA938F2036F4B200C08154 /* BluetoothVC.swift in Sources */,
+				66BA93912036F4CE00C08154 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,10 @@ class WhereLiveVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let place = CurrentUserData.instance.placeOfLiving {
+            placeOfLiving = place
+            setImage(place: place)
+        }
 
     }
     

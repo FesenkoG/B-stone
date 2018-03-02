@@ -26,8 +26,24 @@ class LifestyleVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        if let c = CurrentUserData.instance.habitSunbathing, c == true {
+            setImage(acceptionStatus: &sunbathingAccepted, imageName: "sunbathing", image: sunbathingImg)
+        }
+        if let c = CurrentUserData.instance.habitDiet, c == true {
+            setImage(acceptionStatus: &dietAccepted, imageName: "diet", image: dietImg)
+        }
+        if let c = CurrentUserData.instance.habitSport, c == true {
+            setImage(acceptionStatus: &sportAccepted, imageName: "sport", image: sportImg)
+        }
+        if let c = CurrentUserData.instance.habitCoffee, c == true {
+            setImage(acceptionStatus: &coffeeAccepted, imageName: "coffee", image: coffeeImg)
+        }
+        if let c = CurrentUserData.instance.habitSmoking, c == true {
+            setImage(acceptionStatus: &smokingAccepted, imageName: "smoking", image: smokingImg)
+        }
+        if let c = CurrentUserData.instance.habitMakeup, c == true {
+            setImage(acceptionStatus: &makeupAccepted, imageName: "makeup", image: makeUpImg)
+        }
     }
 
 

@@ -23,6 +23,18 @@ class WrinklesVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let c = CurrentUserData.instance.wrinklesForehead, c == true {
+            setImage(acceptionStatus: &foreheadAccepted, image: foreheadBtn)
+        }
+        if let c = CurrentUserData.instance.wrinklesSmile, c == true {
+            setImage(acceptionStatus: &smileAccepted, image: smileBtn)
+        }
+        if let c = CurrentUserData.instance.wrinklesUnderEye, c == true {
+            setImage(acceptionStatus: &eyeAccepted, image: eyeBtn)
+        }
+        if let c = CurrentUserData.instance.wrinklesInterbrow, c == true {
+            setImage(acceptionStatus: &interbrowAccepted, image: interbrowBtn)
+        }
     }
 
     @IBAction func nextBtnWasPressed(_ sender: Any) {
