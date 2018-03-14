@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6627C13E2049DEAA00F2532C /* ArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6627C13D2049DEAA00F2532C /* ArticleVC.swift */; };
 		66BA938F2036F4B200C08154 /* BluetoothVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA938E2036F4B200C08154 /* BluetoothVC.swift */; };
 		66BA93912036F4CE00C08154 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA93902036F4CE00C08154 /* SettingsVC.swift */; };
 		66BA93932036F50300C08154 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA93922036F50300C08154 /* HomeVC.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.release.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.release.xcconfig"; sourceTree = "<group>"; };
 		4191588C5B10948EF1B4AEDD /* Pods___stone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___stone.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6627C13D2049DEAA00F2532C /* ArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleVC.swift; sourceTree = "<group>"; };
 		66BA938E2036F4B200C08154 /* BluetoothVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothVC.swift; sourceTree = "<group>"; };
 		66BA93902036F4CE00C08154 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		66BA93922036F50300C08154 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				66BA93902036F4CE00C08154 /* SettingsVC.swift */,
 				66BA93922036F50300C08154 /* HomeVC.swift */,
 				66BA93942036F51E00C08154 /* AdviceVC.swift */,
+				6627C13D2049DEAA00F2532C /* ArticleVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				66BA9397203DA40800C08154 /* EnterEmailVC.swift in Sources */,
 				66EF7CD7201F6B11008FBAE2 /* CreateLoginVC.swift in Sources */,
 				66EF7D1A202850FD008FBAE2 /* CurrentUserData.swift in Sources */,
+				6627C13E2049DEAA00F2532C /* ArticleVC.swift in Sources */,
 				66EF7CEB20208718008FBAE2 /* InflamationsVC.swift in Sources */,
 				66EF7CDB201FB3C9008FBAE2 /* HowOldAreYouVC.swift in Sources */,
 				66EF7CE6202066DC008FBAE2 /* DataService.swift in Sources */,

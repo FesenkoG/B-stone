@@ -71,6 +71,18 @@ extension AdviceVC: UITableViewDelegate, UITableViewDataSource {
         let preview = sepStr[1]
         let body = sepStr[2]
         cell.configureCell(header: header, preview: preview, text: body, imgName: "\(indexPath.row + 1)")
+        cell.selectionStyle = .default
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let articleVC = storyboard?.instantiateViewController(withIdentifier: "ArticleVC") as? ArticleVC else { return }
+        let sepStr = texts[indexPath.row].components(separatedBy: ";")
+        let header = sepStr[0]
+        let preview = sepStr[1]
+        let body = sepStr[2]
+        articleVC.configureView(header: header, preview: preview, body: body, imgName: "\(indexPath.row + 1)")
+        presentDetail(articleVC)
     }
 }

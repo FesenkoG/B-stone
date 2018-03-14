@@ -51,20 +51,12 @@ class AllergicVC: UIViewController {
             CurrentUserData.instance.allergic = allerg
         }
         
-        AuthService.instance.loginUser(email: CurrentUserData.instance.email!, password: CurrentUserData.instance.password!) { (success, error) in
+        DataService.instance.uploadUserData(handler: { (success) in
             if success {
-                DataService.instance.uploadUserData(handler: { (success) in
-                    if success {
-                        //Это не работает!!
-                        guard let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as? HomeVC else { return }
-                        
-                        self.presentDetail(homeVC)
-                        //Не работает!!
-                    }
-                })
+                //Это не работает!!
+                self.performSegue(withIdentifier: "finishedEditing", sender: nil)
             }
-
-        }
+        })
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {

@@ -22,9 +22,21 @@ class StartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        
+        if Auth.auth().currentUser != nil {
+            DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: { (success) in
+                if success {
+                    self.performSegue(withIdentifier: "toTabBar", sender: nil)
+                } else {
+                    guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
+                        return
+                    }
+                    self.presentDetail(welcomeVC)
+                }
+            })
+            
+        }
     }
-
+    
     @IBAction func createAccountWasPressed(_ sender: Any) {
         guard let createLoginVC = storyboard?.instantiateViewController(withIdentifier: "CreateLoginVC") as? CreateLoginVC else { return }
         presentDetail(createLoginVC)
@@ -51,8 +63,6 @@ class StartVC: UIViewController {
                     DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: { (success) in
                         if success {
                             self.performSegue(withIdentifier: "toTabBar", sender: nil)
-                            print("я тут")
-                            print(CurrentUserData.instance.habitSport)
                         } else {
                             guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
                                 return
@@ -61,17 +71,6 @@ class StartVC: UIViewController {
                         }
                     })
                     
-//                    if quiz {
-//                        // входим на экран
-//                        print("я тут")
-//                        print(CurrentUserData.instance.habitSport)
-//                    } else {
-//
-//                        guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
-//                            return
-//                        }
-//                        self.presentDetail(welcomeVC)
-//                    }
                 } else {
                     self.errorLbl.text = error?.localizedDescription
                 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class CreateLoginVC: UIViewController {
-
+    
     @IBOutlet weak var loginTextField: LoginTextField!
     @IBOutlet weak var passwordTextField: LoginTextField!
     @IBOutlet weak var errorLbl: UILabel!
@@ -45,12 +45,15 @@ class CreateLoginVC: UIViewController {
             AuthService.instance.registerUser(email: emailTextField.text!, password: passwordTextField.text!, username: loginTextField.text!, handler: { (success, error) in
                 if success {
                     self.nextBtn.isEnabled = true
-                    CurrentUserData.instance.email = self.emailTextField.text
-                    CurrentUserData.instance.password = self.passwordTextField.text
-                    guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
-                        return
-                    }
-                    self.presentDetail(welcomeVC)
+                    
+                    AuthService.instance.loginUser(email: self.emailTextField.text!, password: self.passwordTextField.text!, handler: { (completion, error) in
+                        guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
+                            return
+                        }
+                        
+                        self.presentDetail(welcomeVC)
+                    })
+                    
                 } else {
                     self.errorLbl.isHidden = false
                     self.errorLbl.text = error?.localizedDescription
