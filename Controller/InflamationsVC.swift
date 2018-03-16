@@ -23,6 +23,8 @@ class InflamationsVC: UIViewController {
     var aroundAccepted = false
     var chinAccepted = false
     
+    @IBAction func prepareForUnwindToInflamations(segue: UIStoryboardSegue) {}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let c = CurrentUserData.instance.inflamationsChin, c == true {
@@ -71,13 +73,12 @@ class InflamationsVC: UIViewController {
         CurrentUserData.instance.inflamationsCheeks = cheeksAccepted
         CurrentUserData.instance.inflamationsAroundNose = aroundAccepted
         
-        guard let alergicVC = storyboard?.instantiateViewController(withIdentifier: "AllergicVC") as? AllergicVC else { return }
-        presentDetail(alergicVC)
+        self.performSegue(withIdentifier: "toAllergic", sender: nil)
         
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        dismissDetail()
+        self.performSegue(withIdentifier: "backToWrinkles", sender: nil)
     }
     
     func setImage(acceptionStatus: inout Bool, image: UIButton) {

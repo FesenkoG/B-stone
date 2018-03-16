@@ -23,6 +23,8 @@ class LifestyleVC: UIViewController {
     var smokingAccepted = false
     var dietAccepted = false
     var coffeeAccepted = false
+    
+    @IBAction func prepareForUnwindToLifestyle(segue: UIStoryboardSegue) {}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,14 +58,12 @@ class LifestyleVC: UIViewController {
         CurrentUserData.instance.habitMakeup = makeupAccepted
         CurrentUserData.instance.habitSmoking = smokingAccepted
         
-        guard let wrinklesVC = storyboard?.instantiateViewController(withIdentifier: "WrinklesVC") else { return }
-        presentDetail(wrinklesVC)
+        self.performSegue(withIdentifier: "toWrinkles", sender: nil)
         
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        dismissDetail()
-        
+        self.performSegue(withIdentifier: "backToWhereLive", sender: nil)
     }
     
     @IBAction func sunbathingBtnWasPressed(_ sender: Any) {

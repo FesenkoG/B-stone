@@ -28,14 +28,13 @@ class EnterEmailVC: UIViewController {
                 self.errorLbl.isHidden = false
             } else {
                 self.errorLbl.isHidden = true
-                guard let blankVC = self.storyboard?.instantiateViewController(withIdentifier: "ItWasSentVC") as? ItWasSentVC else { return }
-                self.presentDetail(blankVC)
+                self.performSegue(withIdentifier: "toItWasSent", sender: nil)
             }
         }
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        dismissDetail()
+        self.dismiss(animated: true, completion: nil)
     }
     
     func configureVC(text: String) {

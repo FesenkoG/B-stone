@@ -17,6 +17,8 @@ class WhereLiveVC: UIViewController {
     @IBOutlet weak var mountainImg: UIImageView!
     @IBOutlet weak var megalopolisImg: UIImageView!
     
+    @IBAction func prepareForUnwindToWhereLive(segue: UIStoryboardSegue) {}
+    
     var placeOfLiving: PlaceOfLiving?
 
     override func viewDidLoad() {
@@ -47,14 +49,13 @@ class WhereLiveVC: UIViewController {
         
         if let place = placeOfLiving {
             CurrentUserData.instance.placeOfLiving = place
-            guard let lifestyleVC = storyboard?.instantiateViewController(withIdentifier: "LifestyleVC") as? LifestyleVC else { return }
-            presentDetail(lifestyleVC)
+            self.performSegue(withIdentifier: "toLifestyle", sender: nil)
         }
         
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        dismissDetail()
+        self.performSegue(withIdentifier: "backToHowOld", sender: nil)
     }
     
     

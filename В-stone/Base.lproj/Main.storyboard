@@ -205,10 +205,10 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPQ-VC-qxA">
-                                <rect key="frame" x="0.0" y="54" width="320" height="457"/>
+                                <rect key="frame" x="0.0" y="54" width="320" height="465"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleCell" rowHeight="410" id="g5m-PC-BMs" customClass="ArticleCell" customModule="В_stone" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleCell" rowHeight="410" id="g5m-PC-BMs" customClass="ArticleCell" customModule="В_stone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="410"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g5m-PC-BMs" id="KeX-c7-DnM">
@@ -257,7 +257,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Sd3-YS-o41" firstAttribute="bottom" secondItem="gPQ-VC-qxA" secondAttribute="bottom" constant="8" id="Mtj-ZT-W9Q"/>
+                            <constraint firstItem="Sd3-YS-o41" firstAttribute="bottom" secondItem="gPQ-VC-qxA" secondAttribute="bottom" id="Mtj-ZT-W9Q"/>
                             <constraint firstItem="Sd3-YS-o41" firstAttribute="trailing" secondItem="fgg-96-h4f" secondAttribute="trailing" constant="16" id="czz-WI-eAu"/>
                             <constraint firstItem="fgg-96-h4f" firstAttribute="top" secondItem="Sd3-YS-o41" secondAttribute="top" constant="8" id="f6d-au-2o4"/>
                             <constraint firstItem="gPQ-VC-qxA" firstAttribute="top" secondItem="fgg-96-h4f" secondAttribute="bottom" constant="8" id="fIp-ij-T42"/>
@@ -269,11 +269,12 @@
                     <tabBarItem key="tabBarItem" title="" image="advice" selectedImage="advice_selected" id="1Tq-fa-Hki"/>
                     <connections>
                         <outlet property="tableView" destination="gPQ-VC-qxA" id="PWR-fg-ojs"/>
+                        <segue destination="adn-HW-lNA" kind="show" identifier="toArticle" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="ZKL-TF-qn5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3l-U8-dFS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2557.5" y="1082.7464788732395"/>
+            <point key="canvasLocation" x="2218" y="1127"/>
         </scene>
         <!--ArticleVC-->
         <scene sceneID="wVf-Ud-Rz7">
@@ -316,17 +317,19 @@
                                             <constraint firstAttribute="height" constant="30" id="CcP-nv-uQq"/>
                                             <constraint firstAttribute="width" constant="34" id="sAl-TQ-Kay"/>
                                         </constraints>
-                                        <state key="normal" title="NOO"/>
+                                        <state key="normal" title="Back"/>
                                         <connections>
-                                            <action selector="backBtnWasPressed:" destination="adn-HW-lNA" eventType="touchUpInside" id="XtJ-0r-nbY"/>
+                                            <segue destination="Fbu-AF-mcc" kind="unwind" identifier="backToAdvice" customClass="UnwindNoBlackoutTransition" customModule="В_stone" customModuleProvider="target" unwindAction="prepareForUnwindHeyWithSegue:" id="TvJ-RZ-lAt"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="X34-l7-7dZ" firstAttribute="top" secondItem="ywE-vF-Wvy" secondAttribute="bottom" constant="8" id="Z3T-8X-sw0"/>
+                                    <constraint firstItem="8eS-TW-5Wx" firstAttribute="leading" secondItem="SG7-iA-Gy4" secondAttribute="leading" constant="14" id="fhz-Rv-BqK"/>
                                     <constraint firstAttribute="bottom" secondItem="X34-l7-7dZ" secondAttribute="bottom" constant="16" id="gW6-wD-QaN"/>
                                     <constraint firstItem="ywE-vF-Wvy" firstAttribute="top" secondItem="q1K-Mo-zGi" secondAttribute="bottom" id="m8b-jN-ybM"/>
                                     <constraint firstItem="A9b-yz-67g" firstAttribute="top" secondItem="SG7-iA-Gy4" secondAttribute="top" constant="8" id="oZG-Od-PM0"/>
+                                    <constraint firstItem="8eS-TW-5Wx" firstAttribute="top" secondItem="SG7-iA-Gy4" secondAttribute="top" constant="8" id="waV-YY-hI3"/>
                                     <constraint firstItem="q1K-Mo-zGi" firstAttribute="top" secondItem="A9b-yz-67g" secondAttribute="bottom" constant="8" id="wfP-x6-AeY"/>
                                 </constraints>
                             </scrollView>
@@ -341,8 +344,6 @@
                             <constraint firstItem="q1K-Mo-zGi" firstAttribute="leading" secondItem="aR8-7q-lp6" secondAttribute="leading" constant="16" id="I8k-Y5-F7f"/>
                             <constraint firstItem="SG7-iA-Gy4" firstAttribute="leading" secondItem="aR8-7q-lp6" secondAttribute="leading" id="L1h-HK-dEp"/>
                             <constraint firstItem="aR8-7q-lp6" firstAttribute="trailing" secondItem="X34-l7-7dZ" secondAttribute="trailing" constant="16" id="ToD-c8-i2D"/>
-                            <constraint firstItem="8eS-TW-5Wx" firstAttribute="leading" secondItem="aR8-7q-lp6" secondAttribute="leading" constant="14" id="Ufc-ER-cVs"/>
-                            <constraint firstItem="8eS-TW-5Wx" firstAttribute="top" secondItem="aR8-7q-lp6" secondAttribute="top" constant="8" id="UwI-jb-jYU"/>
                             <constraint firstItem="aR8-7q-lp6" firstAttribute="bottom" secondItem="SG7-iA-Gy4" secondAttribute="bottom" id="bLh-7U-iS4"/>
                             <constraint firstItem="SG7-iA-Gy4" firstAttribute="top" secondItem="aR8-7q-lp6" secondAttribute="top" id="g77-uS-9A3"/>
                             <constraint firstItem="aR8-7q-lp6" firstAttribute="trailing" secondItem="ywE-vF-Wvy" secondAttribute="trailing" constant="8" id="lNc-H6-L9V"/>
@@ -359,13 +360,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOd-UR-isn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Fbu-AF-mcc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3397.5" y="1080.6338028169014"/>
+            <point key="canvasLocation" x="3189" y="1126"/>
         </scene>
         <!--StartVC-->
         <scene sceneID="7js-IJ-oWe">
             <objects>
-                <viewController storyboardIdentifier="StartVC" id="kgY-Ve-VGq" customClass="StartVC" customModule="В_stone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kgY-Ve-VGq" customClass="StartVC" customModule="В_stone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P7O-IS-SHA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -462,13 +464,15 @@
                         <outlet property="loginTextField" destination="DJb-p0-XlY" id="vl6-he-s7J"/>
                         <outlet property="passwordTextField" destination="80s-8J-C3X" id="wq8-kf-GMp"/>
                         <outlet property="signInBtn" destination="w8Y-oc-YKM" id="fvP-Pp-Zpv"/>
-                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="toTabBar" id="rOT-Oo-QMa"/>
-                        <segue destination="RVP-Jx-eVy" kind="show" id="yz3-22-A69"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="toTabBar" id="rOT-Oo-QMa"/>
+                        <segue destination="RVP-Jx-eVy" kind="show" identifier="toEnterEmail" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="yz3-22-A69"/>
+                        <segue destination="26D-wh-xG8" kind="custom" identifier="toCreateLogin" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="0Wh-AX-uOG"/>
+                        <segue destination="d4R-op-xsi" kind="custom" identifier="toWelcome" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="tcy-aa-IxS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5b4-CW-IPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5969" y="-248"/>
+            <point key="canvasLocation" x="-6188" y="-1273"/>
         </scene>
         <!--It Was SentVC-->
         <scene sceneID="pgf-La-waK">
@@ -609,7 +613,7 @@
                     <connections>
                         <outlet property="emailTxtField" destination="E1q-Ip-TOc" id="gV0-6r-ECa"/>
                         <outlet property="errorLbl" destination="80g-WO-XRK" id="kZf-oq-2fB"/>
-                        <segue destination="Jzy-wn-GLJ" kind="show" id="MJJ-L7-H2y"/>
+                        <segue destination="Jzy-wn-GLJ" kind="show" identifier="toItWasSent" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="MJJ-L7-H2y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIJ-35-28g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -764,11 +768,12 @@
                         <outlet property="loginTextField" destination="c21-4L-alb" id="5l6-QY-jct"/>
                         <outlet property="nextBtn" destination="lrA-tC-YhM" id="wp2-Hz-oxe"/>
                         <outlet property="passwordTextField" destination="Nss-m9-ueV" id="A0h-fl-BgA"/>
+                        <segue destination="d4R-op-xsi" kind="custom" identifier="toWelcome" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="ARH-5U-ILJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HfR-l9-taT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5201.25" y="-242.95774647887325"/>
+            <point key="canvasLocation" x="-5128" y="-248"/>
         </scene>
         <!--WelcomeVC-->
         <scene sceneID="9fg-qG-d2J">
@@ -826,13 +831,12 @@
                         <viewLayoutGuide key="safeArea" id="gHx-g8-Fae"/>
                     </view>
                     <connections>
-                        <segue destination="a9g-X8-d9y" kind="unwind" identifier="unwindToStart" unwindAction="prepareForUnwindWithSegue:" id="tR1-Ld-v0X"/>
+                        <segue destination="0BA-tY-13l" kind="custom" identifier="toHowOld" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="XbH-KT-v0Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y3O-he-3Lq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="a9g-X8-d9y" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-4365" y="-248.2394366197183"/>
+            <point key="canvasLocation" x="-4361" y="-248"/>
         </scene>
         <!--How Old Are YouVC-->
         <scene sceneID="xs3-jQ-648">
@@ -907,11 +911,14 @@
                     </view>
                     <connections>
                         <outlet property="ageTxtField" destination="p45-LN-EHD" id="JKx-Tn-OlO"/>
+                        <segue destination="Ytd-K5-kNe" kind="unwind" identifier="backToWelcome" customClass="UnwindNoBlackoutTransition" customModule="В_stone" customModuleProvider="target" unwindAction="prepareForUnwindToWelcomeVCWithSegue:" id="kXn-KG-sbw"/>
+                        <segue destination="hyO-bt-v3x" kind="custom" identifier="toWhereYouLive" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="eUi-qu-Jpl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rqu-mp-Zov" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Ytd-K5-kNe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-3630" y="-244.01408450704227"/>
+            <point key="canvasLocation" x="-3555" y="-248"/>
         </scene>
         <!--WrinklesVC-->
         <scene sceneID="9yd-Rw-yfZ">
@@ -1179,9 +1186,12 @@
                         <outlet property="foreheadBtn" destination="jei-hh-ZpG" id="nZq-Go-yJt"/>
                         <outlet property="interbrowBtn" destination="UKb-Yg-zZd" id="id8-a5-93q"/>
                         <outlet property="smileBtn" destination="CFb-wb-BDG" id="sQJ-vX-rqy"/>
+                        <segue destination="ViR-15-l5P" kind="unwind" identifier="backToLifestyle" unwindAction="prepareForUnwindToLifestyleWithSegue:" id="VFG-Yb-3A2"/>
+                        <segue destination="DEG-Mb-qY2" kind="custom" identifier="toInflamations" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="fUl-73-Kdn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sk6-Yp-hKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ViR-15-l5P" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1155" y="-244.01408450704227"/>
         </scene>
@@ -1504,9 +1514,12 @@
                         <outlet property="chinBtn" destination="UVc-nX-feI" id="U9M-4a-SAb"/>
                         <outlet property="foreheadBtn" destination="MMf-9D-Wh4" id="xsC-Ro-ah2"/>
                         <outlet property="noseBtn" destination="T92-MC-6Ne" id="Hbi-4T-Q7d"/>
+                        <segue destination="guR-n0-9Vy" kind="unwind" identifier="backToWrinkles" unwindAction="prepareForUnwindToWrinklesWithSegue:" id="KJE-0r-cJR"/>
+                        <segue destination="smU-hf-SV6" kind="custom" identifier="toAllergic" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="kd6-Ok-l1M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tn5-no-NnO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="guR-n0-9Vy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-309.375" y="-241.90140845070422"/>
         </scene>
@@ -1775,10 +1788,12 @@
                         <outlet property="haveNotKnowBtn" destination="7Mc-YH-gdF" id="5XD-sE-WwN"/>
                         <outlet property="notHaveBtn" destination="aaM-Fw-hNK" id="qS9-1B-5SQ"/>
                         <outlet property="notKnowBtn" destination="2NT-Fi-TRx" id="zOE-hl-ogm"/>
-                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="finishedEditing" id="KWf-Lj-h2m"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="finishedEditing" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="KWf-Lj-h2m"/>
+                        <segue destination="HaI-Lp-HQb" kind="unwind" identifier="backToInflamations" unwindAction="prepareForUnwindToInflamationsWithSegue:" id="9VO-rf-ntI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oPS-6U-RfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="HaI-Lp-HQb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="511.875" y="-240.8450704225352"/>
         </scene>
@@ -2012,9 +2027,12 @@
                         <outlet property="megalopolisImg" destination="gNc-s1-fSJ" id="gbQ-mz-HoW"/>
                         <outlet property="mountainImg" destination="GFL-dE-hHp" id="yGI-ol-oa4"/>
                         <outlet property="seaImg" destination="WCw-Vp-6la" id="dIJ-zq-Tq4"/>
+                        <segue destination="yXo-7V-sT3" kind="unwind" identifier="backToHowOld" customClass="UnwindNoBlackoutTransition" customModule="В_stone" customModuleProvider="target" unwindAction="prepareForUnwindToHowOldWithSegue:" id="dgA-ND-JRD"/>
+                        <segue destination="a5m-5h-EgM" kind="custom" identifier="toLifestyle" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="fxp-Yf-L7d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zmp-aF-lMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yXo-7V-sT3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2741.25" y="-242.95774647887325"/>
         </scene>
@@ -2161,8 +2179,8 @@
                                             <constraint firstAttribute="width" constant="65" id="onS-iC-PcO"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYS-7g-I1E">
-                                        <rect key="frame" x="23.5" y="70.5" width="33.5" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travelling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYS-7g-I1E">
+                                        <rect key="frame" x="10" y="70.5" width="60.5" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="KKV-aw-TVd"/>
                                         </constraints>
@@ -2348,9 +2366,12 @@
                         <outlet property="smokingImg" destination="xKZ-yY-Z3u" id="iaU-oz-Utw"/>
                         <outlet property="sportImg" destination="sKI-3Z-jIq" id="u4T-Tw-7pU"/>
                         <outlet property="sunbathingImg" destination="XwV-gr-OEH" id="L7r-Gn-aY1"/>
+                        <segue destination="lyO-d4-Mdr" kind="unwind" identifier="backToWhereLive" customClass="UnwindNoBlackoutTransition" customModule="В_stone" customModuleProvider="target" unwindAction="prepareForUnwindToWhereLiveWithSegue:" id="zFp-gj-Uew"/>
+                        <segue destination="GDs-T2-JNB" kind="custom" identifier="toWrinkles" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="4Z8-B7-jax"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zTC-fE-bGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="lyO-d4-Mdr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1974.375" y="-239.78873239436621"/>
         </scene>
@@ -2375,7 +2396,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1678" y="-33"/>
+            <point key="canvasLocation" x="1339" y="-222"/>
         </scene>
     </scenes>
     <resources>
@@ -2415,5 +2436,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rOT-Oo-QMa"/>
+        <segue reference="tcy-aa-IxS"/>
     </inferredMetricsTieBreakers>
 </document>

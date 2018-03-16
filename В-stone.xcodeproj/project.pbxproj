@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6627C13E2049DEAA00F2532C /* ArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6627C13D2049DEAA00F2532C /* ArticleVC.swift */; };
+		66A26189205A71B10037E26A /* NoBlackoutTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A26188205A71B10037E26A /* NoBlackoutTransition.swift */; };
+		66A2618C205A90660037E26A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A2618B205A90660037E26A /* Article.swift */; };
 		66BA938F2036F4B200C08154 /* BluetoothVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA938E2036F4B200C08154 /* BluetoothVC.swift */; };
 		66BA93912036F4CE00C08154 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA93902036F4CE00C08154 /* SettingsVC.swift */; };
 		66BA93932036F50300C08154 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA93922036F50300C08154 /* HomeVC.swift */; };
@@ -50,6 +52,8 @@
 		12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.release.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.release.xcconfig"; sourceTree = "<group>"; };
 		4191588C5B10948EF1B4AEDD /* Pods___stone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___stone.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6627C13D2049DEAA00F2532C /* ArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleVC.swift; sourceTree = "<group>"; };
+		66A26188205A71B10037E26A /* NoBlackoutTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoBlackoutTransition.swift; sourceTree = "<group>"; };
+		66A2618B205A90660037E26A /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		66BA938E2036F4B200C08154 /* BluetoothVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothVC.swift; sourceTree = "<group>"; };
 		66BA93902036F4CE00C08154 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		66BA93922036F50300C08154 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -102,6 +106,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66A26187205A71760037E26A /* Seques */ = {
+			isa = PBXGroup;
+			children = (
+				66A26188205A71B10037E26A /* NoBlackoutTransition.swift */,
+			);
+			path = Seques;
+			sourceTree = "<group>";
+		};
+		66A2618A205A90550037E26A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				66A2618B205A90660037E26A /* Article.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		66BA93D92046925F00C08154 /* Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +140,8 @@
 		66EF7CB0201F550A008FBAE2 = {
 			isa = PBXGroup;
 			children = (
+				66A2618A205A90550037E26A /* Model */,
+				66A26187205A71760037E26A /* Seques */,
 				66BA93D92046925F00C08154 /* Files */,
 				66EF7D1B20285121008FBAE2 /* Enumerations */,
 				66EF7CE7202074F9008FBAE2 /* Extensions */,
@@ -373,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66A2618C205A90660037E26A /* Article.swift in Sources */,
 				66EF7CEF2023752B008FBAE2 /* WhereLiveVC.swift in Sources */,
 				66BA93952036F51E00C08154 /* AdviceVC.swift in Sources */,
 				66EF7CED20208742008FBAE2 /* LifestyleVC.swift in Sources */,
@@ -393,6 +416,7 @@
 				66EF7CD2201F571D008FBAE2 /* StartVC.swift in Sources */,
 				66EF7CE920207514008FBAE2 /* UIViewControllerExt.swift in Sources */,
 				66EF7CDF201FBA9E008FBAE2 /* WrinklesVC.swift in Sources */,
+				66A26189205A71B10037E26A /* NoBlackoutTransition.swift in Sources */,
 				66EF7CD9201FB29A008FBAE2 /* WelcomeVC.swift in Sources */,
 				66EF7CD5201F583C008FBAE2 /* LoginTextField.swift in Sources */,
 				66BA938F2036F4B200C08154 /* BluetoothVC.swift in Sources */,

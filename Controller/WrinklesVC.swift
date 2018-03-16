@@ -20,6 +20,8 @@ class WrinklesVC: UIViewController {
     var eyeAccepted = false
     var smileAccepted = false
     
+    @IBAction func prepareForUnwindToWrinkles(segue: UIStoryboardSegue) {}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,12 +46,11 @@ class WrinklesVC: UIViewController {
         CurrentUserData.instance.wrinklesUnderEye = eyeAccepted
         CurrentUserData.instance.wrinklesInterbrow = interbrowAccepted
         
-        guard let inflamationsVC = storyboard?.instantiateViewController(withIdentifier: "InflamationsVC") as? InflamationsVC else { return }
-        presentDetail(inflamationsVC)
+        self.performSegue(withIdentifier: "toInflamations", sender: nil)
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        dismissDetail()
+        self.performSegue(withIdentifier: "backToLifestyle", sender: nil)
     }
     
     @IBAction func foreheadBtnWasPressed(_ sender: Any) {

@@ -13,6 +13,13 @@ class AdviceVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var texts = [String]()
+    
+    @IBAction func prepareForUnwindHey(segue: UIStoryboardSegue) {
+        let vc = segue.destination as! AdviceVC
+        vc.tabBarController?.tabBar.isTranslucent = false
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -77,12 +84,21 @@ extension AdviceVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let articleVC = storyboard?.instantiateViewController(withIdentifier: "ArticleVC") as? ArticleVC else { return }
+        
         let sepStr = texts[indexPath.row].components(separatedBy: ";")
+        
         let header = sepStr[0]
         let preview = sepStr[1]
         let body = sepStr[2]
-        articleVC.configureView(header: header, preview: preview, body: body, imgName: "\(indexPath.row + 1)")
-        presentDetail(articleVC)
+        var article = Article.init(header: header, preview: preview, body: body, imageName: "\(indexPath.row + 1)")
+        
+        performSegue(withIdentifier: "toArticle", sender: article)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let articleVC = segue.destination as? ArticleVC else { return }
+        guard let article = sender as? Article else { return }
+        
+        articleVC.configureView(header: article.header, preview: article.preview, body: article.body, imgName: article.imageName)
     }
 }

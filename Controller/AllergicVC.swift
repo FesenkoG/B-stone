@@ -53,14 +53,14 @@ class AllergicVC: UIViewController {
         
         DataService.instance.uploadUserData(handler: { (success) in
             if success {
-                //Это не работает!!
+                
                 self.performSegue(withIdentifier: "finishedEditing", sender: nil)
             }
         })
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        dismissDetail()
+        self.performSegue(withIdentifier: "backToInflamations", sender: nil)
     }
     
     func setChoise(choise: Allergic) {
@@ -84,5 +84,10 @@ class AllergicVC: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? UITabBarController {
+            vc.selectedIndex = 1
+        }
+    }
 
 }

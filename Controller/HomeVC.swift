@@ -17,6 +17,8 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.unselectedItemTintColor = UIColor.white
+
 
         self.tabBarItem.selectedImage = UIImage(named: "hp_selected")!.withRenderingMode(.alwaysOriginal)
         

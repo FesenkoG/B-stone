@@ -9,9 +9,11 @@
 import UIKit
 
 class WelcomeVC: UIViewController {
+    
+    @IBAction func prepareForUnwindToWelcomeVC(segue: UIStoryboardSegue) {}
+    
     @IBAction func nextBtnWasPressed(_ sender: Any) {
-        guard let howOldVC = storyboard?.instantiateViewController(withIdentifier: "HowOldAreYouVC") as? HowOldAreYouVC else { return }
-        presentDetail(howOldVC)
+        performSegue(withIdentifier: "toHowOld", sender: nil)
     }
     
 }

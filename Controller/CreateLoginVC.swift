@@ -47,11 +47,7 @@ class CreateLoginVC: UIViewController {
                     self.nextBtn.isEnabled = true
                     
                     AuthService.instance.loginUser(email: self.emailTextField.text!, password: self.passwordTextField.text!, handler: { (completion, error) in
-                        guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
-                            return
-                        }
-                        
-                        self.presentDetail(welcomeVC)
+                        self.performSegue(withIdentifier: "toWelcome", sender: nil)
                     })
                     
                 } else {

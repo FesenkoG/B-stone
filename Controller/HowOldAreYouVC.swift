@@ -12,10 +12,14 @@ class HowOldAreYouVC: UIViewController {
 
     @IBOutlet weak var ageTxtField: LoginTextField!
     
+    @IBAction func prepareForUnwindToHowOld(segue: UIStoryboardSegue) {}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
     }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if CurrentUserData.instance.age != nil {
@@ -27,13 +31,12 @@ class HowOldAreYouVC: UIViewController {
         
         if let age = ageTxtField.text, ageTxtField.text != "", let intAge = Int(age), intAge > 0, intAge < 150 {
             CurrentUserData.instance.age = intAge
-            guard let whereLiveVC = storyboard?.instantiateViewController(withIdentifier: "WhereLiveVC") as? WhereLiveVC else { return }
-            presentDetail(whereLiveVC)
+            self.performSegue(withIdentifier: "toWhereYouLive", sender: nil)
         }
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        dismissDetail()
+        self.dismiss(animated: true, completion: nil)
     }
     
     

@@ -32,7 +32,7 @@ class ArticleVC: UIViewController {
         self.view.addGestureRecognizer(swipeRight)
     }
     @objc func swipe(sender: UISwipeGestureRecognizer) {
-        self.dismissDetail()
+        self.performSegue(withIdentifier: "backToAdvice", sender: nil)
     }
     func configureView(header: String, preview: String, body: String, imgName: String) {
         
@@ -42,9 +42,7 @@ class ArticleVC: UIViewController {
         self.imgName = imgName
     }
     
-    @IBAction func backBtnWasPressed(_ sender: Any) {
-        dismissDetail()
-    }
+
     
     
 }

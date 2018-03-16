@@ -27,27 +27,28 @@ class StartVC: UIViewController {
                 if success {
                     self.performSegue(withIdentifier: "toTabBar", sender: nil)
                 } else {
-                    guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
-                        return
-                    }
-                    self.presentDetail(welcomeVC)
+                    self.performSegue(withIdentifier: "toWelcome", sender: nil)
                 }
             })
             
         }
+        
+        
+
     }
     
     @IBAction func createAccountWasPressed(_ sender: Any) {
-        guard let createLoginVC = storyboard?.instantiateViewController(withIdentifier: "CreateLoginVC") as? CreateLoginVC else { return }
-        presentDetail(createLoginVC)
+        performSegue(withIdentifier: "toCreateLogin", sender: nil)
     }
     
     @IBAction func forgotThePasswordBtnWasPressed(_ sender: Any) {
-        guard let enterEmailVC = storyboard?.instantiateViewController(withIdentifier: "EnterEmailVC") as? EnterEmailVC else { return }
+        
         if let text = loginTextField.text {
-            enterEmailVC.configureVC(text: text)
+            self.performSegue(withIdentifier: "toEnterEmail", sender: text)
+        } else {
+            self.performSegue(withIdentifier: "toEnterEmail", sender: nil)
         }
-        presentDetail(enterEmailVC)
+        
     }
     
     @IBAction func signInBtnWasPressed(_ sender: Any) {
@@ -64,10 +65,7 @@ class StartVC: UIViewController {
                         if success {
                             self.performSegue(withIdentifier: "toTabBar", sender: nil)
                         } else {
-                            guard let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC else {
-                                return
-                            }
-                            self.presentDetail(welcomeVC)
+                            self.performSegue(withIdentifier: "toWelcome", sender: nil)
                         }
                     })
                     
@@ -76,6 +74,15 @@ class StartVC: UIViewController {
                 }
             })
             signInBtn.isEnabled = true
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? UITabBarController {
+            vc.selectedIndex = 1
+        } else {
+            if let vc = segue.destination as? EnterEmailVC, let text = sender as? String {
+                vc.configureVC(text: text)
+            }
         }
     }
 }

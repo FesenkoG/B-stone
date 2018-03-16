@@ -6,14 +6,14 @@
 //  Copyright © 2018 Georgy. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class CurrentUserData {
     
     static let instance = CurrentUserData()
     
     var age: Int?
-    
+        
     var placeOfLiving: PlaceOfLiving?
     
     var habitSunbathing: Bool?
