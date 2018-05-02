@@ -12,7 +12,11 @@ import Firebase
 class AdviceVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var texts = [String]()
+    
+    var articles = [Article]()
+    let articlesWithProducts = ["2", "4", "7", "15", "16"]
+    
+    var isReadMore = [String: Bool]()
     
     @IBAction func prepareForUnwindHey(segue: UIStoryboardSegue) {
         let vc = segue.destination as! AdviceVC
@@ -24,18 +28,36 @@ class AdviceVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.allowsSelection = false
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 465
+        
         self.tabBarItem.selectedImage = UIImage(named: "advice_selected")!.withRenderingMode(.alwaysOriginal)
         let base = "article"
-        for number in 1...8 {
-            let newBase = base + String(describing: number)
+        let numbersToShow = articlesToShow()
+        for number in numbersToShow {
+            let imageName = String(describing: number)
+            let newBase = base + imageName
             let filePath = Bundle.main.path(forResource: newBase, ofType: "txt")!
             do {
                 let text = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
-                texts.append(text)
+                let sepStr = text.components(separatedBy: ";")
+                let header = sepStr[0]
+                let preview = sepStr[1]
+                let body = sepStr[2]
+                
+                let article = Article(header: header, preview: preview, body: body, imageName: imageName)
+                articles.append(article)
             } catch {
                 print(error)
             }
         }
+    }
+    
+    func articlesToShow() -> [Int] {
+        //Возвращает набор индексов статей для показа,  основываясь на данных пользователя
+        return [1, 2, 3, 4, 5, 6, 7, 8]
     }
 
     @IBAction func logOutBtnWasPressed(_ sender: Any) {
@@ -68,37 +90,53 @@ extension AdviceVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return texts.count
+        return articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell") as? ArticleCell else { return UITableViewCell() }
-        let sepStr = texts[indexPath.row].components(separatedBy: ";")
-        let header = sepStr[0]
-        let preview = sepStr[1]
-        let body = sepStr[2]
-        cell.configureCell(header: header, preview: preview, text: body, imgName: "\(indexPath.row + 1)")
-        cell.selectionStyle = .default
-        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-        return cell
+        var flag = false
+        if let fullTextFlag = isReadMore[articles[indexPath.row].imageName] {
+            if fullTextFlag == true {
+                flag = false
+            } else {
+                flag = true
+            }
+        }
+    
+        if articlesWithProducts.contains(articles[indexPath.row].imageName) {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleWithProductsCell") as? ArticleWithProductsCell else { return UITableViewCell() }
+            let article = Article(header: articles[indexPath.row].header, preview: articles[indexPath.row].preview, body: articles[indexPath.row].body, imageName: articles[indexPath.row].imageName)
+            cell.configureCell(article: article, fullText: flag)
+            cell.delegate = self
+            
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell") as? ArticleCell else { return UITableViewCell() }
+            let article = Article(header: articles[indexPath.row].header, preview: articles[indexPath.row].preview, body: articles[indexPath.row].body, imageName: articles[indexPath.row].imageName)
+            cell.configureCell(article: article, fullText: flag)
+            cell.delegate = self
+            
+            return cell
+        }
+        
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+}
+
+extension AdviceVC: CellChangingProtocol {
+    func cellDidChange(article: String) {
+        if isReadMore[article] == nil {
+            isReadMore[article] = false
+        } else if isReadMore[article] == false {
+            isReadMore[article] = true
+        } else {
+            isReadMore[article] = false
+        }
         
-        let sepStr = texts[indexPath.row].components(separatedBy: ";")
+        tableView.beginUpdates()
         
-        let header = sepStr[0]
-        let preview = sepStr[1]
-        let body = sepStr[2]
-        var article = Article.init(header: header, preview: preview, body: body, imageName: "\(indexPath.row + 1)")
-        
-        performSegue(withIdentifier: "toArticle", sender: article)
+        tableView.endUpdates()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let articleVC = segue.destination as? ArticleVC else { return }
-        guard let article = sender as? Article else { return }
-        
-        articleVC.configureView(header: article.header, preview: article.preview, body: article.body, imgName: article.imageName)
-    }
+    
 }

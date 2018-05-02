@@ -16,25 +16,39 @@ class StartVC: UIViewController {
     @IBOutlet weak var loginTextField: LoginTextField!
     @IBOutlet weak var passwordTextField: LoginTextField!
     @IBOutlet weak var signInBtn: UIButton!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        turnOffSpinner()
+        errorLbl.isHidden = true
         self.hideKeyboardWhenTappedAround()
         if Auth.auth().currentUser != nil {
+            turnOnSpinner()
+            signInBtn.isEnabled = false
             DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: { (success) in
+                self.turnOffSpinner()
+                self.signInBtn.isEnabled = true
                 if success {
                     self.performSegue(withIdentifier: "toTabBar", sender: nil)
                 } else {
                     self.performSegue(withIdentifier: "toWelcome", sender: nil)
                 }
             })
-            
         }
+    }
+    
+    func turnOnSpinner() {
+        self.spinner.isHidden = false
+        self.spinner.startAnimating()
         
-        
-
+    }
+    
+    func turnOffSpinner() {
+        self.spinner.isHidden = true
+        self.spinner.stopAnimating()
     }
     
     @IBAction func createAccountWasPressed(_ sender: Any) {
@@ -52,16 +66,18 @@ class StartVC: UIViewController {
     }
     
     @IBAction func signInBtnWasPressed(_ sender: Any) {
+        
         signInBtn.isEnabled = false
-        
-        
+        errorLbl.isHidden = true
         if loginTextField.text != nil && passwordTextField.text != nil {
+            turnOnSpinner()
             CurrentUserData.instance.email = loginTextField.text
             CurrentUserData.instance.password = passwordTextField.text
             
             AuthService.instance.loginUser(email: loginTextField.text!, password: passwordTextField.text!, handler: { (success, error) in
                 if success {
                     DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: { (success) in
+                        self.turnOffSpinner()
                         if success {
                             self.performSegue(withIdentifier: "toTabBar", sender: nil)
                         } else {
@@ -70,7 +86,9 @@ class StartVC: UIViewController {
                     })
                     
                 } else {
+                    self.turnOffSpinner()
                     self.errorLbl.text = error?.localizedDescription
+                    self.errorLbl.isHidden = false
                 }
             })
             signInBtn.isEnabled = true

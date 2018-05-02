@@ -9,6 +9,7 @@
 import Foundation
 
 struct Article {
+    
     var header: String
     var preview: String
     var body: String
