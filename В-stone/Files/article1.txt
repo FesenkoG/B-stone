@@ -1,0 +1,3 @@
+What is SPF?;
+SPF-Sun Protection Factor, which shows how much longer you can stay at the sun before you'll get sunburn, than you doing it normally.;
+For example, if your skin usually turns red after 5 minutes of staying on the beach, then using SPF 10 you can do it up to 50 minutes. Unfortunately, these numbers are arbitrary. The sun's rays are divided into A and B spectra. The B-rays cause erythema (redness) and sunburn, and the A-rays have no external manifestations and do not cause discomfort, but later they contribute to photo aging. Although many modern sunscreen products contain both physical and chemical filters that protect against the rays of both spectra, it is still not known for sure whether photographic aging with sunscreens can be completely prevented.
