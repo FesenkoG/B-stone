@@ -24,17 +24,10 @@ class AdviceVC: UIViewController {
         vc.tabBarController?.tabBar.isTranslucent = false
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        tableView.allowsSelection = false
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 465
-        
-        self.tabBarItem.selectedImage = UIImage(named: "advice_selected")!.withRenderingMode(.alwaysOriginal)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        articles.removeAll()
+        print(#function)
         let base = "article"
         let numbersToShow = articlesToShow()
         for number in numbersToShow {
@@ -54,6 +47,20 @@ class AdviceVC: UIViewController {
                 print(error)
             }
         }
+        tableView.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.allowsSelection = false
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 465
+        
+        self.tabBarItem.selectedImage = UIImage(named: "advice_selected")!.withRenderingMode(.alwaysOriginal)
+        
     }
     
     func articlesToShow() -> [Int] {
@@ -61,7 +68,7 @@ class AdviceVC: UIViewController {
         var result = [Int]()
         result.append(12)
         result.append(101)
-        //result.append(102)
+        result.append(102)
         if checkFirst() {
             result.append(1)
             result.append(2)
@@ -97,6 +104,23 @@ class AdviceVC: UIViewController {
         
         if checkForThirteen() {
             result.append(13)
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM"
+        let m = Int(formatter.string(from: Date()))!
+        if m == 11 || m == 12 || m == 1 || m == 2 {
+            result.append(14)
+        }
+        
+        
+        if let currentPercentage = CurrentUserData.instance.currentPercantage {
+            if currentPercentage > 0 && currentPercentage <= 45 {
+                result.append(15)
+            }
+            if currentPercentage >= 61 && currentPercentage <= 100 {
+                result.append(16)
+            }
         }
         
         return result
@@ -167,8 +191,9 @@ class AdviceVC: UIViewController {
         let logoutAction = UIAlertAction(title: "Logout?", style: .destructive) { (buttonTapped) in
             do{
                 try Auth.auth().signOut()
-                guard let startVC = self.storyboard?.instantiateViewController(withIdentifier: "StartVC") as? StartVC else { return }
-                self.present(startVC, animated: true, completion: nil)
+                clearUserData()
+                self.performSegue(withIdentifier: "backToStart2", sender: nil)
+                AppData.shared.isEditScreenExists = false
             } catch {
                 print(error)
             }
@@ -209,21 +234,21 @@ extension AdviceVC: UITableViewDelegate, UITableViewDataSource {
         if articlesWithProducts.contains(articles[indexPath.row].imageName) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleWithProductsCell") as? ArticleWithProductsCell else { return UITableViewCell() }
             let article = Article(header: articles[indexPath.row].header, preview: articles[indexPath.row].preview, body: articles[indexPath.row].body, imageName: articles[indexPath.row].imageName)
-            cell.configureCell(article: article, fullText: flag)
+            cell.configureCell(article: article, fullText: flag, indexPath: indexPath)
             cell.delegate = self
             
             return cell
         } else if articlesWithoutImages.contains(articles[indexPath.row].imageName) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleWithoutImageCell") as? ArticleWithoutImageCell else { return UITableViewCell() }
             let article = Article(header: articles[indexPath.row].header, preview: articles[indexPath.row].preview, body: articles[indexPath.row].body, imageName: articles[indexPath.row].imageName)
-            cell.configureCell(article: article, fullText: flag)
+            cell.configureCell(article: article, fullText: flag, indexPath: indexPath)
             cell.delegate = self
             
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell") as? ArticleCell else { return UITableViewCell() }
             let article = Article(header: articles[indexPath.row].header, preview: articles[indexPath.row].preview, body: articles[indexPath.row].body, imageName: articles[indexPath.row].imageName)
-            cell.configureCell(article: article, fullText: flag)
+            cell.configureCell(article: article, fullText: flag, indexPath: indexPath)
             cell.delegate = self
             
             return cell
@@ -235,7 +260,7 @@ extension AdviceVC: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: - CellDelegate
 extension AdviceVC: CellChangingProtocol {
-    func cellDidChange(article: String) {
+    func cellDidChange(article: String, _ indexPath: IndexPath?) {
         if isReadMore[article] == nil {
             isReadMore[article] = false
         } else if isReadMore[article] == false {
@@ -245,7 +270,9 @@ extension AdviceVC: CellChangingProtocol {
         }
         
         tableView.beginUpdates()
-        
+        if let indexPath = indexPath {
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
         tableView.endUpdates()
     }
     

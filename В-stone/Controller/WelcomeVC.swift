@@ -10,6 +10,13 @@ import UIKit
 
 class WelcomeVC: UIViewController {
     
+    @IBOutlet weak var nextBtn: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        AppData.shared.isWelcomeExists = true
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+    }
     @IBAction func prepareForUnwindToWelcomeVC(segue: UIStoryboardSegue) {}
     
     @IBAction func nextBtnWasPressed(_ sender: Any) {

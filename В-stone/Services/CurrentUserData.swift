@@ -38,4 +38,47 @@ class CurrentUserData {
     
     var email: String?
     
+    var prevPercantage: Double?
+    var currentPercantage: Double?
+    
+    var firstFace: Double?
+    var secondFace: Double?
+    var thirdFace: Double?
+    
+    var date: String?
+    var prevDate: String?
+    
+    var selectedIndex = 2
+    
+}
+
+func clearUserData() {
+    
+    CurrentUserData.instance.age = nil
+    CurrentUserData.instance.allergic = nil
+    CurrentUserData.instance.email = nil
+    CurrentUserData.instance.habitCoffee = nil
+    CurrentUserData.instance.habitDiet = nil
+    CurrentUserData.instance.habitMakeup = nil
+    CurrentUserData.instance.habitSmoking = nil
+    CurrentUserData.instance.habitSport = nil
+    CurrentUserData.instance.habitSunbathing = nil
+    CurrentUserData.instance.inflamationsAroundNose = nil
+    CurrentUserData.instance.inflamationsCheeks = nil
+    CurrentUserData.instance.inflamationsChin = nil
+    CurrentUserData.instance.inflamationsForehead = nil
+    CurrentUserData.instance.inflamationsNose = nil
+    CurrentUserData.instance.placeOfLiving = nil
+    CurrentUserData.instance.wrinklesForehead = nil
+    CurrentUserData.instance.wrinklesInterbrow = nil
+    CurrentUserData.instance.wrinklesSmile = nil
+    CurrentUserData.instance.wrinklesUnderEye = nil
+    CurrentUserData.instance.prevPercantage = nil
+    CurrentUserData.instance.currentPercantage = nil
+    CurrentUserData.instance.date = nil
+    CurrentUserData.instance.prevDate = nil
+    CurrentUserData.instance.currentPercantage = nil
+    CurrentUserData.instance.prevPercantage = nil
+    
+    
 }

@@ -22,8 +22,9 @@ class SettingsVC: UIViewController {
         let logoutAction = UIAlertAction(title: "Logout?", style: .destructive) { (buttonTapped) in
             do{
                 try Auth.auth().signOut()
-                guard let startVC = self.storyboard?.instantiateViewController(withIdentifier: "StartVC") as? StartVC else { return }
-                self.present(startVC, animated: true, completion: nil)
+                clearUserData()
+                self.performSegue(withIdentifier: "backToStart", sender: nil)
+                AppData.shared.isEditScreenExists = false
             } catch {
                 print(error)
             }
@@ -41,9 +42,13 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func editProfileDataWasPressed(_ sender: Any) {
-        guard let howOldAreYouVC = self.storyboard?.instantiateViewController(withIdentifier: "HowOldAreYouVC") as? HowOldAreYouVC else { return }
+        if AppData.shared.isEditScreenExists {
+            self.performSegue(withIdentifier: "editData", sender: nil)
+        } else {
+            guard let howOldVC = storyboard?.instantiateViewController(withIdentifier: "HowOldAreYouVC") as? HowOldAreYouVC else { return }
+            self.present(howOldVC, animated: true, completion: nil)
+        }
         
-        self.present(howOldAreYouVC, animated: true, completion: nil)
         
     }
     
@@ -52,8 +57,7 @@ class SettingsVC: UIViewController {
         let logoutAction = UIAlertAction(title: "Delete?", style: .destructive) { (buttonTapped) in
             Auth.auth().currentUser?.delete(completion: { (error) in
                 if error == nil {
-                    guard let startVC = self.storyboard?.instantiateViewController(withIdentifier: "StartVC") as? StartVC else { return }
-                    self.present(startVC, animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "backToStart", sender: nil)
                 } else {
                     print(error?.localizedDescription as Any)
                 }

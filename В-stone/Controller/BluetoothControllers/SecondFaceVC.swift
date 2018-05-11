@@ -8,28 +8,51 @@
 
 import UIKit
 
-class SecondFaceVC: UIViewController {
+class SecondFaceVC: UIViewController, BluetoothDelegate {
+    
+    var bluetoothService: BluetoothService!
 
+    @IBOutlet weak var secondFaceImg: UIImageView!
+    @IBOutlet weak var nextScreenBtn: UIButton!
+    @IBOutlet weak var nextScreenLbl: UILabel!
+    
+    private var count = 0
+    private var flag = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        secondFaceImg.image = UIImage.gifImageWithName("secondFace")
+        nextScreenBtn.isEnabled = false
+        nextScreenLbl.isHidden = true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func nextScreenBtnWasPressed(_ sender: Any) {
+        performSegue(withIdentifier: "toThirdFaceVC", sender: nil)
     }
-    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let thirdFaceVC = segue.destination as? ThirdFaceVC else { return }
+        thirdFaceVC.bluetoothSerice = bluetoothService
+        thirdFaceVC.bluetoothSerice.delegate = thirdFaceVC
+    }
+    
+    func didRecieveValue(value: Double) {
+        if value != -1 && flag == false {
+            count += 1
+            if count == 2 {
+                CurrentUserData.instance.secondFace = value
+                flag = true
+            }
+        }
+        
+        if value != -1 && flag == true {
+            nextScreenLbl.isHidden = false
+            nextScreenBtn.isEnabled = false
+        }
+        
+        if value == -1 && flag == true {
+            nextScreenBtn.isEnabled = true
+        }
+    }
 
 }

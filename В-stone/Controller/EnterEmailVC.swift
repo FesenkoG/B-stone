@@ -13,12 +13,20 @@ class EnterEmailVC: UIViewController {
 
     @IBOutlet weak var emailTxtField: LoginTextField!
     @IBOutlet weak var errorLbl: UILabel!
+    @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var backBtn: UIButton!
+    
     var text: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
         if let txt = text {
             emailTxtField.text = txt
         }
+        emailTxtField.delegate = self
+        
     }
     
     @IBAction func nextBtnWasPressed(_ sender: Any) {
@@ -39,5 +47,12 @@ class EnterEmailVC: UIViewController {
     
     func configureVC(text: String) {
         self.text = text
+    }
+}
+
+extension EnterEmailVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

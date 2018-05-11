@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		668F45F9209F78FB007877DC /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668F45F8209F78FB007877DC /* BluetoothService.swift */; };
+		668F45FC20A18673007877DC /* StoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668F45FB20A18673007877DC /* StoneVC.swift */; };
+		668F460120A1880F007877DC /* secondFace.gif in Resources */ = {isa = PBXBuildFile; fileRef = 668F45FD20A1880E007877DC /* secondFace.gif */; };
+		668F460220A1880F007877DC /* thirdFace.gif in Resources */ = {isa = PBXBuildFile; fileRef = 668F45FE20A1880E007877DC /* thirdFace.gif */; };
+		668F460320A1880F007877DC /* firstFace.gif in Resources */ = {isa = PBXBuildFile; fileRef = 668F45FF20A1880E007877DC /* firstFace.gif */; };
+		668F460420A1880F007877DC /* stoneGIF.gif in Resources */ = {isa = PBXBuildFile; fileRef = 668F460020A1880F007877DC /* stoneGIF.gif */; };
+		668F460620A18CB5007877DC /* FirstFaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668F460520A18CB5007877DC /* FirstFaceVC.swift */; };
+		668F460A20A18F41007877DC /* SecondFaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668F460920A18F41007877DC /* SecondFaceVC.swift */; };
+		668F460C20A18F62007877DC /* ThirdFaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668F460B20A18F62007877DC /* ThirdFaceVC.swift */; };
+		668F460E20A32523007877DC /* article102.txt in Resources */ = {isa = PBXBuildFile; fileRef = 668F460D20A32523007877DC /* article102.txt */; };
+		668F461020A58D26007877DC /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668F460F20A58D26007877DC /* AppData.swift */; };
 		66A26189205A71B10037E26A /* NoBlackoutTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A26188205A71B10037E26A /* NoBlackoutTransition.swift */; };
 		66A2618C205A90660037E26A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A2618B205A90660037E26A /* Article.swift */; };
 		66BA938F2036F4B200C08154 /* BluetoothVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA938E2036F4B200C08154 /* BluetoothVC.swift */; };
@@ -35,6 +46,8 @@
 		66E7F5DB20999546004485FC /* for15.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66E7F5DA20999545004485FC /* for15.txt */; };
 		66E7F5DD20999563004485FC /* for16.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66E7F5DC20999563004485FC /* for16.txt */; };
 		66E7F5DF20999BCB004485FC /* for4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66E7F5DE20999BCB004485FC /* for4.txt */; };
+		66E7F5E12099B1B8004485FC /* ArticleWithoutImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E7F5E02099B1B8004485FC /* ArticleWithoutImageCell.swift */; };
+		66E7F5E32099B2CE004485FC /* article101.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66E7F5E22099B2CE004485FC /* article101.txt */; };
 		66EF7CBD201F550A008FBAE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CBC201F550A008FBAE2 /* AppDelegate.swift */; };
 		66EF7CC4201F550B008FBAE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66EF7CC2201F550B008FBAE2 /* Main.storyboard */; };
 		66EF7CC6201F550B008FBAE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66EF7CC5201F550B008FBAE2 /* Assets.xcassets */; };
@@ -62,6 +75,17 @@
 /* Begin PBXFileReference section */
 		12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.release.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.release.xcconfig"; sourceTree = "<group>"; };
 		4191588C5B10948EF1B4AEDD /* Pods___stone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___stone.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		668F45F8209F78FB007877DC /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
+		668F45FB20A18673007877DC /* StoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneVC.swift; sourceTree = "<group>"; };
+		668F45FD20A1880E007877DC /* secondFace.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = secondFace.gif; sourceTree = "<group>"; };
+		668F45FE20A1880E007877DC /* thirdFace.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = thirdFace.gif; sourceTree = "<group>"; };
+		668F45FF20A1880E007877DC /* firstFace.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = firstFace.gif; sourceTree = "<group>"; };
+		668F460020A1880F007877DC /* stoneGIF.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = stoneGIF.gif; sourceTree = "<group>"; };
+		668F460520A18CB5007877DC /* FirstFaceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFaceVC.swift; sourceTree = "<group>"; };
+		668F460920A18F41007877DC /* SecondFaceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFaceVC.swift; sourceTree = "<group>"; };
+		668F460B20A18F62007877DC /* ThirdFaceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdFaceVC.swift; sourceTree = "<group>"; };
+		668F460D20A32523007877DC /* article102.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article102.txt; sourceTree = "<group>"; };
+		668F460F20A58D26007877DC /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		66A26188205A71B10037E26A /* NoBlackoutTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoBlackoutTransition.swift; sourceTree = "<group>"; };
 		66A2618B205A90660037E26A /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		66BA938E2036F4B200C08154 /* BluetoothVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothVC.swift; sourceTree = "<group>"; };
@@ -90,6 +114,8 @@
 		66E7F5DA20999545004485FC /* for15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = for15.txt; sourceTree = "<group>"; };
 		66E7F5DC20999563004485FC /* for16.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = for16.txt; sourceTree = "<group>"; };
 		66E7F5DE20999BCB004485FC /* for4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = for4.txt; sourceTree = "<group>"; };
+		66E7F5E02099B1B8004485FC /* ArticleWithoutImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWithoutImageCell.swift; sourceTree = "<group>"; };
+		66E7F5E22099B2CE004485FC /* article101.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article101.txt; sourceTree = "<group>"; };
 		66EF7CB9201F550A008FBAE2 /* В-stone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "В-stone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66EF7CBC201F550A008FBAE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66EF7CC3201F550B008FBAE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -128,6 +154,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		668F45FA20A184FD007877DC /* BluetoothControllers */ = {
+			isa = PBXGroup;
+			children = (
+				668F45FB20A18673007877DC /* StoneVC.swift */,
+				668F460520A18CB5007877DC /* FirstFaceVC.swift */,
+				668F460920A18F41007877DC /* SecondFaceVC.swift */,
+				668F460B20A18F62007877DC /* ThirdFaceVC.swift */,
+				668F45FF20A1880E007877DC /* firstFace.gif */,
+				668F45FD20A1880E007877DC /* secondFace.gif */,
+				668F460020A1880F007877DC /* stoneGIF.gif */,
+				668F45FE20A1880E007877DC /* thirdFace.gif */,
+			);
+			path = BluetoothControllers;
+			sourceTree = "<group>";
+		};
 		66A26187205A71760037E26A /* Seques */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +203,8 @@
 				66E7F5CE209993D5004485FC /* article14.txt */,
 				66E7F5C9209993D4004485FC /* article15.txt */,
 				66E7F5CB209993D5004485FC /* article16.txt */,
+				66E7F5E22099B2CE004485FC /* article101.txt */,
+				668F460D20A32523007877DC /* article102.txt */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -181,14 +224,6 @@
 		66EF7CB0201F550A008FBAE2 = {
 			isa = PBXGroup;
 			children = (
-				66A2618A205A90550037E26A /* Model */,
-				66A26187205A71760037E26A /* Seques */,
-				66BA93D92046925F00C08154 /* Files */,
-				66EF7D1B20285121008FBAE2 /* Enumerations */,
-				66EF7CE7202074F9008FBAE2 /* Extensions */,
-				66EF7CE22020666D008FBAE2 /* Services */,
-				66EF7CD3201F5820008FBAE2 /* View */,
-				66EF7CD0201F56C3008FBAE2 /* Controller */,
 				66EF7CBB201F550A008FBAE2 /* В-stone */,
 				66EF7CBA201F550A008FBAE2 /* Products */,
 				87A8F9681879C946B8A31205 /* Pods */,
@@ -207,6 +242,14 @@
 		66EF7CBB201F550A008FBAE2 /* В-stone */ = {
 			isa = PBXGroup;
 			children = (
+				66A2618A205A90550037E26A /* Model */,
+				66A26187205A71760037E26A /* Seques */,
+				66BA93D92046925F00C08154 /* Files */,
+				66EF7D1B20285121008FBAE2 /* Enumerations */,
+				66EF7CE7202074F9008FBAE2 /* Extensions */,
+				66EF7CE22020666D008FBAE2 /* Services */,
+				66EF7CD3201F5820008FBAE2 /* View */,
+				66EF7CD0201F56C3008FBAE2 /* Controller */,
 				66EF7CBC201F550A008FBAE2 /* AppDelegate.swift */,
 				66EF7CC2201F550B008FBAE2 /* Main.storyboard */,
 				66EF7CC5201F550B008FBAE2 /* Assets.xcassets */,
@@ -232,6 +275,7 @@
 				66EF7CEA20208718008FBAE2 /* InflamationsVC.swift */,
 				66EF7CF02023758C008FBAE2 /* AllergicVC.swift */,
 				66BA938E2036F4B200C08154 /* BluetoothVC.swift */,
+				668F45FA20A184FD007877DC /* BluetoothControllers */,
 				66BA93902036F4CE00C08154 /* SettingsVC.swift */,
 				66BA93922036F50300C08154 /* HomeVC.swift */,
 				66BA93942036F51E00C08154 /* AdviceVC.swift */,
@@ -245,6 +289,7 @@
 				66EF7CD4201F583C008FBAE2 /* LoginTextField.swift */,
 				66BA93DD20469F9200C08154 /* ArticleCell.swift */,
 				66E7F5C12098783E004485FC /* ArticleWithProductsCell.swift */,
+				66E7F5E02099B1B8004485FC /* ArticleWithoutImageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -255,6 +300,8 @@
 				66EF7CE32020667E008FBAE2 /* AuthService.swift */,
 				66EF7CE5202066DC008FBAE2 /* DataService.swift */,
 				66EF7D19202850FC008FBAE2 /* CurrentUserData.swift */,
+				668F45F8209F78FB007877DC /* BluetoothService.swift */,
+				668F460F20A58D26007877DC /* AppData.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -361,6 +408,7 @@
 				66E7F5D4209993D5004485FC /* article14.txt in Resources */,
 				66E7F5D0209993D5004485FC /* article12.txt in Resources */,
 				66E7F5DB20999546004485FC /* for15.txt in Resources */,
+				668F460320A1880F007877DC /* firstFace.gif in Resources */,
 				66BA93E62046DD4C00C08154 /* article3.txt in Resources */,
 				66E7F5CF209993D5004485FC /* article15.txt in Resources */,
 				66E7F5DD20999563004485FC /* for16.txt in Resources */,
@@ -371,8 +419,13 @@
 				66E7F5D7209994C4004485FC /* for7.txt in Resources */,
 				66E7F5C820999251004485FC /* article1.txt in Resources */,
 				66BA93EB2046DD4C00C08154 /* article8.txt in Resources */,
+				668F460120A1880F007877DC /* secondFace.gif in Resources */,
+				668F460420A1880F007877DC /* stoneGIF.gif in Resources */,
 				66BA93E72046DD4C00C08154 /* article6.txt in Resources */,
+				66E7F5E32099B2CE004485FC /* article101.txt in Resources */,
 				66BA93EC2046DD4C00C08154 /* article4.txt in Resources */,
+				668F460220A1880F007877DC /* thirdFace.gif in Resources */,
+				668F460E20A32523007877DC /* article102.txt in Resources */,
 				66BA93EA2046DD4C00C08154 /* article5.txt in Resources */,
 				66E7F5D3209993D5004485FC /* article11.txt in Resources */,
 				66E7F5DF20999BCB004485FC /* for4.txt in Resources */,
@@ -447,11 +500,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				668F460620A18CB5007877DC /* FirstFaceVC.swift in Sources */,
 				66A2618C205A90660037E26A /* Article.swift in Sources */,
 				66EF7CEF2023752B008FBAE2 /* WhereLiveVC.swift in Sources */,
 				66BA93952036F51E00C08154 /* AdviceVC.swift in Sources */,
 				66EF7CED20208742008FBAE2 /* LifestyleVC.swift in Sources */,
 				66EF7CF12023758C008FBAE2 /* AllergicVC.swift in Sources */,
+				66E7F5E12099B1B8004485FC /* ArticleWithoutImageCell.swift in Sources */,
 				66BA9397203DA40800C08154 /* EnterEmailVC.swift in Sources */,
 				66EF7CD7201F6B11008FBAE2 /* CreateLoginVC.swift in Sources */,
 				66EF7D1A202850FD008FBAE2 /* CurrentUserData.swift in Sources */,
@@ -460,18 +515,23 @@
 				66EF7CE6202066DC008FBAE2 /* DataService.swift in Sources */,
 				66BA93DE20469F9200C08154 /* ArticleCell.swift in Sources */,
 				66BA93932036F50300C08154 /* HomeVC.swift in Sources */,
+				668F460C20A18F62007877DC /* ThirdFaceVC.swift in Sources */,
 				66EF7CDD201FB4EE008FBAE2 /* ItWasSentVC.swift in Sources */,
 				66EF7CBD201F550A008FBAE2 /* AppDelegate.swift in Sources */,
+				668F45F9209F78FB007877DC /* BluetoothService.swift in Sources */,
 				66EF7CE42020667E008FBAE2 /* AuthService.swift in Sources */,
 				66EF7D1D20285146008FBAE2 /* Enums.swift in Sources */,
+				668F460A20A18F41007877DC /* SecondFaceVC.swift in Sources */,
 				66EF7CD2201F571D008FBAE2 /* StartVC.swift in Sources */,
 				66EF7CE920207514008FBAE2 /* UIViewControllerExt.swift in Sources */,
 				66EF7CDF201FBA9E008FBAE2 /* WrinklesVC.swift in Sources */,
 				66E7F5C22098783E004485FC /* ArticleWithProductsCell.swift in Sources */,
 				66A26189205A71B10037E26A /* NoBlackoutTransition.swift in Sources */,
 				66EF7CD9201FB29A008FBAE2 /* WelcomeVC.swift in Sources */,
+				668F45FC20A18673007877DC /* StoneVC.swift in Sources */,
 				66EF7CD5201F583C008FBAE2 /* LoginTextField.swift in Sources */,
 				66BA938F2036F4B200C08154 /* BluetoothVC.swift in Sources */,
+				668F461020A58D26007877DC /* AppData.swift in Sources */,
 				66BA93912036F4CE00C08154 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,7 +608,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -601,7 +661,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -621,7 +681,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.georgy.--stone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -637,7 +697,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.georgy.--stone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

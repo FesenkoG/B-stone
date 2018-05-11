@@ -22,6 +22,8 @@ class CreateLoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+        emailTextField.delegate = self
         
     }
     
@@ -40,8 +42,9 @@ class CreateLoginVC: UIViewController {
     }
     
     @IBAction func nextBtnWasPressed(_ sender: Any) {
-        nextBtn.isEnabled = false
+        
         if accepted, emailTextField.text != nil, passwordTextField.text != nil, loginTextField.text != nil {
+            nextBtn.isEnabled = false
             AuthService.instance.registerUser(email: emailTextField.text!, password: passwordTextField.text!, username: loginTextField.text!, handler: { (success, error) in
                 if success {
                     self.nextBtn.isEnabled = true
@@ -55,6 +58,13 @@ class CreateLoginVC: UIViewController {
                 }
             })
         }
+    }
+}
+
+extension CreateLoginVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
 

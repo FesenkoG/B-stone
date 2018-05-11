@@ -16,16 +16,19 @@ class AllergicVC: UIViewController {
     @IBOutlet weak var notHaveBtn: UIButton!
     @IBOutlet weak var notKnowBtn: UIButton!
     
+    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var nextBtn: UIButton!
+    
     var allergic: Allergic?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
         if let alrgc = CurrentUserData.instance.allergic {
             allergic = alrgc
             setChoise(choise: allergic!)
         }
-        
-
     }
     
     @IBAction func haveNotKnowBtnWasPressed(_ sender: Any) {
@@ -53,7 +56,6 @@ class AllergicVC: UIViewController {
         
         DataService.instance.uploadUserData(handler: { (success) in
             if success {
-                
                 self.performSegue(withIdentifier: "finishedEditing", sender: nil)
             }
         })
@@ -86,7 +88,7 @@ class AllergicVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UITabBarController {
-            vc.selectedIndex = 1
+            vc.selectedIndex = CurrentUserData.instance.selectedIndex
         }
     }
 

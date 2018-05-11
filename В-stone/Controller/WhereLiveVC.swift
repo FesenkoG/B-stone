@@ -17,6 +17,10 @@ class WhereLiveVC: UIViewController {
     @IBOutlet weak var mountainImg: UIImageView!
     @IBOutlet weak var megalopolisImg: UIImageView!
     
+    
+    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var nextBtn: UIButton!
+    
     @IBAction func prepareForUnwindToWhereLive(segue: UIStoryboardSegue) {}
     
     var placeOfLiving: PlaceOfLiving?
@@ -27,6 +31,8 @@ class WhereLiveVC: UIViewController {
             placeOfLiving = place
             setImage(place: place)
         }
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
 
     }
     

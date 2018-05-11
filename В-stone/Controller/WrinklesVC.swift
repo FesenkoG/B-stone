@@ -15,6 +15,10 @@ class WrinklesVC: UIViewController {
     @IBOutlet weak var eyeBtn: UIButton!
     @IBOutlet weak var smileBtn: UIButton!
     
+    
+    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var nextBtn: UIButton!
+    
     var foreheadAccepted = false
     var interbrowAccepted = false
     var eyeAccepted = false
@@ -24,7 +28,8 @@ class WrinklesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
         if let c = CurrentUserData.instance.wrinklesForehead, c == true {
             setImage(acceptionStatus: &foreheadAccepted, image: foreheadBtn)
         }

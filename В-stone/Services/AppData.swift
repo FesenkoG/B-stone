@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+class AppData {
+    static let shared = AppData()
+    
+    var isEditScreenExists = false
+    var isWelcomeExists = false
+}

@@ -17,6 +17,9 @@ class LifestyleVC: UIViewController {
     @IBOutlet weak var dietImg: UIImageView!
     @IBOutlet weak var coffeeImg: UIImageView!
     
+    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var nextBtn: UIButton!
+    
     var sunbathingAccepted = false
     var sportAccepted = false
     var makeupAccepted = false
@@ -28,6 +31,8 @@ class LifestyleVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
         if let c = CurrentUserData.instance.habitSunbathing, c == true {
             setImage(acceptionStatus: &sunbathingAccepted, imageName: "sunbathing", image: sunbathingImg)
         }
@@ -103,6 +108,4 @@ class LifestyleVC: UIViewController {
             image.image = UIImage(named: imageName)
         }
     }
-    
-    
 }

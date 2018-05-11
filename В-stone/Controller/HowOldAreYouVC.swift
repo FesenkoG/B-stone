@@ -12,11 +12,19 @@ class HowOldAreYouVC: UIViewController {
 
     @IBOutlet weak var ageTxtField: LoginTextField!
     
+    @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var backBtn: UIButton!
+    
     @IBAction func prepareForUnwindToHowOld(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        AppData.shared.isEditScreenExists = true
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
+        
+        ageTxtField.delegate = self
     }
     
     
@@ -36,9 +44,24 @@ class HowOldAreYouVC: UIViewController {
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        
+        if AppData.shared.isWelcomeExists {
+            self.performSegue(withIdentifier: "toSettings", sender: nil)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+            AppData.shared.isEditScreenExists = false
+        }
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let tabBarVC = segue.destination as? UITabBarController else { return }
+        tabBarVC.selectedIndex = 0
+    }
+}
 
+extension HowOldAreYouVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }

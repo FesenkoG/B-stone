@@ -8,28 +8,52 @@
 
 import UIKit
 
-class FirstFaceVC: UIViewController {
+class FirstFaceVC: UIViewController, BluetoothDelegate {
 
+    @IBOutlet weak var faceImage: UIImageView!
+    @IBOutlet weak var nextScreenLabel: UILabel!
+    @IBOutlet weak var nextScreenBtn: UIButton!
+    
+    var bluetoothService: BluetoothService!
+    private var count = 0
+    private var flag = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        faceImage.image = UIImage.gifImageWithName("firstFace")
+        nextScreenLabel.isHidden = true
+        nextScreenBtn.isEnabled = false
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func nextScreenBtnWasPressed(_ sender: Any) {
+        performSegue(withIdentifier: "toSecondFaceVC", sender: nil)
     }
-    */
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let secondFaceVC = segue.destination as? SecondFaceVC else { return }
+        secondFaceVC.bluetoothService = bluetoothService
+        secondFaceVC.bluetoothService.delegate = secondFaceVC
+    }
+    
+    func didRecieveValue(value: Double) {
+        
+        if value != -1 && flag == false {
+            count += 1
+            if count == 2 {
+                CurrentUserData.instance.firstFace = value
+                flag = true
+            }
+        }
+        
+        if value != -1 && flag == true {
+            nextScreenLabel.isHidden = false
+            nextScreenBtn.isEnabled = false
+        }
+        
+        if value == -1 && flag == true {
+            nextScreenBtn.isEnabled = true
+        }
+    }
+    
 }

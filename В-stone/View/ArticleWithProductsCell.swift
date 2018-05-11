@@ -32,12 +32,15 @@ class ArticleWithProductsCell: UITableViewCell {
     private var secondItem = ""
     private var thirdItem = ""
     
+    private var indexPath: IndexPath?
+    
     
     private var readMoreOrLess = false
     weak var delegate: CellChangingProtocol?
     
 
     @IBAction func readMoreBtnWasTapped(_ sender: UIButton) {
+        guard let indexPath = indexPath else { return }
         if readMoreOrLess == false {
             self.textLbl.text = preview + "\n" + body
             
@@ -45,7 +48,7 @@ class ArticleWithProductsCell: UITableViewCell {
             imageTwoLbl.text = secondItem
             imageThreeLbl.text = thirdItem
             
-            delegate?.cellDidChange(article: article)
+            delegate?.cellDidChange(article: article, indexPath)
             readMoreOrLess = true
             sender.setTitle("hide", for: .normal)
             
@@ -54,14 +57,15 @@ class ArticleWithProductsCell: UITableViewCell {
             imageOneLbl.text = ""
             imageTwoLbl.text = ""
             imageThreeLbl.text = ""
-            delegate?.cellDidChange(article: article)
+            delegate?.cellDidChange(article: article, indexPath)
             readMoreOrLess = false
             sender.setTitle("Read more", for: .normal)
         }
     }
     
-    func configureCell(article: Article, fullText: Bool) {
+    func configureCell(article: Article, fullText: Bool, indexPath: IndexPath) {
         
+        self.indexPath = indexPath
         let base = "for"
         let newBase = base + article.imageName
         let filePath = Bundle.main.path(forResource: newBase, ofType: "txt")!

@@ -20,6 +20,8 @@ class ArticleCell: UITableViewCell {
     private var body = ""
     private var article = ""
     
+    private var indexPath: IndexPath?
+    
     private var readMoreOrLess = false
     weak var delegate: CellChangingProtocol?
     
@@ -27,13 +29,13 @@ class ArticleCell: UITableViewCell {
     @IBAction func readMoreBtnTapped(_ sender: UIButton) {
         if readMoreOrLess == false {
             self.txtLbl.text = self.txtLbl.text! + "\n" + body
-            delegate?.cellDidChange(article: article)
+            delegate?.cellDidChange(article: article, indexPath)
             readMoreOrLess = true
             sender.setTitle("hide", for: .normal)
             
         } else {
             self.txtLbl.text = preview
-            delegate?.cellDidChange(article: article)
+            delegate?.cellDidChange(article: article, indexPath)
             readMoreOrLess = false
             sender.setTitle("Read more", for: .normal)
         }
@@ -41,7 +43,8 @@ class ArticleCell: UITableViewCell {
         
     }
     
-    func configureCell(article: Article, fullText: Bool) {
+    func configureCell(article: Article, fullText: Bool, indexPath: IndexPath) {
+        self.indexPath = indexPath
         if fullText {
             headerLbl.text = article.header
             txtLbl.text = article.preview + article.body
@@ -73,7 +76,7 @@ class ArticleCell: UITableViewCell {
 }
 
 protocol CellChangingProtocol: class {
-    func cellDidChange(article: String)
+    func cellDidChange(article: String, _ indexPath: IndexPath?)
 }
 
 

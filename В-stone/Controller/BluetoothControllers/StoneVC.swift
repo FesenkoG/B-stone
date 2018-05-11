@@ -8,28 +8,43 @@
 
 import UIKit
 
-class StoneVC: UIViewController {
+class StoneVC: UIViewController, BluetoothDelegate {
+    
+    var bluetoothService: BluetoothService!
+    var isConnected = false
 
+    @IBOutlet weak var stoneImage: UIImageView!
+    @IBOutlet weak var nextBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        stoneImage.image = UIImage.gifImageWithName("stoneGIF")
+        
+        if isConnected == true {
+            nextBtn.isEnabled = true
+        } else {
+            nextBtn.isEnabled = false
+        }
+        
+        
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func nextBtnWasPressed(_ sender: Any) {
+        
+        performSegue(withIdentifier: "toFirstFaceVC", sender: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guard let firstFaceVC = segue.destination as? FirstFaceVC else { return }
+        firstFaceVC.bluetoothService = bluetoothService
+        firstFaceVC.bluetoothService.delegate = firstFaceVC
     }
-    */
+    
+    func didConnected() {
+        isConnected = true
+        nextBtn.isEnabled = true
+    }
 
 }

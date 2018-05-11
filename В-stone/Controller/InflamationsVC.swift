@@ -17,6 +17,9 @@ class InflamationsVC: UIViewController {
     @IBOutlet weak var aroundBtn: UIButton!
     @IBOutlet weak var chinBtn: UIButton!
     
+    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var nextBtn: UIButton!
+    
     var foreheadAccepted = false
     var noseAccepted = false
     var cheeksAccepted = false
@@ -27,6 +30,8 @@ class InflamationsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
         if let c = CurrentUserData.instance.inflamationsChin, c == true {
             setImage(acceptionStatus: &chinAccepted, image: chinBtn)
         }
