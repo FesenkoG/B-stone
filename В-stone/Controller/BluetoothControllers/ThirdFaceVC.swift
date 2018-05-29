@@ -21,6 +21,7 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextScreenBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
         thirdFaceImg.image = UIImage.gifImageWithName("thirdFace")
         nextScreenLbl.isHidden = true
         nextScreenBtn.isEnabled = false
@@ -55,11 +56,6 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let bluetoothVC = segue.destination as? HomeVC else { return }
-        
-    }
-    
     func didRecieveValue(value: Double) {
         if value != -1 && flag == false {
             count += 1
@@ -70,11 +66,13 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
         }
         
         if value != -1 && flag == true {
+            nextScreenLbl.text = "remove stone from your face"
             nextScreenLbl.isHidden = false
             nextScreenBtn.isEnabled = false
         }
         
         if value == -1 && flag == true {
+            nextScreenLbl.text = "go on to the next screen"
             nextScreenBtn.isEnabled = true
         }
     }

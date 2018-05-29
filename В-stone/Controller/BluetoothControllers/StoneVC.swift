@@ -16,10 +16,18 @@ class StoneVC: UIViewController, BluetoothDelegate {
     @IBOutlet weak var stoneImage: UIImageView!
     @IBOutlet weak var nextBtn: UIButton!
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        bluetoothService.delegate = self
+        stoneImage.image = UIImage.gifImageWithName("stoneGIF")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stoneImage.image = UIImage.gifImageWithName("stoneGIF")
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
         
         if isConnected == true {
             nextBtn.isEnabled = true

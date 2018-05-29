@@ -31,8 +31,8 @@ class WhereLiveVC: UIViewController {
             placeOfLiving = place
             setImage(place: place)
         }
-        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
-        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 20, 12, 25)
 
     }
     

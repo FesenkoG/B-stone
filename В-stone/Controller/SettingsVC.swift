@@ -55,12 +55,16 @@ class SettingsVC: UIViewController {
     @IBAction func deleteAccountBtnWasPressed(_ sender: Any) {
         let logoutPopout = UIAlertController(title: "Delete account?", message: "Are you sure you want to delete account?", preferredStyle: .alert)
         let logoutAction = UIAlertAction(title: "Delete?", style: .destructive) { (buttonTapped) in
-            Auth.auth().currentUser?.delete(completion: { (error) in
-                if error == nil {
-                    self.performSegue(withIdentifier: "backToStart", sender: nil)
-                } else {
-                    print(error?.localizedDescription as Any)
-                }
+            guard let userId = Auth.auth().currentUser?.uid else { return }
+            DataService.instance.deleteUser(withId: userId, completionHandler: { (success) in
+                Auth.auth().currentUser?.delete(completion: { (error) in
+                    if error == nil {
+                            self.performSegue(withIdentifier: "backToStart", sender: nil)
+                        clearUserData()
+                    } else {
+                        print(error?.localizedDescription as Any)
+                    }
+                })
             })
         }
         

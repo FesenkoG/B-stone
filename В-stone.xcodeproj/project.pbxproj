@@ -75,6 +75,7 @@
 /* Begin PBXFileReference section */
 		12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.release.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.release.xcconfig"; sourceTree = "<group>"; };
 		4191588C5B10948EF1B4AEDD /* Pods___stone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___stone.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66366B1820AD9B8200863C70 /* В-stone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "В-stone.entitlements"; sourceTree = "<group>"; };
 		668F45F8209F78FB007877DC /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 		668F45FB20A18673007877DC /* StoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneVC.swift; sourceTree = "<group>"; };
 		668F45FD20A1880E007877DC /* secondFace.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = secondFace.gif; sourceTree = "<group>"; };
@@ -242,6 +243,7 @@
 		66EF7CBB201F550A008FBAE2 /* В-stone */ = {
 			isa = PBXGroup;
 			children = (
+				66366B1820AD9B8200863C70 /* В-stone.entitlements */,
 				66A2618A205A90550037E26A /* Model */,
 				66A26187205A71760037E26A /* Seques */,
 				66BA93D92046925F00C08154 /* Files */,
@@ -375,6 +377,11 @@
 					66EF7CB8201F550A008FBAE2 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -663,6 +670,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -674,6 +682,7 @@
 			baseConfigurationReference = 76B1E350E2F51B78C61D1642 /* Pods-В-stone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "В-stone/В-stone.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8FZ3UYF69;
 				INFOPLIST_FILE = "В-stone/Info.plist";
@@ -690,6 +699,7 @@
 			baseConfigurationReference = 12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "В-stone/В-stone.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8FZ3UYF69;
 				INFOPLIST_FILE = "В-stone/Info.plist";

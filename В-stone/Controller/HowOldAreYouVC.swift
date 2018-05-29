@@ -21,8 +21,8 @@ class HowOldAreYouVC: UIViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         AppData.shared.isEditScreenExists = true
-        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
-        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 20, 12, 25)
         
         ageTxtField.delegate = self
     }

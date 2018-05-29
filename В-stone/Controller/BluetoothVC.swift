@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreBluetooth
 
 class BluetoothVC: UIViewController, BluetoothDelegate {
     
@@ -16,18 +15,39 @@ class BluetoothVC: UIViewController, BluetoothDelegate {
     var isConnected = false
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         bluetoothService.delegate = self
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureScreen()
         tabBarController?.tabBar.unselectedItemTintColor = UIColor.white
         self.tabBarItem.selectedImage = UIImage(named: "mm_selected")!.withRenderingMode(.alwaysOriginal)
         startScanningBtn.isEnabled = false
         startScanningBtn.alpha = 0
     }
 
+    
+    func configureScreen() {
+        //iPhone 8
+        if UIScreen.main.bounds.width == 375.0 && UIScreen.main.bounds.height == 667.0 {
+            //Do smth for Iphone 8
+            
+        }
+        //iPhone 8+
+        if UIScreen.main.bounds.width == 414.0 && UIScreen.main.bounds.height == 736.0 {
+            print("8+")
+            
+        }
+        //iPhone X
+        if UIScreen.main.bounds.width == 375.0 && UIScreen.main.bounds.height == 812.0 {
+            print("X")
+            
+        }
+    }
+    
+    
     @IBAction func startScanningBtnWasPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "toStoneVC", sender: nil)
     }
@@ -35,7 +55,6 @@ class BluetoothVC: UIViewController, BluetoothDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let stoneVC = segue.destination as? StoneVC else { return }
         stoneVC.bluetoothService = bluetoothService
-        stoneVC.bluetoothService.delegate = stoneVC
         stoneVC.isConnected = isConnected
     }
     

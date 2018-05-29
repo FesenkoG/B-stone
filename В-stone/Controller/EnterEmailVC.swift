@@ -20,7 +20,7 @@ class EnterEmailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
         backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
         if let txt = text {
             emailTxtField.text = txt

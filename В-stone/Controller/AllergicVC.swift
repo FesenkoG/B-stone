@@ -23,8 +23,8 @@ class AllergicVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
-        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 0, 0, 25)
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 20, 12, 25)
         if let alrgc = CurrentUserData.instance.allergic {
             allergic = alrgc
             setChoise(choise: allergic!)
@@ -52,13 +52,13 @@ class AllergicVC: UIViewController {
         
         if let allerg = allergic {
             CurrentUserData.instance.allergic = allerg
+            
+            DataService.instance.uploadUserData(handler: { (success) in
+                if success {
+                    self.performSegue(withIdentifier: "finishedEditing", sender: nil)
+                }
+            })
         }
-        
-        DataService.instance.uploadUserData(handler: { (success) in
-            if success {
-                self.performSegue(withIdentifier: "finishedEditing", sender: nil)
-            }
-        })
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {

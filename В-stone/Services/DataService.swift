@@ -58,7 +58,7 @@ class DataService {
             guard let bluetoothSpanshots = quizesSnapshot.children.allObjects as? [DataSnapshot] else { return }
             for blData in bluetoothSpanshots {
                 let userId = blData.childSnapshot(forPath: "userId").value as! String
-                if userId == Auth.auth().currentUser?.uid {
+                if userId == (Auth.auth().currentUser?.uid)! {
                     result = true
                     CurrentUserData.instance.firstFace = blData.childSnapshot(forPath: "firstFace").value as? Double
                     CurrentUserData.instance.secondFace = blData.childSnapshot(forPath: "secondFace").value as? Double
@@ -146,5 +146,59 @@ class DataService {
                 handler(false)
             }
         }
+    }
+    
+    func deleteUser(withId id: String, completionHandler: @escaping (Bool) -> Void) {
+        //Remove user
+        REF_USERS.child(id).removeValue()
+        //Remove bluetooth data
+        var bluetoothUidToDelete: String?
+        var quizUidToDelete: String?
+        let myGroup = DispatchGroup()
+        myGroup.enter()
+        DispatchQueue.main.async {
+            self.REF_BLUETOOTH.observeSingleEvent(of: .value) { (dataSnapshot) in
+                
+                guard let dataSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else { return }
+                for blData in dataSnapshot {
+                    let uid = blData.childSnapshot(forPath: "userId").value as! String
+                    if uid == id {
+                        bluetoothUidToDelete = blData.key
+                    }
+                }
+                myGroup.leave()
+            }
+        }
+        myGroup.notify(queue: .main) {
+            if let blId = bluetoothUidToDelete {
+                self.REF_BLUETOOTH.child(blId).removeValue()
+            }
+        }
+        
+        let anotherGroup = DispatchGroup()
+        anotherGroup.enter()
+        DispatchQueue.main.async {
+            self.REF_QUIZES.observeSingleEvent(of: .value) { (dataSnapshot) in
+                guard let dataSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else { return }
+                for quiz in dataSnapshot {
+                    let uid = quiz.childSnapshot(forPath: "userId").value as! String
+                    if uid == id {
+                        quizUidToDelete = quiz.key
+                    }
+                }
+                anotherGroup.leave()
+            }
+        }
+        
+        anotherGroup.notify(queue: .main) {
+            if let quizId = quizUidToDelete {
+                self.REF_QUIZES.child(quizId).removeValue()
+                completionHandler(true)
+            } else {
+                completionHandler(false)
+            }
+            
+        }
+        
     }
 }

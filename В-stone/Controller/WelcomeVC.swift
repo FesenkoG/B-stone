@@ -15,7 +15,7 @@ class WelcomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AppData.shared.isWelcomeExists = true
-        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0)
+        nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
     }
     @IBAction func prepareForUnwindToWelcomeVC(segue: UIStoryboardSegue) {}
     

@@ -20,6 +20,7 @@ class FirstFaceVC: UIViewController, BluetoothDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextScreenBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
         faceImage.image = UIImage.gifImageWithName("firstFace")
         nextScreenLabel.isHidden = true
         nextScreenBtn.isEnabled = false
@@ -37,8 +38,9 @@ class FirstFaceVC: UIViewController, BluetoothDelegate {
     }
     
     func didRecieveValue(value: Double) {
-        
+        print(value)
         if value != -1 && flag == false {
+            
             count += 1
             if count == 2 {
                 CurrentUserData.instance.firstFace = value
@@ -47,11 +49,13 @@ class FirstFaceVC: UIViewController, BluetoothDelegate {
         }
         
         if value != -1 && flag == true {
+            nextScreenLabel.text = "remove stone from your face"
             nextScreenLabel.isHidden = false
             nextScreenBtn.isEnabled = false
         }
         
         if value == -1 && flag == true {
+            nextScreenLabel.text = "go on to the next screen"
             nextScreenBtn.isEnabled = true
         }
     }

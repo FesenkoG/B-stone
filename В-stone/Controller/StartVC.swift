@@ -54,6 +54,7 @@ class StartVC: UIViewController {
             } else {
                 self.turnOffSpinner()
                 self.enableInterface()
+                self.performSegue(withIdentifier: "toWelcome", sender: nil)
             }
         }
     }
@@ -158,6 +159,10 @@ class StartVC: UIViewController {
         } else {
             if let vc = segue.destination as? EnterEmailVC, let text = sender as? String {
                 vc.configureVC(text: text)
+            } else {
+                if let vc = segue.destination as? CreateLoginVC, let email = loginTextField.text {
+                    vc.email = email
+                }
             }
         }
     }

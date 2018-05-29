@@ -81,6 +81,7 @@ extension BluetoothService: CBCentralManagerDelegate {
             print("central.state is .poweredOff")
             delegate?.didTurnOffBluetooth?()
         case .poweredOn:
+            //CBUUID(string: "FFE0")
             centralManager.scanForPeripherals(withServices: nil)
             delegate?.didTurnOnBluetooth?()
             
