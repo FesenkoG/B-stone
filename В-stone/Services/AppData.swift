@@ -13,4 +13,5 @@ class AppData {
     
     var isEditScreenExists = false
     var isWelcomeExists = false
+    var isHomeExists = false
 }

@@ -64,8 +64,13 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         tabBarController?.tabBar.unselectedItemTintColor = UIColor.white
         self.tabBarItem.selectedImage = UIImage(named: "hp_selected")!.withRenderingMode(.alwaysOriginal)
+        AppData.shared.isHomeExists = true
         
         
+    }
+    
+    deinit {
+        AppData.shared.isHomeExists = false
     }
     
     @IBAction func logOutBtnWasPressed(_ sender: Any) {

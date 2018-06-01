@@ -36,44 +36,41 @@ class StartVC: UIViewController {
         hideKeyboardWhenTappedAround()
         disableInterface()
         turnOnSpinner()
-        checkQuiz { (success) in
-            if success {
-                self.checkBluetooth(handler: { (blSuccess) in
-                    if blSuccess {
-                        CurrentUserData.instance.selectedIndex = 1
-                        self.performSegue(withIdentifier: "toTabBar", sender: nil)
-                        self.turnOffSpinner()
-                        self.enableInterface()
-                    } else {
-                        CurrentUserData.instance.selectedIndex = 2
-                        self.performSegue(withIdentifier: "toTabBar", sender: nil)
-                        self.turnOffSpinner()
-                        self.enableInterface()
-                    }
-                })
-            } else {
-                self.turnOffSpinner()
-                self.enableInterface()
-                self.performSegue(withIdentifier: "toWelcome", sender: nil)
+        if Auth.auth().currentUser != nil {
+            checkQuiz { (success) in
+                if success {
+                    self.checkBluetooth(handler: { (blSuccess) in
+                        if blSuccess {
+                            CurrentUserData.instance.selectedIndex = 1
+                            self.performSegue(withIdentifier: "toTabBar", sender: nil)
+                            self.turnOffSpinner()
+                            self.enableInterface()
+                        } else {
+                            CurrentUserData.instance.selectedIndex = 2
+                            self.performSegue(withIdentifier: "toTabBar", sender: nil)
+                            self.turnOffSpinner()
+                            self.enableInterface()
+                        }
+                    })
+                } else {
+                    self.turnOffSpinner()
+                    self.enableInterface()
+                    self.performSegue(withIdentifier: "toWelcome", sender: nil)
+                }
             }
+        } else {
+            self.enableInterface()
+            self.turnOffSpinner()
         }
     }
     
 
     
     func checkBluetooth(handler: @escaping (Bool) -> Void) {
-        if Auth.auth().currentUser != nil {
-            DataService.instance.checkIfCurrentUserHaveBluetoothData(handler: handler)
-        } else {
-            handler(false)
-        }
+        DataService.instance.checkIfCurrentUserHaveBluetoothData(handler: handler)
     }
     func checkQuiz(handler: @escaping (Bool) -> Void) {
-        if Auth.auth().currentUser != nil {
-            DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: handler)
-        } else {
-            handler(false)
-        }
+        DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: handler)
     }
     
     func turnOnSpinner() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kgY-Ve-VGq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kgY-Ve-VGq">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -2316,6 +2316,7 @@
                         <outlet property="notKnowBtn" destination="2NT-Fi-TRx" id="zOE-hl-ogm"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="finishedEditing" customClass="NoBlackoutTransition" customModule="В_stone" customModuleProvider="target" id="KWf-Lj-h2m"/>
                         <segue destination="HaI-Lp-HQb" kind="unwind" identifier="backToInflamations" customClass="UnwindNoBlackoutTransition" customModule="В_stone" customModuleProvider="target" unwindAction="prepareForUnwindToInflamationsWithSegue:" id="9VO-rf-ntI"/>
+                        <segue destination="HaI-Lp-HQb" kind="unwind" identifier="unwindToHome" unwindAction="prepareForUnwindToBluetoothVC:" id="uiV-Mr-mJs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oPS-6U-RfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
