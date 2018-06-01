@@ -24,7 +24,6 @@ class CreateLoginVC: UIViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
-        //UIEdgeInsetsMake(<#T##top: CGFloat##CGFloat#>, <#T##left: CGFloat##CGFloat#>, <#T##bottom: CGFloat##CGFloat#>, <#T##right: CGFloat##CGFloat#>)
         emailTextField.delegate = self
         if let email = email {
             emailTextField.text = email

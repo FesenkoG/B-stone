@@ -56,6 +56,7 @@ class AllergicVC: UIViewController {
             DataService.instance.uploadUserData(handler: { (success) in
                 if success {
                     if AppData.shared.isHomeExists {
+                        AppData.shared.isEditScreenExists = false
                         self.performSegue(withIdentifier: "unwindToHome", sender: nil)
                     } else {
                         self.performSegue(withIdentifier: "finishedEditing", sender: nil)
