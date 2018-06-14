@@ -18,7 +18,7 @@ class CurrentUserData {
     
     var habitSunbathing: Bool?
     var habitSmoking: Bool?
-    var habitSport: Bool?
+    var habitSport: Bool?//Travelling
     var habitDiet: Bool?
     var habitMakeup: Bool?
     var habitCoffee: Bool?
@@ -47,7 +47,7 @@ class CurrentUserData {
     
     var date: String?
     var prevDate: String?
-    
+    //Move to AppData
     var selectedIndex = 2
     
 }

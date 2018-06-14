@@ -33,6 +33,10 @@
 		66BA93EA2046DD4C00C08154 /* article5.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93E32046DD4B00C08154 /* article5.txt */; };
 		66BA93EB2046DD4C00C08154 /* article8.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93E42046DD4B00C08154 /* article8.txt */; };
 		66BA93EC2046DD4C00C08154 /* article4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66BA93E52046DD4B00C08154 /* article4.txt */; };
+		66CEBA8820CE1920000C455B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66CEBA8620CE1920000C455B /* DataModel.xcdatamodeld */; };
+		66CEBA8A20CE1AFA000C455B /* LocalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEBA8920CE1AFA000C455B /* LocalDataService.swift */; };
+		66CEBA8C20CE1BBF000C455B /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEBA8B20CE1BBF000C455B /* QuizModel.swift */; };
+		66CEBA8E20CE1BCA000C455B /* BluetoothModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEBA8D20CE1BCA000C455B /* BluetoothModel.swift */; };
 		66E7F5C22098783E004485FC /* ArticleWithProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E7F5C12098783E004485FC /* ArticleWithProductsCell.swift */; };
 		66E7F5C820999251004485FC /* article1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66E7F5C720999251004485FC /* article1.txt */; };
 		66E7F5CF209993D5004485FC /* article15.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66E7F5C9209993D4004485FC /* article15.txt */; };
@@ -102,6 +106,10 @@
 		66BA93E32046DD4B00C08154 /* article5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article5.txt; sourceTree = "<group>"; };
 		66BA93E42046DD4B00C08154 /* article8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article8.txt; sourceTree = "<group>"; };
 		66BA93E52046DD4B00C08154 /* article4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article4.txt; sourceTree = "<group>"; };
+		66CEBA8720CE1920000C455B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		66CEBA8920CE1AFA000C455B /* LocalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataService.swift; sourceTree = "<group>"; };
+		66CEBA8B20CE1BBF000C455B /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
+		66CEBA8D20CE1BCA000C455B /* BluetoothModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothModel.swift; sourceTree = "<group>"; };
 		66E7F5C12098783E004485FC /* ArticleWithProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWithProductsCell.swift; sourceTree = "<group>"; };
 		66E7F5C720999251004485FC /* article1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article1.txt; sourceTree = "<group>"; };
 		66E7F5C9209993D4004485FC /* article15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article15.txt; sourceTree = "<group>"; };
@@ -182,6 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				66A2618B205A90660037E26A /* Article.swift */,
+				66CEBA8B20CE1BBF000C455B /* QuizModel.swift */,
+				66CEBA8D20CE1BCA000C455B /* BluetoothModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +266,7 @@
 				66EF7CC2201F550B008FBAE2 /* Main.storyboard */,
 				66EF7CC5201F550B008FBAE2 /* Assets.xcassets */,
 				66EF7CC7201F550B008FBAE2 /* LaunchScreen.storyboard */,
+				66CEBA8620CE1920000C455B /* DataModel.xcdatamodeld */,
 				66EF7CCA201F550B008FBAE2 /* Info.plist */,
 				66EF7CE0202065CD008FBAE2 /* GoogleService-Info.plist */,
 			);
@@ -304,6 +315,7 @@
 				66EF7D19202850FC008FBAE2 /* CurrentUserData.swift */,
 				668F45F8209F78FB007877DC /* BluetoothService.swift */,
 				668F460F20A58D26007877DC /* AppData.swift */,
+				66CEBA8920CE1AFA000C455B /* LocalDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -511,6 +523,7 @@
 				66A2618C205A90660037E26A /* Article.swift in Sources */,
 				66EF7CEF2023752B008FBAE2 /* WhereLiveVC.swift in Sources */,
 				66BA93952036F51E00C08154 /* AdviceVC.swift in Sources */,
+				66CEBA8C20CE1BBF000C455B /* QuizModel.swift in Sources */,
 				66EF7CED20208742008FBAE2 /* LifestyleVC.swift in Sources */,
 				66EF7CF12023758C008FBAE2 /* AllergicVC.swift in Sources */,
 				66E7F5E12099B1B8004485FC /* ArticleWithoutImageCell.swift in Sources */,
@@ -519,6 +532,7 @@
 				66EF7D1A202850FD008FBAE2 /* CurrentUserData.swift in Sources */,
 				66EF7CEB20208718008FBAE2 /* InflamationsVC.swift in Sources */,
 				66EF7CDB201FB3C9008FBAE2 /* HowOldAreYouVC.swift in Sources */,
+				66CEBA8A20CE1AFA000C455B /* LocalDataService.swift in Sources */,
 				66EF7CE6202066DC008FBAE2 /* DataService.swift in Sources */,
 				66BA93DE20469F9200C08154 /* ArticleCell.swift in Sources */,
 				66BA93932036F50300C08154 /* HomeVC.swift in Sources */,
@@ -528,6 +542,8 @@
 				668F45F9209F78FB007877DC /* BluetoothService.swift in Sources */,
 				66EF7CE42020667E008FBAE2 /* AuthService.swift in Sources */,
 				66EF7D1D20285146008FBAE2 /* Enums.swift in Sources */,
+				66CEBA8820CE1920000C455B /* DataModel.xcdatamodeld in Sources */,
+				66CEBA8E20CE1BCA000C455B /* BluetoothModel.swift in Sources */,
 				668F460A20A18F41007877DC /* SecondFaceVC.swift in Sources */,
 				66EF7CD2201F571D008FBAE2 /* StartVC.swift in Sources */,
 				66EF7CE920207514008FBAE2 /* UIViewControllerExt.swift in Sources */,
@@ -733,6 +749,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		66CEBA8620CE1920000C455B /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				66CEBA8720CE1920000C455B /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 66CEBA8720CE1920000C455B /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 66EF7CB1201F550A008FBAE2 /* Project object */;
 }
