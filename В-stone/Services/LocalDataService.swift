@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-class LocalDataService {
-    lazy var container = NSPersistentContainer(name: "DataModel")
+public class LocalDataService {
+    private lazy var container = NSPersistentContainer(name: "DataModel")
     
     init() {
         container.loadPersistentStores { (description, error) in
@@ -26,6 +26,7 @@ class LocalDataService {
             let bluetoothData = try container.viewContext.fetch(request)
             let model = BluetoothModel()
             //transformation to native struct
+            
             return Result.success(model)
         } catch {
             return Result.failure(error)
@@ -35,13 +36,51 @@ class LocalDataService {
     func fetchQuizData() -> Result<QuizModel> {
         do {
             let request = NSFetchRequest<QuizUserData>()
-            let bluetoothData = try container.viewContext.fetch(request)
+            let quizData = try container.viewContext.fetch(request)
             let model = QuizModel()
             //transformation to native struct
+            
             return Result.success(model)
         } catch {
             return Result.failure(error)
         }
+    }
+    
+    func saveQuizData(model: QuizModel, handler: @escaping (Bool) -> ()) {
+        do {
+            let request = NSFetchRequest<QuizUserData>()
+            let quizData = try container.viewContext.fetch(request)
+            //just checking
+            guard quizData.count <= 1 else {
+                handler(false)
+                return
+            }
+            
+            if let quiz = quizData.first {
+                configureQuiz(quiz, fromModel: model)
+                try container.viewContext.save()
+                handler(true)
+            } else {
+                guard let newQuiz = NSEntityDescription.insertNewObject(forEntityName: "QuizUserData", into: container.viewContext) as? QuizUserData else {
+                    handler(false)
+                    return
+                }
+                configureQuiz(newQuiz, fromModel: model)
+                try container.viewContext.save()
+                handler(true)
+            }
+            
+            
+        } catch {
+            DispatchQueue.main.async {
+                handler(false)
+            }
+        }
+    }
+    
+    //TODO: - Fill the function
+    private func configureQuiz(_ quiz: QuizUserData, fromModel: QuizModel) {
+        
     }
 }
 
