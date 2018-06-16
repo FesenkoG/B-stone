@@ -46,11 +46,11 @@ public class LocalDataService {
         }
     }
     
-    func saveQuizData(model: QuizModel, handler: @escaping (Bool) -> ()) {
+    func saveQuizData(model: QuizModel, handler: @escaping (Bool) -> Void) {
         do {
             let request = NSFetchRequest<QuizUserData>()
             let quizData = try container.viewContext.fetch(request)
-            //just checking
+            
             guard quizData.count <= 1 else {
                 handler(false)
                 return
@@ -69,8 +69,6 @@ public class LocalDataService {
                 try container.viewContext.save()
                 handler(true)
             }
-            
-            
         } catch {
             DispatchQueue.main.async {
                 handler(false)
@@ -78,8 +76,43 @@ public class LocalDataService {
         }
     }
     
-    //TODO: - Fill the function
-    private func configureQuiz(_ quiz: QuizUserData, fromModel: QuizModel) {
+    func saveBluetoothData(model: BluetoothModel, handler: @escaping (Bool) -> Void) {
+        do {
+            let request = NSFetchRequest<BluetoothUserData>()
+            let bluetoothData = try container.viewContext.fetch(request)
+            
+            guard bluetoothData.count <= 1 else {
+                handler(false)
+                return
+            }
+            
+            if let bluetooth = bluetoothData.first {
+                configureBluetooth(bluetooth, fromModel: model)
+                try container.viewContext.save()
+                handler(true)
+            } else {
+                guard let newBluetooth = NSEntityDescription.insertNewObject(forEntityName: "BluetoothUserData", into: container.viewContext) as? BluetoothUserData else {
+                    handler(false)
+                    return
+                }
+                configureBluetooth(newBluetooth, fromModel: model)
+                try container.viewContext.save()
+                handler(true)
+            }
+        } catch {
+            DispatchQueue.main.async {
+                handler(false)
+            }
+        }
+    }
+    
+    //TODO: - Fill the functions
+    
+    private func configureQuiz(_ quiz: QuizUserData, fromModel model: QuizModel) {
+        
+    }
+    
+    private func configureBluetooth(_ bluetooth: BluetoothUserData, fromModel model: BluetoothModel) {
         
     }
 }
