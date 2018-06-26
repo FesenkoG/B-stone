@@ -30,6 +30,7 @@ class WrinklesVC: UIViewController {
     @IBOutlet weak var fourthLeftConstraint: NSLayoutConstraint!
     
     
+    var model: QuizModel!
     
     var foreheadAccepted = false
     var interbrowAccepted = false
@@ -59,10 +60,14 @@ class WrinklesVC: UIViewController {
 
     @IBAction func nextBtnWasPressed(_ sender: Any) {
         
-        CurrentUserData.instance.wrinklesSmile = smileAccepted
-        CurrentUserData.instance.wrinklesForehead = foreheadAccepted
-        CurrentUserData.instance.wrinklesUnderEye = eyeAccepted
-        CurrentUserData.instance.wrinklesInterbrow = interbrowAccepted
+//        CurrentUserData.instance.wrinklesSmile = smileAccepted
+//        CurrentUserData.instance.wrinklesForehead = foreheadAccepted
+//        CurrentUserData.instance.wrinklesUnderEye = eyeAccepted
+//        CurrentUserData.instance.wrinklesInterbrow = interbrowAccepted
+        model.wrinklesSmile = smileAccepted
+        model.wrinklesForehead = foreheadAccepted
+        model.wrinklesUnderEye = eyeAccepted
+        model.wrinklesInterbrow = interbrowAccepted
         
         self.performSegue(withIdentifier: "toInflamations", sender: nil)
     }
@@ -144,5 +149,10 @@ class WrinklesVC: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? InflamationsVC {
+            vc.model = model
+        }
+    }
     
 }

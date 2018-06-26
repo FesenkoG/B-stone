@@ -23,6 +23,8 @@ class StartVC: UIViewController {
 
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {}
     
+    var model: QuizModel!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         passwordTextField.delegate = self
@@ -37,8 +39,9 @@ class StartVC: UIViewController {
         disableInterface()
         turnOnSpinner()
         if Auth.auth().currentUser != nil {
-            checkQuiz { (success) in
+            checkQuiz { (success, model) in
                 if success {
+                    self.model = model
                     self.checkBluetooth(handler: { (blSuccess) in
                         if blSuccess {
                             CurrentUserData.instance.selectedIndex = 1
@@ -69,7 +72,7 @@ class StartVC: UIViewController {
     func checkBluetooth(handler: @escaping (Bool) -> Void) {
         DataService.instance.checkIfCurrentUserHaveBluetoothData(handler: handler)
     }
-    func checkQuiz(handler: @escaping (Bool) -> Void) {
+    func checkQuiz(handler: @escaping (Bool, QuizModel?) -> Void) {
         DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: handler)
     }
     
@@ -123,9 +126,10 @@ class StartVC: UIViewController {
             CurrentUserData.instance.email = loginTextField.text
             AuthService.instance.loginUser(email: loginTextField.text!, password: passwordTextField.text!, handler: { (success, error) in
                 if success {
-                    DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: { (success) in
+                    DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: { (success, model)  in
                         self.turnOffSpinner()
                         if success {
+                            self.model = model
                             self.checkBluetooth(handler: { (success) in
                                 self.turnOffSpinner()
                                 self.enableInterface()
@@ -153,6 +157,11 @@ class StartVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UITabBarController {
             vc.selectedIndex = CurrentUserData.instance.selectedIndex
+            if let vcb = vc as? BluetoothVC {
+                vcb.model = model
+            } else if let vch = vc as? HomeVC {
+                vch.model = model
+            }
         } else {
             if let vc = segue.destination as? EnterEmailVC, let text = sender as? String {
                 vc.configureVC(text: text)

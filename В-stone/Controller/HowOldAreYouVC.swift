@@ -15,10 +15,13 @@ class HowOldAreYouVC: UIViewController {
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var backBtn: UIButton!
     
+    var model: QuizModel!
+    
     @IBAction func prepareForUnwindToHowOld(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        model = QuizModel()
         self.hideKeyboardWhenTappedAround()
         AppData.shared.isEditScreenExists = true
         nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
@@ -38,7 +41,8 @@ class HowOldAreYouVC: UIViewController {
     @IBAction func nextBtnWasPressed(_ sender: Any) {
         
         if let age = ageTxtField.text, ageTxtField.text != "", let intAge = Int(age), intAge > 0, intAge < 150 {
-            CurrentUserData.instance.age = intAge
+            //CurrentUserData.instance.age = intAge
+            model.age = intAge
             self.performSegue(withIdentifier: "toWhereYouLive", sender: nil)
         }
     }
@@ -54,6 +58,9 @@ class HowOldAreYouVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? WhereLiveVC {
+            vc.model = self.model
+        }
         guard let tabBarVC = segue.destination as? UITabBarController else { return }
         tabBarVC.selectedIndex = 0
     }

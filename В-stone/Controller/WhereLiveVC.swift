@@ -23,6 +23,7 @@ class WhereLiveVC: UIViewController {
     
     @IBAction func prepareForUnwindToWhereLive(segue: UIStoryboardSegue) {}
     
+    var model: QuizModel!
     var placeOfLiving: PlaceOfLiving?
 
     override func viewDidLoad() {
@@ -54,7 +55,8 @@ class WhereLiveVC: UIViewController {
     @IBAction func nextBtnWasPressed(_ sender: Any) {
         
         if let place = placeOfLiving {
-            CurrentUserData.instance.placeOfLiving = place
+            //CurrentUserData.instance.placeOfLiving = place
+            model.placeOfLiving = placeOfLiving
             self.performSegue(withIdentifier: "toLifestyle", sender: nil)
         }
         
@@ -84,8 +86,12 @@ class WhereLiveVC: UIViewController {
         case .sea:
             seaImg.image = UIImage(named: "seaSelected")
         }
-        
-
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? LifestyleVC {
+            vc.model = model
+        }
     }
 
 }

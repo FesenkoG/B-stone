@@ -20,8 +20,10 @@ class LifestyleVC: UIViewController {
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
     
+    var model: QuizModel!
+    
     var sunbathingAccepted = false
-    var sportAccepted = false
+    var travellingAccepted = false
     var makeupAccepted = false
     var smokingAccepted = false
     var dietAccepted = false
@@ -40,7 +42,7 @@ class LifestyleVC: UIViewController {
             setImage(acceptionStatus: &dietAccepted, imageName: "diet", image: dietImg)
         }
         if let c = CurrentUserData.instance.habitSport, c == true {
-            setImage(acceptionStatus: &sportAccepted, imageName: "sport", image: sportImg)
+            setImage(acceptionStatus: &travellingAccepted, imageName: "sport", image: sportImg)
         }
         if let c = CurrentUserData.instance.habitCoffee, c == true {
             setImage(acceptionStatus: &coffeeAccepted, imageName: "coffee", image: coffeeImg)
@@ -56,12 +58,18 @@ class LifestyleVC: UIViewController {
 
     
     @IBAction func nextBtnWasPressed(_ sender: Any) {
-        CurrentUserData.instance.habitSunbathing = sunbathingAccepted
-        CurrentUserData.instance.habitSport = sportAccepted
-        CurrentUserData.instance.habitDiet = dietAccepted
-        CurrentUserData.instance.habitCoffee = coffeeAccepted
-        CurrentUserData.instance.habitMakeup = makeupAccepted
-        CurrentUserData.instance.habitSmoking = smokingAccepted
+//        CurrentUserData.instance.habitSunbathing = sunbathingAccepted
+//        CurrentUserData.instance.habitSport = sportAccepted
+//        CurrentUserData.instance.habitDiet = dietAccepted
+//        CurrentUserData.instance.habitCoffee = coffeeAccepted
+//        CurrentUserData.instance.habitMakeup = makeupAccepted
+//        CurrentUserData.instance.habitSmoking = smokingAccepted
+        model.habitSunbathing = sunbathingAccepted
+        model.habitDiet = dietAccepted
+        model.habitCoffee = coffeeAccepted
+        model.habitMakeup = makeupAccepted
+        model.habitSmoking = smokingAccepted
+        model.habitTravelling = travellingAccepted
         
         self.performSegue(withIdentifier: "toWrinkles", sender: nil)
         
@@ -80,7 +88,7 @@ class LifestyleVC: UIViewController {
         
     }
     @IBAction func sportBtnWasPressed(_ sender: Any) {
-        setImage(acceptionStatus: &sportAccepted, imageName: "sport", image: sportImg)
+        setImage(acceptionStatus: &travellingAccepted, imageName: "sport", image: sportImg)
         
     }
     
@@ -106,6 +114,12 @@ class LifestyleVC: UIViewController {
         } else {
             acceptionStatus = false
             image.image = UIImage(named: imageName)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? WrinklesVC {
+            vc.model = model
         }
     }
 }

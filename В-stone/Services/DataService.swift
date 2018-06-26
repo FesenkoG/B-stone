@@ -78,7 +78,7 @@ class DataService {
     }
     
     //MARK: - Quiz Services
-    func uploadUserData(handler: @escaping (_ status: Bool) -> Void) {
+    func uploadUserData(quizModel: QuizModel, handler: @escaping (_ status: Bool) -> Void) {
         var childUidToUpdate: String?
         let myGroup = DispatchGroup()
         myGroup.enter()
@@ -100,19 +100,19 @@ class DataService {
         
         myGroup.notify(queue: .main) {
             if let uidToUpdate = childUidToUpdate {
-                self.REF_QUIZES.child(uidToUpdate).updateChildValues(["age": CurrentUserData.instance.age!,
-                                                                 "placeOfLiving": CurrentUserData.instance.placeOfLiving!.rawValue, "habitSunbathing": CurrentUserData.instance.habitSunbathing!, "habitSmoking": CurrentUserData.instance.habitSmoking!, "habitSport": CurrentUserData.instance.habitSport!, "habitDiet": CurrentUserData.instance.habitDiet!, "habitMakeup": CurrentUserData.instance.habitMakeup!, "habitCoffee": CurrentUserData.instance.habitCoffee!, "wrinklesForehead": CurrentUserData.instance.wrinklesForehead!, "wrinklesInterbrow": CurrentUserData.instance.wrinklesInterbrow!, "wrinklesUnderEye": CurrentUserData.instance.wrinklesUnderEye!, "wrinklesSmile": CurrentUserData.instance.wrinklesSmile!, "inflamationsForehead": CurrentUserData.instance.inflamationsForehead!, "inflamationsNose": CurrentUserData.instance.inflamationsNose!, "inflamationsCheeks": CurrentUserData.instance.inflamationsCheeks!, "inflamationsAroundNose": CurrentUserData.instance.inflamationsAroundNose!, "inflamationsChin": CurrentUserData.instance.inflamationsChin!, "allergicReactions": CurrentUserData.instance.allergic!.rawValue, "userId": Auth.auth().currentUser?.uid as Any])
+                self.REF_QUIZES.child(uidToUpdate).updateChildValues(["age": quizModel.age,
+                                                                      "placeOfLiving": quizModel.placeOfLiving!.rawValue, "habitSunbathing": quizModel.habitSunbathing, "habitSmoking": quizModel.habitSmoking, "habitSport": quizModel.habitTravelling, "habitDiet": quizModel.habitDiet, "habitMakeup": quizModel.habitMakeup, "habitCoffee": quizModel.habitCoffee, "wrinklesForehead": quizModel.wrinklesForehead, "wrinklesInterbrow": quizModel.wrinklesInterbrow, "wrinklesUnderEye": quizModel.wrinklesUnderEye, "wrinklesSmile": quizModel.wrinklesSmile, "inflamationsForehead": quizModel.inflamationsForehead, "inflamationsNose": quizModel.inflamationsNose, "inflamationsCheeks": quizModel.inflamationsCheeks, "inflamationsAroundNose": quizModel.inflamationsAroundNose, "inflamationsChin": quizModel.inflamationsChin, "allergicReactions": quizModel.allergic!.rawValue, "userId": Auth.auth().currentUser?.uid as Any])
                 
             } else {
-                self.REF_QUIZES.childByAutoId().updateChildValues(["age": CurrentUserData.instance.age!,
-                                                              "placeOfLiving": CurrentUserData.instance.placeOfLiving!.rawValue, "habitSunbathing": CurrentUserData.instance.habitSunbathing!, "habitSmoking": CurrentUserData.instance.habitSmoking!, "habitSport": CurrentUserData.instance.habitSport!, "habitDiet": CurrentUserData.instance.habitDiet!, "habitMakeup": CurrentUserData.instance.habitMakeup!, "habitCoffee": CurrentUserData.instance.habitCoffee!, "wrinklesForehead": CurrentUserData.instance.wrinklesForehead!, "wrinklesInterbrow": CurrentUserData.instance.wrinklesInterbrow!, "wrinklesUnderEye": CurrentUserData.instance.wrinklesUnderEye!, "wrinklesSmile": CurrentUserData.instance.wrinklesSmile!, "inflamationsForehead": CurrentUserData.instance.inflamationsForehead!, "inflamationsNose": CurrentUserData.instance.inflamationsNose!, "inflamationsCheeks": CurrentUserData.instance.inflamationsCheeks!, "inflamationsAroundNose": CurrentUserData.instance.inflamationsAroundNose!, "inflamationsChin": CurrentUserData.instance.inflamationsChin!, "allergicReactions": CurrentUserData.instance.allergic!.rawValue, "userId": Auth.auth().currentUser?.uid as Any])
+                self.REF_QUIZES.childByAutoId().updateChildValues(["age": quizModel.age,
+                                                                   "placeOfLiving": quizModel.placeOfLiving!.rawValue, "habitSunbathing": quizModel.habitSunbathing, "habitSmoking": quizModel.habitSmoking, "habitSport": quizModel.habitTravelling, "habitDiet": quizModel.habitDiet, "habitMakeup": quizModel.habitMakeup, "habitCoffee": quizModel.habitCoffee, "wrinklesForehead": quizModel.wrinklesForehead, "wrinklesInterbrow": quizModel.wrinklesInterbrow, "wrinklesUnderEye": quizModel.wrinklesUnderEye, "wrinklesSmile": quizModel.wrinklesSmile, "inflamationsForehead": quizModel.inflamationsForehead, "inflamationsNose": quizModel.inflamationsNose, "inflamationsCheeks": quizModel.inflamationsCheeks, "inflamationsAroundNose": quizModel.inflamationsAroundNose, "inflamationsChin": quizModel.inflamationsChin, "allergicReactions": quizModel.allergic!.rawValue, "userId": Auth.auth().currentUser?.uid as Any])
                 
             }
         }
         handler(true)
     }
     
-    func checkIfCurrentUserHaveQuizCompleted(handler: @escaping (_ status: Bool) -> ()) {
+    func checkIfCurrentUserHaveQuizCompleted(handler: @escaping (_ status: Bool, _ model: QuizModel?) -> ()) {
         var result = false
         REF_QUIZES.observeSingleEvent(of: .value) { (quizesSnapshot) in
             guard let quizesSpanshot = quizesSnapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -120,30 +120,31 @@ class DataService {
                 let userId = quiz.childSnapshot(forPath: "userId").value as! String
                 if userId == Auth.auth().currentUser?.uid {
                     result = true
-                    CurrentUserData.instance.age = quiz.childSnapshot(forPath: "age").value as? Int
-                    CurrentUserData.instance.allergic = Allergic(rawValue: quiz.childSnapshot(forPath: "allergicReactions").value as! String)
-                    CurrentUserData.instance.habitCoffee = quiz.childSnapshot(forPath: "habitCoffee").value as? Bool
-                    CurrentUserData.instance.habitDiet = quiz.childSnapshot(forPath: "habitDiet").value as? Bool
-                    CurrentUserData.instance.habitSport = quiz.childSnapshot(forPath: "habitSport").value as? Bool
-                    CurrentUserData.instance.habitMakeup = quiz.childSnapshot(forPath: "habitMakeup").value as? Bool
-                    CurrentUserData.instance.habitSmoking = quiz.childSnapshot(forPath: "habitSmoking").value as? Bool
-                    CurrentUserData.instance.habitSunbathing = quiz.childSnapshot(forPath: "habitSunbathing").value as? Bool
-                    CurrentUserData.instance.wrinklesForehead = quiz.childSnapshot(forPath: "wrinklesForehead").value as? Bool
-                    CurrentUserData.instance.wrinklesSmile = quiz.childSnapshot(forPath: "wrinklesSmile").value as? Bool
-                    CurrentUserData.instance.wrinklesUnderEye = quiz.childSnapshot(forPath: "wrinklesUnderEye").value as? Bool
-                    CurrentUserData.instance.wrinklesInterbrow = quiz.childSnapshot(forPath: "wrinklesInterbrow").value as? Bool
-                    CurrentUserData.instance.inflamationsAroundNose = quiz.childSnapshot(forPath: "inflamationsAroundNose").value as? Bool
-                    CurrentUserData.instance.inflamationsChin = quiz.childSnapshot(forPath: "inflamationsChin").value as? Bool
-                    CurrentUserData.instance.inflamationsNose = quiz.childSnapshot(forPath: "inflamationsNose").value as? Bool
-                    CurrentUserData.instance.inflamationsCheeks = quiz.childSnapshot(forPath: "inflamationsCheeks").value as? Bool
-                    CurrentUserData.instance.inflamationsForehead = quiz.childSnapshot(forPath: "inflamationsForehead").value as? Bool
-                    CurrentUserData.instance.placeOfLiving = PlaceOfLiving(rawValue: quiz.childSnapshot(forPath: "placeOfLiving").value as! String)
-                    handler(true)
+                    var model = QuizModel()
+                    model.age = quiz.childSnapshot(forPath: "age").value as! Int
+                    model.allergic = Allergic(rawValue: quiz.childSnapshot(forPath: "allergicReactions").value as! String)
+                    model.habitCoffee = quiz.childSnapshot(forPath: "habitCoffee").value as! Bool
+                    model.habitDiet = quiz.childSnapshot(forPath: "habitDiet").value as! Bool
+                    model.habitTravelling = quiz.childSnapshot(forPath: "habitSport").value as! Bool
+                    model.habitMakeup = quiz.childSnapshot(forPath: "habitMakeup").value as! Bool
+                    model.habitSmoking = quiz.childSnapshot(forPath: "habitSmoking").value as! Bool
+                    model.habitSunbathing = quiz.childSnapshot(forPath: "habitSunbathing").value as! Bool
+                    model.wrinklesForehead = quiz.childSnapshot(forPath: "wrinklesForehead").value as! Bool
+                    model.wrinklesSmile = quiz.childSnapshot(forPath: "wrinklesSmile").value as! Bool
+                    model.wrinklesUnderEye = quiz.childSnapshot(forPath: "wrinklesUnderEye").value as! Bool
+                    model.wrinklesInterbrow = quiz.childSnapshot(forPath: "wrinklesInterbrow").value as! Bool
+                    model.inflamationsAroundNose = quiz.childSnapshot(forPath: "inflamationsAroundNose").value as! Bool
+                    model.inflamationsChin = quiz.childSnapshot(forPath: "inflamationsChin").value as! Bool
+                    model.inflamationsNose = quiz.childSnapshot(forPath: "inflamationsNose").value as! Bool
+                    model.inflamationsCheeks = quiz.childSnapshot(forPath: "inflamationsCheeks").value as! Bool
+                    model.inflamationsForehead = quiz.childSnapshot(forPath: "inflamationsForehead").value as! Bool
+                    model.placeOfLiving = PlaceOfLiving(rawValue: quiz.childSnapshot(forPath: "placeOfLiving").value as! String)
+                    handler(true, model)
                     break
                 }
             }
             if !result {
-                handler(false)
+                handler(false, nil)
             }
         }
     }

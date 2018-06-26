@@ -19,6 +19,7 @@ class AllergicVC: UIViewController {
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
     
+    var model: QuizModel!
     var allergic: Allergic?
     
     override func viewDidLoad() {
@@ -51,9 +52,9 @@ class AllergicVC: UIViewController {
     @IBAction func nextBtnWasPressed(_ sender: Any) {
         
         if let allerg = allergic {
-            CurrentUserData.instance.allergic = allerg
-            
-            DataService.instance.uploadUserData(handler: { (success) in
+            //CurrentUserData.instance.allergic = allerg
+            model.allergic = Allergic(rawValue: allerg.rawValue)
+            DataService.instance.uploadUserData(quizModel: model, handler: { (success) in
                 if success {
                     if AppData.shared.isHomeExists {
                         AppData.shared.isEditScreenExists = false

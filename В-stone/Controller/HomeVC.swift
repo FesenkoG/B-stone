@@ -18,6 +18,8 @@ class HomeVC: UIViewController {
     @IBOutlet weak var prevDataLbl: UILabel!
     @IBOutlet weak var prevPercentageLbl: UILabel!
     
+    var model: QuizModel!
+    
     @IBAction func prepareForUnwindToBluetoothVC(_ segue: UIStoryboardSegue) {}
     
     override func viewWillAppear(_ animated: Bool) {

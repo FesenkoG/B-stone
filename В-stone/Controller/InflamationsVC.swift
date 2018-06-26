@@ -32,7 +32,7 @@ class InflamationsVC: UIViewController {
     @IBOutlet weak var betweenFourthConstraint: NSLayoutConstraint!
     @IBOutlet weak var rightFifthConstraint: NSLayoutConstraint!
     
-    
+    var model: QuizModel!
     
     var foreheadAccepted = false
     var noseAccepted = false
@@ -139,11 +139,17 @@ class InflamationsVC: UIViewController {
     
     @IBAction func nextBtnWasPressed(_ sender: Any) {
         
-        CurrentUserData.instance.inflamationsChin = chinAccepted
-        CurrentUserData.instance.inflamationsForehead = foreheadAccepted
-        CurrentUserData.instance.inflamationsNose = noseAccepted
-        CurrentUserData.instance.inflamationsCheeks = cheeksAccepted
-        CurrentUserData.instance.inflamationsAroundNose = aroundAccepted
+//        CurrentUserData.instance.inflamationsChin = chinAccepted
+//        CurrentUserData.instance.inflamationsForehead = foreheadAccepted
+//        CurrentUserData.instance.inflamationsNose = noseAccepted
+//        CurrentUserData.instance.inflamationsCheeks = cheeksAccepted
+//        CurrentUserData.instance.inflamationsAroundNose = aroundAccepted
+        
+        model.inflamationsChin = chinAccepted
+        model.inflamationsNose = noseAccepted
+        model.inflamationsCheeks = cheeksAccepted
+        model.inflamationsForehead = foreheadAccepted
+        model.inflamationsAroundNose = aroundAccepted
         
         self.performSegue(withIdentifier: "toAllergic", sender: nil)
         
@@ -160,6 +166,12 @@ class InflamationsVC: UIViewController {
         } else {
             acceptionStatus = false
             image.setImage(UIImage(named: "ChooseCircleFalse"), for: .normal)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AllergicVC {
+            vc.model = model
         }
     }
     

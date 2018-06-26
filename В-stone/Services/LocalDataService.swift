@@ -37,8 +37,9 @@ public class LocalDataService {
         do {
             let request = NSFetchRequest<QuizUserData>()
             let quizData = try container.viewContext.fetch(request)
-            let model = QuizModel()
+            guard let quiz = quizData.first else { throw SuperError.NothingIsStored }
             //transformation to native struct
+            let model = QuizModel(age: Int(quiz.age), allergic: Allergic(rawValue: (quiz.allergic)!), placeOfLiving: PlaceOfLiving(rawValue: (quiz.placeOfLiving)!), habitCoffee: quiz.habitCoffee, habitDiet: quiz.habitDiet, habitMakeup: quiz.habitMakeup, habitSmoking: quiz.habitSmoking, habitTravelling: quiz.habitTravelling, habitSunbathing: quiz.habitSunbathing, inflamationsAroundNose: quiz.inflamationsNose, inflamationsCheeks: quiz.inflamationsCheeks, inflamationsChin: quiz.inflamationsChin, inflamationsForehead: quiz.inflamationsForehead, inflamationsNose: quiz.inflamationsNose, wrinklesForehead: quiz.wrinklesForehead, wrinklesInterbrow: quiz.wrinklesInterbrow, wrinklesSmile: quiz.wrinklesSmile, wrinklesUnderEye: quiz.wrinklesUnderEye)
             
             return Result.success(model)
         } catch {
@@ -109,6 +110,46 @@ public class LocalDataService {
     //TODO: - Fill the functions
     
     private func configureQuiz(_ quiz: QuizUserData, fromModel model: QuizModel) {
+        quiz.age = Int16(model.age)
+        quiz.allergic = model.allergic?.rawValue
+        
+        quiz.placeOfLiving = model.placeOfLiving?.rawValue
+        
+        quiz.habitCoffee = model.habitCoffee
+        quiz.habitDiet = model.habitDiet
+        quiz.habitTravelling = model.habitTravelling
+        quiz.habitMakeup = model.habitMakeup
+        quiz.habitSmoking = model.habitSmoking
+        quiz.habitSunbathing = model.habitSunbathing
+        
+        quiz.inflamationsAroundNose = model.inflamationsAroundNose
+        quiz.inflamationsForehead = model.inflamationsForehead
+        quiz.inflamationsChin = model.inflamationsChin
+        quiz.inflamationsCheeks = model.inflamationsCheeks
+        quiz.inflamationsNose = model.inflamationsNose
+        
+        quiz.wrinklesForehead = model.wrinklesForehead
+        quiz.wrinklesUnderEye = model.wrinklesUnderEye
+        quiz.wrinklesInterbrow = model.wrinklesInterbrow
+        quiz.wrinklesSmile = model.wrinklesSmile
+    }
+    
+    func cleanStorage() {
+        do {
+            let qRequest = NSFetchRequest<QuizUserData>()
+            let quizData = try container.viewContext.fetch(qRequest)
+            guard let quiz = quizData.first else { return }
+            
+            let blRequest = NSFetchRequest<BluetoothUserData>()
+            let bluetoothData = try container.viewContext.fetch(blRequest)
+            guard let bluetooth = bluetoothData.first else { return }
+            
+            container.viewContext.delete(quiz)
+            container.viewContext.delete(bluetooth)
+        } catch {
+            print(error)
+        }
+        
         
     }
     
@@ -120,4 +161,8 @@ public class LocalDataService {
 enum Result<T> {
     case success(T)
     case failure(Error)
+}
+
+enum SuperError: Error {
+    case NothingIsStored
 }
