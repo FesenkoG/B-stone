@@ -21,7 +21,9 @@ class HowOldAreYouVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        model = QuizModel()
+        if model == nil {
+            model = QuizModel()
+        }
         self.hideKeyboardWhenTappedAround()
         AppData.shared.isEditScreenExists = true
         nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
@@ -33,8 +35,8 @@ class HowOldAreYouVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if CurrentUserData.instance.age != nil {
-            ageTxtField.text = String(describing: CurrentUserData.instance.age!)
+        if model.age != 0 {
+            ageTxtField.text = String(describing: model.age)
         }
     }
 

@@ -11,11 +11,15 @@ import Firebase
 
 class SettingsVC: UIViewController {
     
+    var model: QuizModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.unselectedItemTintColor = UIColor.white
         self.tabBarItem.selectedImage = UIImage(named: "settings_selected")!.withRenderingMode(.alwaysOriginal)
+
     }
+
 
     @IBAction func logOutBtnWasPressed(_ sender: Any) {
         let logoutPopout = UIAlertController(title: "Logout?", message: "Are you sure you want to logout?", preferredStyle: .alert)
@@ -46,6 +50,7 @@ class SettingsVC: UIViewController {
             self.performSegue(withIdentifier: "editData", sender: nil)
         } else {
             guard let howOldVC = storyboard?.instantiateViewController(withIdentifier: "HowOldAreYouVC") as? HowOldAreYouVC else { return }
+            howOldVC.model = model
             self.present(howOldVC, animated: true, completion: nil)
         }
         
@@ -75,5 +80,11 @@ class SettingsVC: UIViewController {
             logoutPopout.view.superview?.addGestureRecognizer(tap)
         }
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? HowOldAreYouVC {
+            vc.model = model
+        }
     }
 }

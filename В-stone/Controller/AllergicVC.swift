@@ -26,7 +26,7 @@ class AllergicVC: UIViewController {
         super.viewDidLoad()
         nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
         backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 20, 12, 25)
-        if let alrgc = CurrentUserData.instance.allergic {
+        if let alrgc = model.allergic {
             allergic = alrgc
             setChoise(choise: allergic!)
         }

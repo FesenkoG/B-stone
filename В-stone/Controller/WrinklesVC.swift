@@ -44,16 +44,16 @@ class WrinklesVC: UIViewController {
         configureScreen()
         nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
         backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 20, 12, 25)
-        if let c = CurrentUserData.instance.wrinklesForehead, c == true {
+        if model.wrinklesForehead {
             setImage(acceptionStatus: &foreheadAccepted, image: foreheadBtn)
         }
-        if let c = CurrentUserData.instance.wrinklesSmile, c == true {
+        if model.wrinklesSmile {
             setImage(acceptionStatus: &smileAccepted, image: smileBtn)
         }
-        if let c = CurrentUserData.instance.wrinklesUnderEye, c == true {
+        if model.wrinklesUnderEye {
             setImage(acceptionStatus: &eyeAccepted, image: eyeBtn)
         }
-        if let c = CurrentUserData.instance.wrinklesInterbrow, c == true {
+        if model.wrinklesInterbrow {
             setImage(acceptionStatus: &interbrowAccepted, image: interbrowBtn)
         }
     }

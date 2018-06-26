@@ -27,6 +27,7 @@ class BluetoothVC: UIViewController, BluetoothDelegate {
         self.tabBarItem.selectedImage = UIImage(named: "mm_selected")!.withRenderingMode(.alwaysOriginal)
         startScanningBtn.isEnabled = false
         startScanningBtn.alpha = 0
+
     }
 
     

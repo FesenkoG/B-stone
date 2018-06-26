@@ -157,11 +157,8 @@ class StartVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UITabBarController {
             vc.selectedIndex = CurrentUserData.instance.selectedIndex
-            if let vcb = vc as? BluetoothVC {
-                vcb.model = model
-            } else if let vch = vc as? HomeVC {
-                vch.model = model
-            }
+            guard let settingsVC = vc.viewControllers?[0] as? SettingsVC else { return }
+            settingsVC.model = model
         } else {
             if let vc = segue.destination as? EnterEmailVC, let text = sender as? String {
                 vc.configureVC(text: text)

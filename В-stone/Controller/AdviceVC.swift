@@ -27,7 +27,6 @@ class AdviceVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         articles.removeAll()
-        print(#function)
         let base = "article"
         let numbersToShow = articlesToShow()
         for number in numbersToShow {

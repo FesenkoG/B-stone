@@ -47,19 +47,19 @@ class InflamationsVC: UIViewController {
         configureScreen()
         nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
         backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 20, 12, 25)
-        if let c = CurrentUserData.instance.inflamationsChin, c == true {
+        if model.inflamationsChin {
             setImage(acceptionStatus: &chinAccepted, image: chinBtn)
         }
-        if let c = CurrentUserData.instance.inflamationsNose, c == true {
+        if model.inflamationsNose {
             setImage(acceptionStatus: &noseAccepted, image: noseBtn)
         }
-        if let c = CurrentUserData.instance.inflamationsCheeks, c == true {
+        if model.inflamationsCheeks {
             setImage(acceptionStatus: &cheeksAccepted, image: cheeksBtn)
         }
-        if let c = CurrentUserData.instance.inflamationsForehead, c == true {
+        if model.inflamationsForehead {
             setImage(acceptionStatus: &foreheadAccepted, image: foreheadBtn)
         }
-        if let c = CurrentUserData.instance.inflamationsAroundNose, c == true {
+        if model.inflamationsAroundNose {
             setImage(acceptionStatus: &aroundAccepted, image: aroundBtn)
         }
         

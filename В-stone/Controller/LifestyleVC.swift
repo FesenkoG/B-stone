@@ -35,22 +35,22 @@ class LifestyleVC: UIViewController {
         super.viewDidLoad()
         nextBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
         backBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 20, 12, 25)
-        if let c = CurrentUserData.instance.habitSunbathing, c == true {
+        if model.habitSunbathing {
             setImage(acceptionStatus: &sunbathingAccepted, imageName: "sunbathing", image: sunbathingImg)
         }
-        if let c = CurrentUserData.instance.habitDiet, c == true {
+        if model.habitDiet {
             setImage(acceptionStatus: &dietAccepted, imageName: "diet", image: dietImg)
         }
-        if let c = CurrentUserData.instance.habitSport, c == true {
+        if model.habitTravelling {
             setImage(acceptionStatus: &travellingAccepted, imageName: "sport", image: sportImg)
         }
-        if let c = CurrentUserData.instance.habitCoffee, c == true {
+        if model.habitCoffee {
             setImage(acceptionStatus: &coffeeAccepted, imageName: "coffee", image: coffeeImg)
         }
-        if let c = CurrentUserData.instance.habitSmoking, c == true {
+        if model.habitSmoking {
             setImage(acceptionStatus: &smokingAccepted, imageName: "smoking", image: smokingImg)
         }
-        if let c = CurrentUserData.instance.habitMakeup, c == true {
+        if model.habitMakeup {
             setImage(acceptionStatus: &makeupAccepted, imageName: "makeup", image: makeUpImg)
         }
     }
