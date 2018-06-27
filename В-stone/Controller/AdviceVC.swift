@@ -196,7 +196,7 @@ class AdviceVC: UIViewController {
         let logoutAction = UIAlertAction(title: "Logout?", style: .destructive) { (buttonTapped) in
             do{
                 try Auth.auth().signOut()
-                clearUserData()
+                self.localDataService.cleanStorage()
                 self.performSegue(withIdentifier: "backToStart2", sender: nil)
                 AppData.shared.isEditScreenExists = false
             } catch {

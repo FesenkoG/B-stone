@@ -28,10 +28,10 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM"
-        
-        if let currentPercentsge = CurrentUserData.instance.currentPercantage {
+        loadUserData()
+        if let currentPercentsge = bluetoothModel?.currentPercentage {
             percentageLbl.text = "\(String(format:"%.01f", currentPercentsge))%"
-            if let date = CurrentUserData.instance.date {
+            if let date = bluetoothModel?.date {
                 dataLbl.text = date
             }
             
@@ -51,13 +51,13 @@ class HomeVC: UIViewController {
                 descriptionLbl.text = "oily skin"
             }
         }
-        if let prevPercentage = CurrentUserData.instance.prevPercantage {
+        if let prevPercentage = bluetoothModel?.prevPercentage {
             if prevPercentage == -1 {
                 prevDataLbl.text = "-"
                 prevPercentageLbl.text = "-"
             } else {
                 prevPercentageLbl.text = "\(String(format:"%.01f", prevPercentage))%"
-                if let date = CurrentUserData.instance.prevDate {
+                if let date = bluetoothModel?.prevDate {
                     prevDataLbl.text = date
                 }
             }
@@ -77,12 +77,31 @@ class HomeVC: UIViewController {
         AppData.shared.isHomeExists = false
     }
     
+    func loadUserData() {
+        let resultQuiz = localDataService.fetchQuizData()
+        switch resultQuiz {
+        case .success(let quiz):
+            model = quiz
+        case .failure(let error):
+            print(error)
+        }
+        
+        let resultBluetooth = localDataService.fetchBluetoothData()
+        switch resultBluetooth {
+        case .success(let bluetooth):
+            bluetoothModel = bluetooth
+        case .failure(let error):
+            bluetoothModel = nil
+            print(error)
+        }
+    }
+    
     @IBAction func logOutBtnWasPressed(_ sender: Any) {
         let logoutPopout = UIAlertController(title: "Logout?", message: "Are you sure you want to logout?", preferredStyle: .alert)
         let logoutAction = UIAlertAction(title: "Logout?", style: .destructive) { (buttonTapped) in
             do{
                 try Auth.auth().signOut()
-                clearUserData()
+                self.localDataService.cleanStorage()
                 self.performSegue(withIdentifier: "backToStart1", sender: nil)
                 AppData.shared.isEditScreenExists = false
             } catch {

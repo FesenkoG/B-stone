@@ -23,7 +23,6 @@ class StartVC: UIViewController {
 
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {}
     
-    var model: QuizModel!
     let localDataService: LocalDataService = LocalDataService()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +34,7 @@ class StartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         turnOffSpinner()
+        
         errorLbl.isHidden = true
         hideKeyboardWhenTappedAround()
         disableInterface()
@@ -42,11 +42,10 @@ class StartVC: UIViewController {
         if Auth.auth().currentUser != nil {
             checkQuiz { (success, model) in
                 if success {
-                    self.localDataService.saveQuizData(model: model!, handler: { (_) in
-                        
-                    })
-                    self.checkBluetooth(handler: { (blSuccess) in
+                    self.localDataService.saveQuizData(model: model!, handler: nil)
+                    self.checkBluetooth(handler: { (blSuccess, bluetoothModel) in
                         if blSuccess {
+                            self.localDataService.saveBluetoothData(model: bluetoothModel!, handler: nil)
                             CurrentUserData.instance.selectedIndex = 1
                             self.performSegue(withIdentifier: "toTabBar", sender: nil)
                             self.turnOffSpinner()
@@ -72,7 +71,7 @@ class StartVC: UIViewController {
     
 
     
-    func checkBluetooth(handler: @escaping (Bool) -> Void) {
+    func checkBluetooth(handler: @escaping (Bool, BluetoothModel?) -> Void) {
         DataService.instance.checkIfCurrentUserHaveBluetoothData(handler: handler)
     }
     func checkQuiz(handler: @escaping (Bool, QuizModel?) -> Void) {
@@ -126,17 +125,17 @@ class StartVC: UIViewController {
         self.disableInterface()
         if loginTextField.text != nil && passwordTextField.text != nil {
             turnOnSpinner()
-            CurrentUserData.instance.email = loginTextField.text
             AuthService.instance.loginUser(email: loginTextField.text!, password: passwordTextField.text!, handler: { (success, error) in
                 if success {
                     DataService.instance.checkIfCurrentUserHaveQuizCompleted(handler: { (success, model)  in
                         self.turnOffSpinner()
                         if success {
-                            self.model = model
-                            self.checkBluetooth(handler: { (success) in
+                            self.localDataService.saveQuizData(model: model!, handler: nil)
+                            self.checkBluetooth(handler: { (success, bluetoothModel)  in
                                 self.turnOffSpinner()
                                 self.enableInterface()
                                 if success {
+                                    self.localDataService.saveBluetoothData(model: bluetoothModel!, handler: nil)
                                     CurrentUserData.instance.selectedIndex = 1
                                 } else {
                                     CurrentUserData.instance.selectedIndex = 2

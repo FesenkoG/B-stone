@@ -24,7 +24,7 @@ class DataService {
     }
 
     //MARK: - BluetoothServices
-    func uploadBluetoothData(handler: @escaping (_ status: Bool) -> Void) {
+    func uploadBluetoothData(model: BluetoothModel, handler: @escaping (_ status: Bool) -> Void) {
         var childUidToUpdate: String?
         let myGroup = DispatchGroup()
         myGroup.enter()
@@ -43,16 +43,16 @@ class DataService {
         }
         myGroup.notify(queue: .main) {
             if let uidToUpdate = childUidToUpdate {
-                self.REF_BLUETOOTH.child(uidToUpdate).updateChildValues(["firstFace":CurrentUserData.instance.firstFace!, "secondFace": CurrentUserData.instance.secondFace!, "thirdFace": CurrentUserData.instance.thirdFace!, "currentPercentage":CurrentUserData.instance.currentPercantage!, "prevPercentage": CurrentUserData.instance.prevPercantage!,"lastDate": CurrentUserData.instance.date!,"prevDate": CurrentUserData.instance.prevDate!, "userId": (Auth.auth().currentUser?.uid)!])
+                self.REF_BLUETOOTH.child(uidToUpdate).updateChildValues(["currentPercentage":model.currentPercentage!, "prevPercentage": model.prevPercentage!,"lastDate": model.date!,"prevDate": model.prevDate!,"data": model.data, "userId": (Auth.auth().currentUser?.uid)!])
                 handler(true)
             } else {
-                self.REF_BLUETOOTH.childByAutoId().updateChildValues(["firstFace":CurrentUserData.instance.firstFace!, "secondFace": CurrentUserData.instance.secondFace!, "thirdFace": CurrentUserData.instance.thirdFace!, "currentPercentage":CurrentUserData.instance.currentPercantage!, "prevPercentage": CurrentUserData.instance.prevPercantage!, "lastDate": CurrentUserData.instance.date!, "prevDate": CurrentUserData.instance.prevDate!, "userId": (Auth.auth().currentUser?.uid)!])
+                self.REF_BLUETOOTH.childByAutoId().updateChildValues(["currentPercentage":model.currentPercentage!, "prevPercentage": model.prevPercentage!,"lastDate": model.date!,"prevDate": model.prevDate!,"data": model.data, "userId": (Auth.auth().currentUser?.uid)!])
                 handler(true)
             }
         }
     }
     
-    func checkIfCurrentUserHaveBluetoothData(handler: @escaping (Bool) -> Void) {
+    func checkIfCurrentUserHaveBluetoothData(handler: @escaping (Bool, BluetoothModel?) -> Void) {
         var result = false
         REF_BLUETOOTH.observeSingleEvent(of: .value) { (quizesSnapshot) in
             guard let bluetoothSpanshots = quizesSnapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -60,19 +60,19 @@ class DataService {
                 let userId = blData.childSnapshot(forPath: "userId").value as! String
                 if userId == (Auth.auth().currentUser?.uid)! {
                     result = true
-                    CurrentUserData.instance.firstFace = blData.childSnapshot(forPath: "firstFace").value as? Double
-                    CurrentUserData.instance.secondFace = blData.childSnapshot(forPath: "secondFace").value as? Double
-                    CurrentUserData.instance.thirdFace = blData.childSnapshot(forPath: "thirdFace").value as? Double
-                    CurrentUserData.instance.currentPercantage = blData.childSnapshot(forPath: "currentPercentage").value as? Double
-                    CurrentUserData.instance.prevPercantage = blData.childSnapshot(forPath: "prevPercentage").value as? Double
-                    CurrentUserData.instance.date = blData.childSnapshot(forPath: "lastDate").value as? String
-                    CurrentUserData.instance.prevDate = blData.childSnapshot(forPath: "prevDate").value as? String
-                    handler(true)
+                    var model = BluetoothModel()
+                    
+                    model.currentPercentage = blData.childSnapshot(forPath: "currentPercentage").value as? Double
+                    model.prevPercentage = blData.childSnapshot(forPath: "prevPercentage").value as? Double
+                    model.date = blData.childSnapshot(forPath: "lastDate").value as? String
+                    model.prevDate = blData.childSnapshot(forPath: "prevDate").value as? String
+                    model.data = blData.childSnapshot(forPath: "data").value as! [[Any]]
+                    handler(true, model)
                     break
                 }
             }
             if !result {
-                handler(false)
+                handler(false, nil)
             }
         }
     }

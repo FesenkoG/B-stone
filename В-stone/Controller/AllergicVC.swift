@@ -19,8 +19,10 @@ class AllergicVC: UIViewController {
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
     
+    
     var model: QuizModel!
     var allergic: Allergic?
+    let localDataService = LocalDataService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +58,7 @@ class AllergicVC: UIViewController {
             model.allergic = Allergic(rawValue: allerg.rawValue)
             DataService.instance.uploadUserData(quizModel: model, handler: { (success) in
                 if success {
-                    
+                    self.localDataService.saveQuizData(model: self.model, handler: nil)
                     if AppData.shared.isHomeExists {
                         AppData.shared.isEditScreenExists = false
                         self.performSegue(withIdentifier: "unwindToHome", sender: nil)

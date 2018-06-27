@@ -22,11 +22,15 @@ public class LocalDataService {
     
     func fetchBluetoothData() -> Result<BluetoothModel> {
         do {
-            let request = NSFetchRequest<BluetoothUserData>()
+            let request = NSFetchRequest<BluetoothUserData>(entityName: "BluetoothUserData")
             let bluetoothData = try container.viewContext.fetch(request)
-            let model = BluetoothModel()
+            guard let bluetooth = bluetoothData.first else { throw SuperError.NothingIsStored }
+            guard let dataArray = bluetooth.data else { throw SuperError.DataIsNotStored }
+            let newArray = NSKeyedUnarchiver.unarchiveObject(with: dataArray) as! [[Any]]
+            let model = BluetoothModel(prevPercentage: bluetooth.prevPercantage, prevDate: bluetooth.prevDate, currentPercentage: bluetooth.currentPercentage, date: bluetooth.currentDate, data: newArray)
+
             //transformation to native struct
-            
+
             return Result.success(model)
         } catch {
             return Result.failure(error)
@@ -35,7 +39,7 @@ public class LocalDataService {
     
     func fetchQuizData() -> Result<QuizModel> {
         do {
-            let request = NSFetchRequest<QuizUserData>()
+            let request = NSFetchRequest<QuizUserData>(entityName: "QuizUserData")
             let quizData = try container.viewContext.fetch(request)
             guard let quiz = quizData.first else { throw SuperError.NothingIsStored }
             //transformation to native struct
@@ -49,7 +53,7 @@ public class LocalDataService {
     
     func saveQuizData(model: QuizModel, handler: ((Bool) -> Void)?) {
         do {
-            let request = NSFetchRequest<QuizUserData>()
+            let request = NSFetchRequest<QuizUserData>(entityName: "QuizUserData")
             let quizData = try container.viewContext.fetch(request)
             
             guard quizData.count <= 1 else {
@@ -79,30 +83,30 @@ public class LocalDataService {
     
     func saveBluetoothData(model: BluetoothModel, handler: ((Bool) -> Void)?) {
         do {
-            let request = NSFetchRequest<BluetoothUserData>()
+            let request = NSFetchRequest<BluetoothUserData>(entityName: "BluetoothUserData")
             let bluetoothData = try container.viewContext.fetch(request)
             
             guard bluetoothData.count <= 1 else {
-                handler(false)
+                handler?(false)
                 return
             }
             
             if let bluetooth = bluetoothData.first {
                 configureBluetooth(bluetooth, fromModel: model)
                 try container.viewContext.save()
-                handler(true)
+                handler?(true)
             } else {
                 guard let newBluetooth = NSEntityDescription.insertNewObject(forEntityName: "BluetoothUserData", into: container.viewContext) as? BluetoothUserData else {
-                    handler(false)
+                    handler?(false)
                     return
                 }
                 configureBluetooth(newBluetooth, fromModel: model)
                 try container.viewContext.save()
-                handler(true)
+                handler?(true)
             }
         } catch {
             DispatchQueue.main.async {
-                handler(false)
+                handler?(false)
             }
         }
     }
@@ -134,13 +138,22 @@ public class LocalDataService {
         quiz.wrinklesSmile = model.wrinklesSmile
     }
     
+    private func configureBluetooth(_ bluetooth: BluetoothUserData, fromModel model: BluetoothModel) {
+        bluetooth.currentDate = model.date
+        bluetooth.currentPercentage = model.currentPercentage!
+        bluetooth.prevDate = model.prevDate
+        bluetooth.prevPercantage = model.prevPercentage!
+        let data = NSKeyedArchiver.archivedData(withRootObject: model.data)
+        bluetooth.data = data
+    }
+    
     func cleanStorage() {
         do {
-            let qRequest = NSFetchRequest<QuizUserData>()
+            let qRequest = NSFetchRequest<QuizUserData>(entityName: "QuizUserData")
             let quizData = try container.viewContext.fetch(qRequest)
             guard let quiz = quizData.first else { return }
             
-            let blRequest = NSFetchRequest<BluetoothUserData>()
+            let blRequest = NSFetchRequest<BluetoothUserData>(entityName: "BluetoothUserData")
             let bluetoothData = try container.viewContext.fetch(blRequest)
             guard let bluetooth = bluetoothData.first else { return }
             
@@ -152,10 +165,6 @@ public class LocalDataService {
         
         
     }
-    
-    private func configureBluetooth(_ bluetooth: BluetoothUserData, fromModel model: BluetoothModel) {
-        
-    }
 }
 
 enum Result<T> {
@@ -165,4 +174,5 @@ enum Result<T> {
 
 enum SuperError: Error {
     case NothingIsStored
+    case DataIsNotStored
 }

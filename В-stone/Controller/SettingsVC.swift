@@ -20,6 +20,11 @@ class SettingsVC: UIViewController {
         self.tabBarItem.selectedImage = UIImage(named: "settings_selected")!.withRenderingMode(.alwaysOriginal)
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadUserData()
+    }
 
 
     @IBAction func logOutBtnWasPressed(_ sender: Any) {
@@ -27,7 +32,7 @@ class SettingsVC: UIViewController {
         let logoutAction = UIAlertAction(title: "Logout?", style: .destructive) { (buttonTapped) in
             do{
                 try Auth.auth().signOut()
-                clearUserData()
+                self.localDataService.cleanStorage()
                 self.performSegue(withIdentifier: "backToStart", sender: nil)
                 AppData.shared.isEditScreenExists = false
             } catch {
@@ -40,6 +45,17 @@ class SettingsVC: UIViewController {
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissAllert))
             logoutPopout.view.superview?.addGestureRecognizer(tap)
         }
+    }
+    
+    func loadUserData() {
+        let resultQuiz = localDataService.fetchQuizData()
+        switch resultQuiz {
+        case .success(let quiz):
+            model = quiz
+        case .failure(let error):
+            print(error)
+        }
+        
     }
     
     @objc func dismissAllert() {
@@ -58,6 +74,7 @@ class SettingsVC: UIViewController {
         
     }
     
+    
     @IBAction func deleteAccountBtnWasPressed(_ sender: Any) {
         let logoutPopout = UIAlertController(title: "Delete account?", message: "Are you sure you want to delete account?", preferredStyle: .alert)
         let logoutAction = UIAlertAction(title: "Delete?", style: .destructive) { (buttonTapped) in
@@ -66,7 +83,7 @@ class SettingsVC: UIViewController {
                 Auth.auth().currentUser?.delete(completion: { (error) in
                     if error == nil {
                             self.performSegue(withIdentifier: "backToStart", sender: nil)
-                        clearUserData()
+                        self.localDataService.cleanStorage()
                     } else {
                         print(error?.localizedDescription as Any)
                     }

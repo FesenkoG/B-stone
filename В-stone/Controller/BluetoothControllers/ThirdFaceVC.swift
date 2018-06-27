@@ -19,6 +19,9 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
     private var count = 0
     private var flag = false
     
+    var bluetoothNumbers: [Double]?
+    var bluetoothModel: BluetoothModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nextScreenBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
@@ -32,21 +35,22 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
         // Тут можно обновлять пользовательскую информацию
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM"
-        let mean = (CurrentUserData.instance.firstFace! + CurrentUserData.instance.secondFace! + CurrentUserData.instance.thirdFace!) / 3.0
+        let mean = (bluetoothNumbers!.reduce(0, +)) / 3.0
         
-        if CurrentUserData.instance.currentPercantage == nil {
-            CurrentUserData.instance.currentPercantage = mean
-            CurrentUserData.instance.prevPercantage = -1
-            CurrentUserData.instance.prevDate = formatter.string(from: Date())
-            CurrentUserData.instance.date = formatter.string(from: Date())
+        if bluetoothModel.currentPercentage == nil {
+            bluetoothModel.currentPercentage = mean
+            bluetoothModel.prevPercentage = -1
+            bluetoothModel.prevDate = formatter.string(from: Date())
+            bluetoothModel.date = formatter.string(from: Date())
+            bluetoothModel.data.append([bluetoothNumbers!, Date()])
         } else {
-            CurrentUserData.instance.prevPercantage = CurrentUserData.instance.currentPercantage
-            CurrentUserData.instance.currentPercantage = mean
-            CurrentUserData.instance.prevDate = CurrentUserData.instance.date
-            CurrentUserData.instance.date = formatter.string(from: Date())
+            bluetoothModel.prevPercentage = bluetoothModel.currentPercentage
+            bluetoothModel.currentPercentage = mean
+            bluetoothModel.prevDate = bluetoothModel.date
+            bluetoothModel.date = formatter.string(from: Date())
         }
         
-        DataService.instance.uploadBluetoothData { (success) in
+        DataService.instance.uploadBluetoothData(model: bluetoothModel) { (success) in
             if success {
                 self.performSegue(withIdentifier: "toBluetoothVC", sender: nil)
             } else {
@@ -60,7 +64,7 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
         if value != -1 && flag == false {
             count += 1
             if count == 2 {
-                CurrentUserData.instance.thirdFace = value
+                bluetoothNumbers?.append(value)
                 flag = true
             }
         }

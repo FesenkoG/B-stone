@@ -50,6 +50,17 @@ class BluetoothVC: UIViewController, BluetoothDelegate {
         }
     }
     
+    func loadUserData() {
+        
+        let resultBluetooth = localDataService.fetchBluetoothData()
+        switch resultBluetooth {
+        case .success(let bluetooth):
+            bluetoothModel = bluetooth
+        case .failure(let error):
+            bluetoothModel = nil
+            print(error)
+        }
+    }
     
     @IBAction func startScanningBtnWasPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "toStoneVC", sender: nil)

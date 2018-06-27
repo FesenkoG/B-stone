@@ -16,6 +16,6 @@ struct BluetoothModel {
     var currentPercentage: Double?
     var date: String?
     
-    var data: [(info: (underEye: String, interbrow: String, nose: String), date: String)]
+    var data: [[Any]] = []
     
 }

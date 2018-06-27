@@ -19,6 +19,8 @@ class SecondFaceVC: UIViewController, BluetoothDelegate {
     private var count = 0
     private var flag = false
     
+    var bluetoothNumbers: [Double]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nextScreenBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
@@ -35,13 +37,14 @@ class SecondFaceVC: UIViewController, BluetoothDelegate {
         guard let thirdFaceVC = segue.destination as? ThirdFaceVC else { return }
         thirdFaceVC.bluetoothSerice = bluetoothService
         thirdFaceVC.bluetoothSerice.delegate = thirdFaceVC
+        thirdFaceVC.bluetoothNumbers = bluetoothNumbers
     }
     
     func didRecieveValue(value: Double) {
         if value != -1 && flag == false {
             count += 1
             if count == 2 {
-                CurrentUserData.instance.secondFace = value
+                bluetoothNumbers?.append(value)
                 flag = true
             }
         }
