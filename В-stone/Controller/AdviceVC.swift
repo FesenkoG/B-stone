@@ -14,10 +14,18 @@ class AdviceVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var articles = [Article]()
+    
+    var model: QuizModel!
+    var bluetoothModel: BluetoothModel?
+    
     let articlesWithProducts = ["2", "4", "7", "15", "16"]
     let articlesWithoutImages = ["101", "102"]
     
+    
     var isReadMore = [String: Bool]()
+    
+    //MARK: - Services
+    var localDataService: LocalDataService!
     
     @IBAction func prepareForUnwindHey(segue: UIStoryboardSegue) {
         let vc = segue.destination as! AdviceVC
@@ -26,6 +34,7 @@ class AdviceVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadUserData()
         articles.removeAll()
         let base = "article"
         let numbersToShow = articlesToShow()
@@ -47,6 +56,8 @@ class AdviceVC: UIViewController {
             }
         }
         tableView.reloadData()
+        
+        
     }
     
     override func viewDidLoad() {
@@ -75,15 +86,15 @@ class AdviceVC: UIViewController {
             
         }
         
-        if let smoking = CurrentUserData.instance.habitSmoking, smoking == true {
+        if model.habitSmoking {
             result.append(4)
         }
         
-        if let age = CurrentUserData.instance.age, age >= 25 {
+        if model.age >= 25 {
             result.append(5)
         }
         
-        if let allergen = CurrentUserData.instance.allergic {
+        if let allergen = model.allergic {
             if allergen == .haveNotKnow || allergen == .notKnow {
                 result.append(6)
             }
@@ -93,11 +104,11 @@ class AdviceVC: UIViewController {
             result.append(7)
         }
         
-        if let sport = CurrentUserData.instance.habitSport, sport == true {
+        if model.habitTravelling {
             result.append(8)
         }
         
-        if let makeup = CurrentUserData.instance.habitMakeup, makeup == true {
+        if model.habitMakeup {
             result.append(11)
         }
         
@@ -113,7 +124,7 @@ class AdviceVC: UIViewController {
         }
         
         
-        if let currentPercentage = CurrentUserData.instance.currentPercantage {
+        if let currentPercentage = bluetoothModel?.currentPercentage {
             if currentPercentage > 0 && currentPercentage <= 45 {
                 result.append(15)
             }
@@ -126,16 +137,16 @@ class AdviceVC: UIViewController {
     }
 
     func checkFirst() -> Bool {
-        if let sunbathing = CurrentUserData.instance.habitSunbathing, sunbathing == true {
+        if model.habitSunbathing {
             return true
         }
         
-        if let age = CurrentUserData.instance.age, age >= 19, age <= 25 {
-            if let forehead = CurrentUserData.instance.wrinklesForehead, forehead == true {
+        if model.age >= 19, model.age <= 25 {
+            if model.wrinklesForehead{
                 return true
             }
         }
-        if let lifeStyle = CurrentUserData.instance.placeOfLiving {
+        if let lifeStyle = model.placeOfLiving {
             if lifeStyle == .mountain || lifeStyle == .sea {
                 return true
             }
@@ -145,44 +156,39 @@ class AdviceVC: UIViewController {
     }
     
     func checkForInflamations() -> Bool {
-        if let bubble = CurrentUserData.instance.inflamationsChin, bubble == true {
-            return true
-        }
-        if let bubble = CurrentUserData.instance.inflamationsNose, bubble == true {
-            return true
-        }
-        if let bubble = CurrentUserData.instance.inflamationsCheeks, bubble == true {
-            return true
-        }
-        if let bubble = CurrentUserData.instance.inflamationsForehead, bubble == true {
-            return true
-        }
-        if let bubble = CurrentUserData.instance.inflamationsAroundNose, bubble == true {
-            return true
-        }
-        
-        return false
+        return model.inflamationsAroundNose || model.inflamationsForehead || model.inflamationsCheeks || model.inflamationsNose || model.inflamationsChin
     }
     
     func checkForThirteen() -> Bool {
-        if let smoking = CurrentUserData.instance.habitSmoking, smoking == true {
+        if model.habitSmoking || model.habitCoffee || model.habitTravelling || model.age >= 25 {
             return true
         }
-        if let coffee = CurrentUserData.instance.habitCoffee, coffee == true {
-            return true
-        }
-        if let sport = CurrentUserData.instance.habitSport, sport == true {
-            return true
-        }
-        if let age = CurrentUserData.instance.age, age >= 25 {
-            return true
-        }
-        if let lyfestyle = CurrentUserData.instance.placeOfLiving {
+        
+        if let lyfestyle = model.placeOfLiving {
             if lyfestyle == .mountain || lyfestyle == .sea {
                 return true
             }
         }
         return false
+    }
+    
+    func loadUserData() {
+        let resultQuiz = localDataService.fetchQuizData()
+        switch resultQuiz {
+        case .success(let quiz):
+            model = quiz
+        case .failure(let error):
+            print(error)
+        }
+        
+        let resultBluetooth = localDataService.fetchBluetoothData()
+        switch resultBluetooth {
+        case .success(let bluetooth):
+            bluetoothModel = bluetooth
+        case .failure(let error):
+            bluetoothModel = nil
+            print(error)
+        }
     }
     
     @IBAction func logOutBtnWasPressed(_ sender: Any) {

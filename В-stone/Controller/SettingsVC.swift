@@ -12,6 +12,7 @@ import Firebase
 class SettingsVC: UIViewController {
     
     var model: QuizModel!
+    var localDataService: LocalDataService!
     
     override func viewDidLoad() {
         super.viewDidLoad()

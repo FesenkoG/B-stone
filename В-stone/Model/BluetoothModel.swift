@@ -10,4 +10,12 @@ import Foundation
 
 struct BluetoothModel {
     
+    var prevPercentage: Double?
+    var prevDate: String?
+    
+    var currentPercentage: Double?
+    var date: String?
+    
+    var data: [(info: (underEye: String, interbrow: String, nose: String), date: String)]
+    
 }

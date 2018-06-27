@@ -24,6 +24,7 @@ class StartVC: UIViewController {
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {}
     
     var model: QuizModel!
+    let localDataService: LocalDataService = LocalDataService()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,7 +42,9 @@ class StartVC: UIViewController {
         if Auth.auth().currentUser != nil {
             checkQuiz { (success, model) in
                 if success {
-                    self.model = model
+                    self.localDataService.saveQuizData(model: model!, handler: { (_) in
+                        
+                    })
                     self.checkBluetooth(handler: { (blSuccess) in
                         if blSuccess {
                             CurrentUserData.instance.selectedIndex = 1
@@ -158,7 +161,13 @@ class StartVC: UIViewController {
         if let vc = segue.destination as? UITabBarController {
             vc.selectedIndex = CurrentUserData.instance.selectedIndex
             guard let settingsVC = vc.viewControllers?[0] as? SettingsVC else { return }
-            settingsVC.model = model
+            settingsVC.localDataService = localDataService
+            guard let homeVC = vc.viewControllers?[1] as? HomeVC else { return }
+            homeVC.localDataService = localDataService
+            guard let bluetoothVC = vc.viewControllers?[2] as? BluetoothVC else { return }
+            bluetoothVC.localDataService = localDataService
+            guard let adviceVC = vc.viewControllers?[3] as? AdviceVC else { return }
+            adviceVC.localDataService = localDataService
         } else {
             if let vc = segue.destination as? EnterEmailVC, let text = sender as? String {
                 vc.configureVC(text: text)

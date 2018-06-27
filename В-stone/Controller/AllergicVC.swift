@@ -56,6 +56,7 @@ class AllergicVC: UIViewController {
             model.allergic = Allergic(rawValue: allerg.rawValue)
             DataService.instance.uploadUserData(quizModel: model, handler: { (success) in
                 if success {
+                    
                     if AppData.shared.isHomeExists {
                         AppData.shared.isEditScreenExists = false
                         self.performSegue(withIdentifier: "unwindToHome", sender: nil)

@@ -19,6 +19,8 @@ class HomeVC: UIViewController {
     @IBOutlet weak var prevPercentageLbl: UILabel!
     
     var model: QuizModel!
+    var bluetoothModel: BluetoothModel?
+    var localDataService: LocalDataService!
     
     @IBAction func prepareForUnwindToBluetoothVC(_ segue: UIStoryboardSegue) {}
     

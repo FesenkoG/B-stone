@@ -47,37 +47,37 @@ public class LocalDataService {
         }
     }
     
-    func saveQuizData(model: QuizModel, handler: @escaping (Bool) -> Void) {
+    func saveQuizData(model: QuizModel, handler: ((Bool) -> Void)?) {
         do {
             let request = NSFetchRequest<QuizUserData>()
             let quizData = try container.viewContext.fetch(request)
             
             guard quizData.count <= 1 else {
-                handler(false)
+                handler?(false)
                 return
             }
             
             if let quiz = quizData.first {
                 configureQuiz(quiz, fromModel: model)
                 try container.viewContext.save()
-                handler(true)
+                handler?(true)
             } else {
                 guard let newQuiz = NSEntityDescription.insertNewObject(forEntityName: "QuizUserData", into: container.viewContext) as? QuizUserData else {
-                    handler(false)
+                    handler?(false)
                     return
                 }
                 configureQuiz(newQuiz, fromModel: model)
                 try container.viewContext.save()
-                handler(true)
+                handler?(true)
             }
         } catch {
             DispatchQueue.main.async {
-                handler(false)
+                handler?(false)
             }
         }
     }
     
-    func saveBluetoothData(model: BluetoothModel, handler: @escaping (Bool) -> Void) {
+    func saveBluetoothData(model: BluetoothModel, handler: ((Bool) -> Void)?) {
         do {
             let request = NSFetchRequest<BluetoothUserData>()
             let bluetoothData = try container.viewContext.fetch(request)
