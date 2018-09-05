@@ -37,12 +37,15 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
         formatter.dateFormat = "dd.MM"
         let mean = (bluetoothNumbers!.reduce(0, +)) / 3.0
         
+        
         if bluetoothModel.currentPercentage == nil {
             bluetoothModel.currentPercentage = mean
             bluetoothModel.prevPercentage = -1
             bluetoothModel.prevDate = formatter.string(from: Date())
             bluetoothModel.date = formatter.string(from: Date())
-            bluetoothModel.data.append([bluetoothNumbers!, Date()])
+            let info = Info(measuredData: bluetoothNumbers!, date: formatter.string(from: Date()))
+            let bluetoothStory = BluetoothStory(info: [info])
+            bluetoothModel.data = bluetoothStory
         } else {
             bluetoothModel.prevPercentage = bluetoothModel.currentPercentage
             bluetoothModel.currentPercentage = mean

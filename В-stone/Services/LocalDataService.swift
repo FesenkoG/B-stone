@@ -26,7 +26,7 @@ public class LocalDataService {
             let bluetoothData = try container.viewContext.fetch(request)
             guard let bluetooth = bluetoothData.first else { throw SuperError.NothingIsStored }
             guard let dataArray = bluetooth.data else { throw SuperError.DataIsNotStored }
-            let newArray = NSKeyedUnarchiver.unarchiveObject(with: dataArray) as! [[Any]]
+            let newArray = try JSONDecoder().decode(BluetoothStory.self, from: dataArray)
             let model = BluetoothModel(prevPercentage: bluetooth.prevPercantage, prevDate: bluetooth.prevDate, currentPercentage: bluetooth.currentPercentage, date: bluetooth.currentDate, data: newArray)
 
             //transformation to native struct
@@ -143,7 +143,7 @@ public class LocalDataService {
         bluetooth.currentPercentage = model.currentPercentage!
         bluetooth.prevDate = model.prevDate
         bluetooth.prevPercantage = model.prevPercentage!
-        let data = NSKeyedArchiver.archivedData(withRootObject: model.data)
+        let data = try? JSONEncoder().encode(model.data!)
         bluetooth.data = data
     }
     

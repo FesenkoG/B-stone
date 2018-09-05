@@ -42,11 +42,25 @@ class DataService {
             }
         }
         myGroup.notify(queue: .main) {
+            guard let data = model.data else { return }
+            let dataString = String.init(data: (try! JSONEncoder().encode(data)), encoding: .utf8)!
             if let uidToUpdate = childUidToUpdate {
-                self.REF_BLUETOOTH.child(uidToUpdate).updateChildValues(["currentPercentage":model.currentPercentage!, "prevPercentage": model.prevPercentage!,"lastDate": model.date!,"prevDate": model.prevDate!,"data": model.data, "userId": (Auth.auth().currentUser?.uid)!])
+                self.REF_BLUETOOTH.child(uidToUpdate).updateChildValues(
+                    ["currentPercentage":model.currentPercentage!,
+                     "prevPercentage": model.prevPercentage!,
+                     "lastDate": model.date!,
+                     "prevDate": model.prevDate!,
+                     "data": dataString,
+                     "userId": (Auth.auth().currentUser?.uid)!])
                 handler(true)
             } else {
-                self.REF_BLUETOOTH.childByAutoId().updateChildValues(["currentPercentage":model.currentPercentage!, "prevPercentage": model.prevPercentage!,"lastDate": model.date!,"prevDate": model.prevDate!,"data": model.data, "userId": (Auth.auth().currentUser?.uid)!])
+                self.REF_BLUETOOTH.childByAutoId().updateChildValues(
+                    ["currentPercentage":model.currentPercentage!,
+                     "prevPercentage": model.prevPercentage!,
+                     "lastDate": model.date!,
+                     "prevDate": model.prevDate!,
+                     "data": dataString,
+                     "userId": (Auth.auth().currentUser?.uid)!])
                 handler(true)
             }
         }
@@ -61,12 +75,13 @@ class DataService {
                 if userId == (Auth.auth().currentUser?.uid)! {
                     result = true
                     var model = BluetoothModel()
-                    
                     model.currentPercentage = blData.childSnapshot(forPath: "currentPercentage").value as? Double
                     model.prevPercentage = blData.childSnapshot(forPath: "prevPercentage").value as? Double
                     model.date = blData.childSnapshot(forPath: "lastDate").value as? String
                     model.prevDate = blData.childSnapshot(forPath: "prevDate").value as? String
-                    model.data = blData.childSnapshot(forPath: "data").value as! [[Any]]
+                    let stringData = blData.childSnapshot(forPath: "data").value as! String
+                    let data = try? JSONDecoder().decode(BluetoothStory.self, from: stringData.data(using: .utf8)!)
+                    model.data = data
                     handler(true, model)
                     break
                 }
@@ -100,12 +115,52 @@ class DataService {
         
         myGroup.notify(queue: .main) {
             if let uidToUpdate = childUidToUpdate {
-                self.REF_QUIZES.child(uidToUpdate).updateChildValues(["age": quizModel.age,
-                                                                      "placeOfLiving": quizModel.placeOfLiving!.rawValue, "habitSunbathing": quizModel.habitSunbathing, "habitSmoking": quizModel.habitSmoking, "habitSport": quizModel.habitTravelling, "habitDiet": quizModel.habitDiet, "habitMakeup": quizModel.habitMakeup, "habitCoffee": quizModel.habitCoffee, "wrinklesForehead": quizModel.wrinklesForehead, "wrinklesInterbrow": quizModel.wrinklesInterbrow, "wrinklesUnderEye": quizModel.wrinklesUnderEye, "wrinklesSmile": quizModel.wrinklesSmile, "inflamationsForehead": quizModel.inflamationsForehead, "inflamationsNose": quizModel.inflamationsNose, "inflamationsCheeks": quizModel.inflamationsCheeks, "inflamationsAroundNose": quizModel.inflamationsAroundNose, "inflamationsChin": quizModel.inflamationsChin, "allergicReactions": quizModel.allergic!.rawValue, "userId": Auth.auth().currentUser?.uid as Any])
+                self.REF_QUIZES
+                    .child(uidToUpdate)
+                    .updateChildValues([
+                        "age": quizModel.age,
+                        "placeOfLiving": quizModel.placeOfLiving!.rawValue,
+                        "habitSunbathing": quizModel.habitSunbathing,
+                        "habitSmoking": quizModel.habitSmoking,
+                        "habitSport": quizModel.habitTravelling,
+                        "habitDiet": quizModel.habitDiet,
+                        "habitMakeup": quizModel.habitMakeup,
+                        "habitCoffee": quizModel.habitCoffee,
+                        "wrinklesForehead": quizModel.wrinklesForehead,
+                        "wrinklesInterbrow": quizModel.wrinklesInterbrow,
+                        "wrinklesUnderEye": quizModel.wrinklesUnderEye,
+                        "wrinklesSmile": quizModel.wrinklesSmile,
+                        "inflamationsForehead": quizModel.inflamationsForehead,
+                        "inflamationsNose": quizModel.inflamationsNose,
+                        "inflamationsCheeks": quizModel.inflamationsCheeks,
+                        "inflamationsAroundNose": quizModel.inflamationsAroundNose,
+                        "inflamationsChin": quizModel.inflamationsChin,
+                        "allergicReactions": quizModel.allergic!.rawValue,
+                        "userId": Auth.auth().currentUser?.uid as Any])
                 
             } else {
-                self.REF_QUIZES.childByAutoId().updateChildValues(["age": quizModel.age,
-                                                                   "placeOfLiving": quizModel.placeOfLiving!.rawValue, "habitSunbathing": quizModel.habitSunbathing, "habitSmoking": quizModel.habitSmoking, "habitSport": quizModel.habitTravelling, "habitDiet": quizModel.habitDiet, "habitMakeup": quizModel.habitMakeup, "habitCoffee": quizModel.habitCoffee, "wrinklesForehead": quizModel.wrinklesForehead, "wrinklesInterbrow": quizModel.wrinklesInterbrow, "wrinklesUnderEye": quizModel.wrinklesUnderEye, "wrinklesSmile": quizModel.wrinklesSmile, "inflamationsForehead": quizModel.inflamationsForehead, "inflamationsNose": quizModel.inflamationsNose, "inflamationsCheeks": quizModel.inflamationsCheeks, "inflamationsAroundNose": quizModel.inflamationsAroundNose, "inflamationsChin": quizModel.inflamationsChin, "allergicReactions": quizModel.allergic!.rawValue, "userId": Auth.auth().currentUser?.uid as Any])
+                self.REF_QUIZES
+                    .childByAutoId()
+                    .updateChildValues([
+                        "age": quizModel.age,
+                        "placeOfLiving": quizModel.placeOfLiving!.rawValue,
+                        "habitSunbathing": quizModel.habitSunbathing,
+                        "habitSmoking": quizModel.habitSmoking,
+                        "habitSport": quizModel.habitTravelling,
+                        "habitDiet": quizModel.habitDiet,
+                        "habitMakeup": quizModel.habitMakeup,
+                        "habitCoffee": quizModel.habitCoffee,
+                        "wrinklesForehead": quizModel.wrinklesForehead,
+                        "wrinklesInterbrow": quizModel.wrinklesInterbrow,
+                        "wrinklesUnderEye": quizModel.wrinklesUnderEye,
+                        "wrinklesSmile": quizModel.wrinklesSmile,
+                        "inflamationsForehead": quizModel.inflamationsForehead,
+                        "inflamationsNose": quizModel.inflamationsNose,
+                        "inflamationsCheeks": quizModel.inflamationsCheeks,
+                        "inflamationsAroundNose": quizModel.inflamationsAroundNose,
+                        "inflamationsChin": quizModel.inflamationsChin,
+                        "allergicReactions": quizModel.allergic!.rawValue,
+                        "userId": Auth.auth().currentUser?.uid as Any])
                 
             }
         }
