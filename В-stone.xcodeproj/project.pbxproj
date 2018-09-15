@@ -254,14 +254,9 @@
 			isa = PBXGroup;
 			children = (
 				66366B1820AD9B8200863C70 /* В-stone.entitlements */,
-				66A2618A205A90550037E26A /* Model */,
-				66A26187205A71760037E26A /* Segues */,
-				66BA93D92046925F00C08154 /* Files */,
-				66EF7D1B20285121008FBAE2 /* Enumerations */,
-				66EF7CE7202074F9008FBAE2 /* Extensions */,
-				66EF7CE22020666D008FBAE2 /* Services */,
-				66EF7CD3201F5820008FBAE2 /* View */,
-				66EF7CD0201F56C3008FBAE2 /* Controller */,
+				B2E668C7214DA36E00C3CC2D /* Presentation Layer */,
+				66EF7CE22020666D008FBAE2 /* Service Layer */,
+				B2E668C8214DA3AD00C3CC2D /* Supporting Files */,
 				66EF7CBC201F550A008FBAE2 /* AppDelegate.swift */,
 				66EF7CC2201F550B008FBAE2 /* Main.storyboard */,
 				66EF7CC5201F550B008FBAE2 /* Assets.xcassets */,
@@ -307,7 +302,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		66EF7CE22020666D008FBAE2 /* Services */ = {
+		66EF7CE22020666D008FBAE2 /* Service Layer */ = {
 			isa = PBXGroup;
 			children = (
 				66EF7CE32020667E008FBAE2 /* AuthService.swift */,
@@ -317,7 +312,7 @@
 				668F460F20A58D26007877DC /* AppData.swift */,
 				66CEBA8920CE1AFA000C455B /* LocalDataService.swift */,
 			);
-			path = Services;
+			path = "Service Layer";
 			sourceTree = "<group>";
 		};
 		66EF7CE7202074F9008FBAE2 /* Extensions */ = {
@@ -343,6 +338,27 @@
 				12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B2E668C7214DA36E00C3CC2D /* Presentation Layer */ = {
+			isa = PBXGroup;
+			children = (
+				66A2618A205A90550037E26A /* Model */,
+				66EF7CD3201F5820008FBAE2 /* View */,
+				66EF7CD0201F56C3008FBAE2 /* Controller */,
+			);
+			path = "Presentation Layer";
+			sourceTree = "<group>";
+		};
+		B2E668C8214DA3AD00C3CC2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				66A26187205A71760037E26A /* Segues */,
+				66EF7CE7202074F9008FBAE2 /* Extensions */,
+				66EF7D1B20285121008FBAE2 /* Enumerations */,
+				66BA93D92046925F00C08154 /* Files */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		E6EAD472BBD1FA54138E2265 /* Frameworks */ = {
