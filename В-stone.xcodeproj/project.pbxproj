@@ -178,12 +178,12 @@
 			path = BluetoothControllers;
 			sourceTree = "<group>";
 		};
-		66A26187205A71760037E26A /* Seques */ = {
+		66A26187205A71760037E26A /* Segues */ = {
 			isa = PBXGroup;
 			children = (
 				66A26188205A71B10037E26A /* NoBlackoutTransition.swift */,
 			);
-			path = Seques;
+			path = Segues;
 			sourceTree = "<group>";
 		};
 		66A2618A205A90550037E26A /* Model */ = {
@@ -255,7 +255,7 @@
 			children = (
 				66366B1820AD9B8200863C70 /* В-stone.entitlements */,
 				66A2618A205A90550037E26A /* Model */,
-				66A26187205A71760037E26A /* Seques */,
+				66A26187205A71760037E26A /* Segues */,
 				66BA93D92046925F00C08154 /* Files */,
 				66EF7D1B20285121008FBAE2 /* Enumerations */,
 				66EF7CE7202074F9008FBAE2 /* Extensions */,
