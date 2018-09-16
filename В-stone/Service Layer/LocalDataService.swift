@@ -10,7 +10,9 @@ import Foundation
 import CoreData
 
 public class LocalDataService {
+    
     private lazy var container = NSPersistentContainer(name: "DataModel")
+    private lazy var mainContext = self.container.viewContext
     
     init() {
         container.loadPersistentStores { (description, error) in
@@ -23,14 +25,11 @@ public class LocalDataService {
     func fetchBluetoothData() -> Result<BluetoothModel> {
         do {
             let request = NSFetchRequest<BluetoothUserData>(entityName: "BluetoothUserData")
-            let bluetoothData = try container.viewContext.fetch(request)
-            guard let bluetooth = bluetoothData.first else { throw SuperError.NothingIsStored }
+            let bluetoothData = try mainContext.fetch(request)
+            guard let bluetooth = bluetoothData.first else { throw SuperError.NoBluetooth }
             guard let dataArray = bluetooth.data else { throw SuperError.DataIsNotStored }
             let newArray = try JSONDecoder().decode(BluetoothStory.self, from: dataArray)
             let model = BluetoothModel(prevPercentage: bluetooth.prevPercantage, prevDate: bluetooth.prevDate, currentPercentage: bluetooth.currentPercentage, date: bluetooth.currentDate, data: newArray)
-
-            //transformation to native struct
-
             return Result.success(model)
         } catch {
             return Result.failure(error)
@@ -40,8 +39,8 @@ public class LocalDataService {
     func fetchQuizData() -> Result<QuizModel> {
         do {
             let request = NSFetchRequest<QuizUserData>(entityName: "QuizUserData")
-            let quizData = try container.viewContext.fetch(request)
-            guard let quiz = quizData.first else { throw SuperError.NothingIsStored }
+            let quizData = try mainContext.fetch(request)
+            guard let quiz = quizData.first else { throw SuperError.NoQuiz }
             //transformation to native struct
             let model = QuizModel(age: Int(quiz.age), allergic: Allergic(rawValue: (quiz.allergic)!), placeOfLiving: PlaceOfLiving(rawValue: (quiz.placeOfLiving)!), habitCoffee: quiz.habitCoffee, habitDiet: quiz.habitDiet, habitMakeup: quiz.habitMakeup, habitSmoking: quiz.habitSmoking, habitTravelling: quiz.habitTravelling, habitSunbathing: quiz.habitSunbathing, inflamationsAroundNose: quiz.inflamationsNose, inflamationsCheeks: quiz.inflamationsCheeks, inflamationsChin: quiz.inflamationsChin, inflamationsForehead: quiz.inflamationsForehead, inflamationsNose: quiz.inflamationsNose, wrinklesForehead: quiz.wrinklesForehead, wrinklesInterbrow: quiz.wrinklesInterbrow, wrinklesSmile: quiz.wrinklesSmile, wrinklesUnderEye: quiz.wrinklesUnderEye)
             
@@ -52,67 +51,88 @@ public class LocalDataService {
     }
     
     func saveQuizData(model: QuizModel, handler: ((Bool) -> Void)?) {
-        do {
-            let request = NSFetchRequest<QuizUserData>(entityName: "QuizUserData")
-            let quizData = try container.viewContext.fetch(request)
-            
-            guard quizData.count <= 1 else {
-                handler?(false)
-                return
-            }
-            
-            if let quiz = quizData.first {
-                configureQuiz(quiz, fromModel: model)
-                try container.viewContext.save()
-                handler?(true)
-            } else {
-                guard let newQuiz = NSEntityDescription.insertNewObject(forEntityName: "QuizUserData", into: container.viewContext) as? QuizUserData else {
-                    handler?(false)
+        container.performBackgroundTask { (context) in
+            do {
+                let request = NSFetchRequest<QuizUserData>(entityName: "QuizUserData")
+                let quizData = try context.fetch(request)
+                
+                guard quizData.count <= 1 else {
+                    DispatchQueue.main.async {
+                        handler?(false)
+                    }
                     return
                 }
-                configureQuiz(newQuiz, fromModel: model)
-                try container.viewContext.save()
-                handler?(true)
-            }
-        } catch {
-            DispatchQueue.main.async {
-                handler?(false)
+                
+                if let quiz = quizData.first {
+                    self.configureQuiz(quiz, fromModel: model)
+                    try context.save()
+                    DispatchQueue.main.async {
+                        handler?(true)
+                    }
+                } else {
+                    guard let newQuiz = NSEntityDescription.insertNewObject(forEntityName: "QuizUserData", into: context) as? QuizUserData else {
+                        DispatchQueue.main.async {
+                            handler?(false)
+                        }
+                        return
+                    }
+                    self.configureQuiz(newQuiz, fromModel: model)
+                    try context.save()
+                    DispatchQueue.main.async {
+                        handler?(true)
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    handler?(false)
+                }
             }
         }
+        
     }
     
     func saveBluetoothData(model: BluetoothModel, handler: ((Bool) -> Void)?) {
-        do {
-            let request = NSFetchRequest<BluetoothUserData>(entityName: "BluetoothUserData")
-            let bluetoothData = try container.viewContext.fetch(request)
-            
-            guard bluetoothData.count <= 1 else {
-                handler?(false)
-                return
-            }
-            
-            if let bluetooth = bluetoothData.first {
-                configureBluetooth(bluetooth, fromModel: model)
-                try container.viewContext.save()
-                handler?(true)
-            } else {
-                guard let newBluetooth = NSEntityDescription.insertNewObject(forEntityName: "BluetoothUserData", into: container.viewContext) as? BluetoothUserData else {
-                    handler?(false)
+        container.performBackgroundTask { (context) in
+            do {
+                let request = NSFetchRequest<BluetoothUserData>(entityName: "BluetoothUserData")
+                let bluetoothData = try context.fetch(request)
+                
+                guard bluetoothData.count <= 1 else {
+                    DispatchQueue.main.async {
+                        handler?(false)
+                    }
                     return
                 }
-                configureBluetooth(newBluetooth, fromModel: model)
-                try container.viewContext.save()
-                handler?(true)
-            }
-        } catch {
-            DispatchQueue.main.async {
-                handler?(false)
+                
+                if let bluetooth = bluetoothData.first {
+                    self.configureBluetooth(bluetooth, fromModel: model)
+                    try context.save()
+                    DispatchQueue.main.async {
+                        handler?(false)
+                    }
+                } else {
+                    guard let newBluetooth = NSEntityDescription.insertNewObject(forEntityName: "BluetoothUserData", into: context) as? BluetoothUserData else {
+                        DispatchQueue.main.async {
+                            handler?(false)
+                        }
+                        return
+                    }
+                    self.configureBluetooth(newBluetooth, fromModel: model)
+                    try context.save()
+                    DispatchQueue.main.async {
+                        handler?(false)
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    handler?(false)
+                }
             }
         }
+        
     }
     
     //TODO: - Fill the functions
-    
     private func configureQuiz(_ quiz: QuizUserData, fromModel model: QuizModel) {
         quiz.age = Int16(model.age)
         quiz.allergic = model.allergic?.rawValue
@@ -150,15 +170,16 @@ public class LocalDataService {
     func cleanStorage() {
         do {
             let qRequest = NSFetchRequest<QuizUserData>(entityName: "QuizUserData")
-            let quizData = try container.viewContext.fetch(qRequest)
+            let quizData = try mainContext.fetch(qRequest)
             guard let quiz = quizData.first else { return }
             
             let blRequest = NSFetchRequest<BluetoothUserData>(entityName: "BluetoothUserData")
-            let bluetoothData = try container.viewContext.fetch(blRequest)
+            let bluetoothData = try mainContext.fetch(blRequest)
             guard let bluetooth = bluetoothData.first else { return }
             
-            container.viewContext.delete(quiz)
-            container.viewContext.delete(bluetooth)
+            mainContext.delete(quiz)
+            mainContext.delete(bluetooth)
+            try mainContext.save()
         } catch {
             print(error)
         }
@@ -173,6 +194,7 @@ enum Result<T> {
 }
 
 enum SuperError: Error {
-    case NothingIsStored
+    case NoQuiz
+    case NoBluetooth
     case DataIsNotStored
 }
