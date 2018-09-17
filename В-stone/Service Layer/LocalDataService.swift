@@ -43,7 +43,6 @@ public class LocalDataService {
             guard let quiz = quizData.first else { throw SuperError.NoQuiz }
             //transformation to native struct
             let model = QuizModel(age: Int(quiz.age), allergic: Allergic(rawValue: (quiz.allergic)!), placeOfLiving: PlaceOfLiving(rawValue: (quiz.placeOfLiving)!), habitCoffee: quiz.habitCoffee, habitDiet: quiz.habitDiet, habitMakeup: quiz.habitMakeup, habitSmoking: quiz.habitSmoking, habitTravelling: quiz.habitTravelling, habitSunbathing: quiz.habitSunbathing, inflamationsAroundNose: quiz.inflamationsNose, inflamationsCheeks: quiz.inflamationsCheeks, inflamationsChin: quiz.inflamationsChin, inflamationsForehead: quiz.inflamationsForehead, inflamationsNose: quiz.inflamationsNose, wrinklesForehead: quiz.wrinklesForehead, wrinklesInterbrow: quiz.wrinklesInterbrow, wrinklesSmile: quiz.wrinklesSmile, wrinklesUnderEye: quiz.wrinklesUnderEye)
-            
             return Result.success(model)
         } catch {
             return Result.failure(error)

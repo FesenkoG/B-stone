@@ -25,7 +25,7 @@ class AdviceVC: UIViewController {
     var isReadMore = [String: Bool]()
     
     //MARK: - Services
-    var localDataService: LocalDataService!
+    var localDataService: LocalDataService! = LocalDataService()
     
     @IBAction func prepareForUnwindHey(segue: UIStoryboardSegue) {
         let vc = segue.destination as! AdviceVC

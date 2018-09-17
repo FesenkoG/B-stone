@@ -121,7 +121,6 @@ class StartVC: UIViewController {
     }
     
     @IBAction func signInBtnWasPressed(_ sender: Any) {
-        
         self.disableInterface()
         if loginTextField.text != nil && passwordTextField.text != nil {
             turnOnSpinner()

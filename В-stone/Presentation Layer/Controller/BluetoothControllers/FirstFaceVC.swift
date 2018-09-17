@@ -43,7 +43,6 @@ class FirstFaceVC: UIViewController, BluetoothDelegate {
     func didRecieveValue(value: Double) {
         print(value)
         if value != -1 && flag == false {
-            
             count += 1
             if count == 2 {
                 bluetoothNumbers.append(value)

@@ -12,7 +12,7 @@ import Firebase
 class SettingsVC: UIViewController {
     
     var model: QuizModel!
-    var localDataService: LocalDataService!
+    var localDataService: LocalDataService! = LocalDataService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,12 +78,12 @@ class SettingsVC: UIViewController {
     @IBAction func deleteAccountBtnWasPressed(_ sender: Any) {
         let logoutPopout = UIAlertController(title: "Delete account?", message: "Are you sure you want to delete account?", preferredStyle: .alert)
         let logoutAction = UIAlertAction(title: "Delete?", style: .destructive) { (buttonTapped) in
-            guard let userId = Auth.auth().currentUser?.uid else { return }
+            guard let userId = Auth.auth().currentUser?.uid else { return }            
             DataService.instance.deleteUser(withId: userId, completionHandler: { (success) in
                 Auth.auth().currentUser?.delete(completion: { (error) in
                     if error == nil {
-                            self.performSegue(withIdentifier: "backToStart", sender: nil)
                         self.localDataService.cleanStorage()
+                        self.performSegue(withIdentifier: "backToStart", sender: nil)
                     } else {
                         print(error?.localizedDescription as Any)
                     }

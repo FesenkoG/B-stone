@@ -20,7 +20,7 @@ class HomeVC: UIViewController {
     
     var model: QuizModel!
     var bluetoothModel: BluetoothModel?
-    var localDataService: LocalDataService!
+    var localDataService: LocalDataService! = LocalDataService()
     
     @IBAction func prepareForUnwindToBluetoothVC(_ segue: UIStoryboardSegue) {}
     
