@@ -8,13 +8,15 @@
 
 import Foundation
 
+
+//Надо хранить просто словари, принимать прошлые словари и дополнять их новой информацией.
 struct BluetoothModel {
     
-    var prevPercentage: Double?
-    var prevDate: String?
-    
-    var currentPercentage: Double?
-    var date: String?
+//    var prevPercentage: Double?
+//    var prevDate: String?
+//
+//    var currentPercentage: Double?
+//    var date: String?
     
     //TODO: - This should be JSON string with all needed parameters
     /*

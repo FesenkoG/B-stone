@@ -132,7 +132,6 @@ extension BluetoothService: CBPeripheralDelegate {
             print(characteristic)
             //Here could be more properties checked
             if characteristic.properties.contains(.read) {
-
                 print("\(characteristic.uuid): properties contains .read")
                 peripheral.readValue(for: characteristic)
             }

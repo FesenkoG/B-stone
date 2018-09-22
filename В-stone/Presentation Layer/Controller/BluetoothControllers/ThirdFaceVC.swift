@@ -20,8 +20,9 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
     private var flag = false
     
     var bluetoothNumbers: [Double]?
+    //THIS IS NOT WORKING, this is nil
     var bluetoothModel: BluetoothModel!
-    
+    //TODO: -
     override func viewDidLoad() {
         super.viewDidLoad()
         nextScreenBtn.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 12, 20)
@@ -36,8 +37,8 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM"
         let mean = (bluetoothNumbers!.reduce(0, +)) / 3.0
-        
-        
+        let model = BluetoothModel.init(prevPercentage: <#T##Double?#>, prevDate: <#T##String?#>, currentPercentage: <#T##Double?#>, date: <#T##String?#>, data: <#T##BluetoothStory?#>)
+        //Problem is here.
         if bluetoothModel.currentPercentage == nil {
             bluetoothModel.currentPercentage = mean
             bluetoothModel.prevPercentage = -1
