@@ -24,7 +24,7 @@ class DataService {
     }
 
     //MARK: - BluetoothServices
-    func uploadBluetoothData(model: BluetoothModel, handler: @escaping (_ status: Bool) -> Void) {
+    func uploadBluetoothData(model: [BluetoothInfo], handler: @escaping (_ status: Bool) -> Void) {
         var childUidToUpdate: String?
         let myGroup = DispatchGroup()
         myGroup.enter()
@@ -42,31 +42,23 @@ class DataService {
             }
         }
         myGroup.notify(queue: .main) {
-            guard let data = model.data else { return }
-            let dataString = String.init(data: (try! JSONEncoder().encode(data)), encoding: .utf8)!
+            
+            let dataString = String(data: (try! JSONEncoder().encode(model)), encoding: .utf8)!
             if let uidToUpdate = childUidToUpdate {
                 self.REF_BLUETOOTH.child(uidToUpdate).updateChildValues(
-                    ["currentPercentage":model.currentPercentage!,
-                     "prevPercentage": model.prevPercentage!,
-                     "lastDate": model.date!,
-                     "prevDate": model.prevDate!,
-                     "data": dataString,
+                    ["data": dataString,
                      "userId": (Auth.auth().currentUser?.uid)!])
                 handler(true)
             } else {
                 self.REF_BLUETOOTH.childByAutoId().updateChildValues(
-                    ["currentPercentage":model.currentPercentage!,
-                     "prevPercentage": model.prevPercentage!,
-                     "lastDate": model.date!,
-                     "prevDate": model.prevDate!,
-                     "data": dataString,
+                    ["data": dataString,
                      "userId": (Auth.auth().currentUser?.uid)!])
                 handler(true)
             }
         }
     }
     
-    func checkIfCurrentUserHaveBluetoothData(handler: @escaping (Bool, BluetoothModel?) -> Void) {
+    func checkIfCurrentUserHaveBluetoothData(handler: @escaping (Bool, [BluetoothInfo]?) -> Void) {
         var result = false
         REF_BLUETOOTH.observeSingleEvent(of: .value) { (quizesSnapshot) in
             guard let bluetoothSpanshots = quizesSnapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -74,15 +66,9 @@ class DataService {
                 let userId = blData.childSnapshot(forPath: "userId").value as! String
                 if userId == (Auth.auth().currentUser?.uid)! {
                     result = true
-                    var model = BluetoothModel()
-                    model.currentPercentage = blData.childSnapshot(forPath: "currentPercentage").value as? Double
-                    model.prevPercentage = blData.childSnapshot(forPath: "prevPercentage").value as? Double
-                    model.date = blData.childSnapshot(forPath: "lastDate").value as? String
-                    model.prevDate = blData.childSnapshot(forPath: "prevDate").value as? String
                     let stringData = blData.childSnapshot(forPath: "data").value as! String
-                    let data = try? JSONDecoder().decode(BluetoothStory.self, from: stringData.data(using: .utf8)!)
-                    model.data = data
-                    handler(true, model)
+                    let data = try? JSONDecoder().decode([BluetoothInfo].self, from: stringData.data(using: .utf8)!)
+                    handler(true, data)
                     break
                 }
             }

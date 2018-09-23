@@ -271,22 +271,10 @@
 		66EF7CD0201F56C3008FBAE2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				66EF7CD1201F571D008FBAE2 /* StartVC.swift */,
-				66EF7CD6201F6B11008FBAE2 /* CreateLoginVC.swift */,
-				66EF7CDC201FB4EE008FBAE2 /* ItWasSentVC.swift */,
-				66BA9396203DA40800C08154 /* EnterEmailVC.swift */,
-				66EF7CD8201FB29A008FBAE2 /* WelcomeVC.swift */,
-				66EF7CDA201FB3C9008FBAE2 /* HowOldAreYouVC.swift */,
-				66EF7CEE2023752B008FBAE2 /* WhereLiveVC.swift */,
-				66EF7CEC20208742008FBAE2 /* LifestyleVC.swift */,
-				66EF7CDE201FBA9E008FBAE2 /* WrinklesVC.swift */,
-				66EF7CEA20208718008FBAE2 /* InflamationsVC.swift */,
-				66EF7CF02023758C008FBAE2 /* AllergicVC.swift */,
-				66BA938E2036F4B200C08154 /* BluetoothVC.swift */,
+				B219DC1A2157A19D0035BF94 /* Tab */,
+				B219DC192157A1720035BF94 /* Login */,
+				B219DC182157A15B0035BF94 /* Quiz */,
 				668F45FA20A184FD007877DC /* BluetoothControllers */,
-				66BA93902036F4CE00C08154 /* SettingsVC.swift */,
-				66BA93922036F50300C08154 /* HomeVC.swift */,
-				66BA93942036F51E00C08154 /* AdviceVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -338,6 +326,42 @@
 				12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B219DC182157A15B0035BF94 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				66EF7CDA201FB3C9008FBAE2 /* HowOldAreYouVC.swift */,
+				66EF7CEE2023752B008FBAE2 /* WhereLiveVC.swift */,
+				66EF7CEC20208742008FBAE2 /* LifestyleVC.swift */,
+				66EF7CDE201FBA9E008FBAE2 /* WrinklesVC.swift */,
+				66EF7CEA20208718008FBAE2 /* InflamationsVC.swift */,
+				66EF7CF02023758C008FBAE2 /* AllergicVC.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		B219DC192157A1720035BF94 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				66EF7CD1201F571D008FBAE2 /* StartVC.swift */,
+				66EF7CD6201F6B11008FBAE2 /* CreateLoginVC.swift */,
+				66EF7CDC201FB4EE008FBAE2 /* ItWasSentVC.swift */,
+				66BA9396203DA40800C08154 /* EnterEmailVC.swift */,
+				66EF7CD8201FB29A008FBAE2 /* WelcomeVC.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B219DC1A2157A19D0035BF94 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				66BA938E2036F4B200C08154 /* BluetoothVC.swift */,
+				66BA93902036F4CE00C08154 /* SettingsVC.swift */,
+				66BA93922036F50300C08154 /* HomeVC.swift */,
+				66BA93942036F51E00C08154 /* AdviceVC.swift */,
+			);
+			path = Tab;
 			sourceTree = "<group>";
 		};
 		B2E668C7214DA36E00C3CC2D /* Presentation Layer */ = {

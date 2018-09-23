@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BluetoothUserData" representedClassName="BluetoothUserData" syncable="YES" codeGenerationType="class">
-        <attribute name="currentDate" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="currentPercentage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="prevDate" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="prevPercantage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="QuizUserData" representedClassName="QuizUserData" syncable="YES" codeGenerationType="class">
         <attribute name="age" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -28,7 +24,7 @@
         <attribute name="wrinklesUnderEye" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BluetoothUserData" positionX="-54" positionY="117" width="128" height="120"/>
+        <element name="BluetoothUserData" positionX="-54" positionY="117" width="128" height="60"/>
         <element name="QuizUserData" positionX="-63" positionY="-18" width="128" height="315"/>
     </elements>
 </model>

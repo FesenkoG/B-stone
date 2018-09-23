@@ -22,15 +22,15 @@ public class LocalDataService {
         }
     }
     
-    func fetchBluetoothData() -> Result<BluetoothModel> {
+    func fetchBluetoothData() -> Result<[BluetoothInfo]>{
         do {
             let request = NSFetchRequest<BluetoothUserData>(entityName: "BluetoothUserData")
             let bluetoothData = try mainContext.fetch(request)
+            
             guard let bluetooth = bluetoothData.first else { throw SuperError.NoBluetooth }
             guard let dataArray = bluetooth.data else { throw SuperError.DataIsNotStored }
-            let newArray = try JSONDecoder().decode(BluetoothStory.self, from: dataArray)
-            let model = BluetoothModel(prevPercentage: bluetooth.prevPercantage, prevDate: bluetooth.prevDate, currentPercentage: bluetooth.currentPercentage, date: bluetooth.currentDate, data: newArray)
-            return Result.success(model)
+            let newArray = try JSONDecoder().decode([BluetoothInfo].self, from: dataArray)
+            return Result.success(newArray)
         } catch {
             return Result.failure(error)
         }
@@ -90,7 +90,7 @@ public class LocalDataService {
         
     }
     
-    func saveBluetoothData(model: BluetoothModel, handler: ((Bool) -> Void)?) {
+    func saveBluetoothData(model: [BluetoothInfo], handler: ((Bool) -> Void)?) {
         container.performBackgroundTask { (context) in
             do {
                 let request = NSFetchRequest<BluetoothUserData>(entityName: "BluetoothUserData")
@@ -135,9 +135,7 @@ public class LocalDataService {
     private func configureQuiz(_ quiz: QuizUserData, fromModel model: QuizModel) {
         quiz.age = Int16(model.age)
         quiz.allergic = model.allergic?.rawValue
-        
         quiz.placeOfLiving = model.placeOfLiving?.rawValue
-        
         quiz.habitCoffee = model.habitCoffee
         quiz.habitDiet = model.habitDiet
         quiz.habitTravelling = model.habitTravelling
@@ -157,12 +155,8 @@ public class LocalDataService {
         quiz.wrinklesSmile = model.wrinklesSmile
     }
     
-    private func configureBluetooth(_ bluetooth: BluetoothUserData, fromModel model: BluetoothModel) {
-        bluetooth.currentDate = model.date
-        bluetooth.currentPercentage = model.currentPercentage!
-        bluetooth.prevDate = model.prevDate
-        bluetooth.prevPercantage = model.prevPercentage!
-        let data = try? JSONEncoder().encode(model.data!)
+    private func configureBluetooth(_ bluetooth: BluetoothUserData, fromModel model: [BluetoothInfo]) {
+        let data = try? JSONEncoder().encode(model)
         bluetooth.data = data
     }
     

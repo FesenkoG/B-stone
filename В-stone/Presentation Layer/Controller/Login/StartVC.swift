@@ -71,7 +71,7 @@ class StartVC: UIViewController {
     
 
     
-    func checkBluetooth(handler: @escaping (Bool, BluetoothModel?) -> Void) {
+    func checkBluetooth(handler: @escaping (Bool, [BluetoothInfo]?) -> Void) {
         DataService.instance.checkIfCurrentUserHaveBluetoothData(handler: handler)
     }
     func checkQuiz(handler: @escaping (Bool, QuizModel?) -> Void) {

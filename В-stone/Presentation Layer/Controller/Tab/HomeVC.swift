@@ -19,7 +19,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var prevPercentageLbl: UILabel!
     
     var model: QuizModel!
-    var bluetoothModel: BluetoothModel?
+    var bluetoothModel: [BluetoothInfo]?
     var localDataService: LocalDataService! = LocalDataService()
     
     @IBAction func prepareForUnwindToBluetoothVC(_ segue: UIStoryboardSegue) {}
@@ -29,38 +29,37 @@ class HomeVC: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM"
         loadUserData()
-        if let currentPercentsge = bluetoothModel?.currentPercentage {
-            percentageLbl.text = "\(String(format:"%.01f", currentPercentsge))%"
-            if let date = bluetoothModel?.date {
-                dataLbl.text = date
-            }
-            
-            if currentPercentsge >= 0 && currentPercentsge <= 29 {
+        
+        prevDataLbl.text = "-"
+        prevPercentageLbl.text = "-"
+        if let currentPercentageArray = bluetoothModel?.last {
+            let currentPercentage = currentPercentageArray.measuredData.reduce(0, +) / 3.0
+            percentageLbl.text = "\(String(format:"%.01f", currentPercentage))%"
+            dataLbl.text = currentPercentageArray.date
+
+            if currentPercentage >= 0 && currentPercentage <= 29 {
                 descriptionLbl.text = "dry skin"
             }
-            if currentPercentsge >= 30 && currentPercentsge <= 45 {
+            if currentPercentage >= 30 && currentPercentage <= 45 {
                 descriptionLbl.text = "prone to dryness skin"
             }
-            if currentPercentsge >= 46 && currentPercentsge <= 60 {
+            if currentPercentage >= 46 && currentPercentage <= 60 {
                 descriptionLbl.text = "normal skin"
             }
-            if currentPercentsge >= 61 && currentPercentsge <= 75 {
+            if currentPercentage >= 61 && currentPercentage <= 75 {
                 descriptionLbl.text = "prone to oiliness skin"
             }
-            if currentPercentsge >= 76 && currentPercentsge <= 100 {
+            if currentPercentage >= 76 && currentPercentage <= 100 {
                 descriptionLbl.text = "oily skin"
             }
         }
-        if let prevPercentage = bluetoothModel?.prevPercentage {
-            if prevPercentage == -1 {
-                prevDataLbl.text = "-"
-                prevPercentageLbl.text = "-"
-            } else {
-                prevPercentageLbl.text = "\(String(format:"%.01f", prevPercentage))%"
-                if let date = bluetoothModel?.prevDate {
-                    prevDataLbl.text = date
-                }
-            }
+        
+        if let model = bluetoothModel, model.count > 1 {
+            let index = model.index(model.endIndex, offsetBy: -2)
+            let prevPercentage = model[index].measuredData.reduce(0, +) / 3.0
+            
+            prevPercentageLbl.text = "\(String(format:"%.01f", prevPercentage))%"
+            prevDataLbl.text = model[index].date
         }
         
     }

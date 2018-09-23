@@ -14,7 +14,7 @@ class BluetoothVC: UIViewController, BluetoothDelegate {
     lazy var bluetoothService = BluetoothService()
     var isConnected = false
     
-    var bluetoothModel: BluetoothModel?
+    var bluetoothModel: [BluetoothInfo]?
     var localDataService: LocalDataService!
     
     override func viewDidAppear(_ animated: Bool) {

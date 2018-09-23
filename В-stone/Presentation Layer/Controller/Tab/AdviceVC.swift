@@ -16,7 +16,7 @@ class AdviceVC: UIViewController {
     var articles = [Article]()
     
     var model: QuizModel!
-    var bluetoothModel: BluetoothModel?
+    var bluetoothModel: [BluetoothInfo]?
     
     let articlesWithProducts = ["2", "4", "7", "15", "16"]
     let articlesWithoutImages = ["101", "102"]
@@ -124,7 +124,8 @@ class AdviceVC: UIViewController {
         }
         
         
-        if let currentPercentage = bluetoothModel?.currentPercentage {
+        if let currentPercentageArray = bluetoothModel?.last?.measuredData {
+            let currentPercentage = (currentPercentageArray.reduce(0, +) / 3.0)
             if currentPercentage > 0 && currentPercentage <= 45 {
                 result.append(15)
             }

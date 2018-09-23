@@ -60,10 +60,6 @@ class WrinklesVC: UIViewController {
 
     @IBAction func nextBtnWasPressed(_ sender: Any) {
         
-//        CurrentUserData.instance.wrinklesSmile = smileAccepted
-//        CurrentUserData.instance.wrinklesForehead = foreheadAccepted
-//        CurrentUserData.instance.wrinklesUnderEye = eyeAccepted
-//        CurrentUserData.instance.wrinklesInterbrow = interbrowAccepted
         model.wrinklesSmile = smileAccepted
         model.wrinklesForehead = foreheadAccepted
         model.wrinklesUnderEye = eyeAccepted

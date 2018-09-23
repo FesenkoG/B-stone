@@ -11,6 +11,7 @@ import UIKit
 class ThirdFaceVC: UIViewController, BluetoothDelegate {
     
     var bluetoothSerice: BluetoothService!
+    var localStorage = LocalDataService()
 
     @IBOutlet weak var thirdFaceImg: UIImageView!
     @IBOutlet weak var nextScreenLbl: UILabel!
@@ -20,8 +21,8 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
     private var flag = false
     
     var bluetoothNumbers: [Double]?
+    
     //THIS IS NOT WORKING, this is nil
-    var bluetoothModel: BluetoothModel!
     //TODO: -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,34 +34,35 @@ class ThirdFaceVC: UIViewController, BluetoothDelegate {
     }
     
     @IBAction func nextScreenBtnWasPressed(_ sender: Any) {
-        // Тут можно обновлять пользовательскую информацию
+        guard let bluetoothNumbers = bluetoothNumbers, bluetoothNumbers
+            .count == 3 else {
+                nextScreenLbl.text = "Something is wrong, please try again";
+                nextScreenLbl.isHidden = false
+                return
+        }
+
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM"
-        let mean = (bluetoothNumbers!.reduce(0, +)) / 3.0
-        let model = BluetoothModel.init(prevPercentage: <#T##Double?#>, prevDate: <#T##String?#>, currentPercentage: <#T##Double?#>, date: <#T##String?#>, data: <#T##BluetoothStory?#>)
-        //Problem is here.
-        if bluetoothModel.currentPercentage == nil {
-            bluetoothModel.currentPercentage = mean
-            bluetoothModel.prevPercentage = -1
-            bluetoothModel.prevDate = formatter.string(from: Date())
-            bluetoothModel.date = formatter.string(from: Date())
-            let info = Info(measuredData: bluetoothNumbers!, date: formatter.string(from: Date()))
-            let bluetoothStory = BluetoothStory(info: [info])
-            bluetoothModel.data = bluetoothStory
-        } else {
-            bluetoothModel.prevPercentage = bluetoothModel.currentPercentage
-            bluetoothModel.currentPercentage = mean
-            bluetoothModel.prevDate = bluetoothModel.date
-            bluetoothModel.date = formatter.string(from: Date())
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        var bluetoothInfo = [BluetoothInfo]()
+        let currentInfo = BluetoothInfo(measuredData: bluetoothNumbers, date: formatter.string(from: Date()))
+        DataService.instance.checkIfCurrentUserHaveBluetoothData { (success, info) in
+            if success, let info = info {
+                bluetoothInfo = info
+                bluetoothInfo.append(currentInfo)
+            } else {
+                bluetoothInfo = [currentInfo]
+            }
+            self.localStorage.saveBluetoothData(model: bluetoothInfo, handler: { (success) in
+                DataService.instance.uploadBluetoothData(model: bluetoothInfo) { (success) in
+                    if success {
+                        self.performSegue(withIdentifier: "toBluetoothVC", sender: nil)
+                    } else {
+                        print("Something went wrong")
+                    }
+                }
+            })
         }
         
-        DataService.instance.uploadBluetoothData(model: bluetoothModel) { (success) in
-            if success {
-                self.performSegue(withIdentifier: "toBluetoothVC", sender: nil)
-            } else {
-                print("Something went wrong")
-            }
-        }
         
     }
     
