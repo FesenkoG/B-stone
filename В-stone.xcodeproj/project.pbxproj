@@ -78,7 +78,7 @@
 
 /* Begin PBXFileReference section */
 		12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.release.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.release.xcconfig"; sourceTree = "<group>"; };
-		4191588C5B10948EF1B4AEDD /* Pods___stone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___stone.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4191588C5B10948EF1B4AEDD /* Pods___stone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods___stone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66366B1820AD9B8200863C70 /* В-stone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "В-stone.entitlements"; sourceTree = "<group>"; };
 		668F45F8209F78FB007877DC /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 		668F45FB20A18673007877DC /* StoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneVC.swift; sourceTree = "<group>"; };
@@ -405,7 +405,6 @@
 				66EF7CB6201F550A008FBAE2 /* Frameworks */,
 				66EF7CB7201F550A008FBAE2 /* Resources */,
 				4456A4F6727BD4DB19EEA099 /* [CP] Embed Pods Frameworks */,
-				10FF0B566DEDCEF5A4BB247B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -495,21 +494,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		10FF0B566DEDCEF5A4BB247B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-В-stone/Pods-В-stone-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4456A4F6727BD4DB19EEA099 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -517,6 +501,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-В-stone/Pods-В-stone-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -524,6 +509,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
