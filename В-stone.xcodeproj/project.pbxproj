@@ -37,6 +37,12 @@
 		66CEBA8A20CE1AFA000C455B /* LocalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEBA8920CE1AFA000C455B /* LocalDataService.swift */; };
 		66CEBA8C20CE1BBF000C455B /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEBA8B20CE1BBF000C455B /* QuizModel.swift */; };
 		66CEBA8E20CE1BCA000C455B /* BluetoothModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEBA8D20CE1BCA000C455B /* BluetoothModel.swift */; };
+		66E23733217AF54000CED120 /* GraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E23732217AF54000CED120 /* GraphVC.swift */; };
+		66E23736217AFE2E00CED120 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E23735217AFE2E00CED120 /* Charts.framework */; };
+		66E23738217AFE6A00CED120 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E23737217AFE6A00CED120 /* GTMSessionFetcher.framework */; };
+		66E2373A217AFE7000CED120 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E23739217AFE7000CED120 /* GoogleToolboxForMac.framework */; };
+		66E2373C217AFE7500CED120 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E2373B217AFE7500CED120 /* nanopb.framework */; };
+		66E2373E217AFE7900CED120 /* leveldb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E2373D217AFE7900CED120 /* leveldb.framework */; };
 		66E7F5C22098783E004485FC /* ArticleWithProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E7F5C12098783E004485FC /* ArticleWithProductsCell.swift */; };
 		66E7F5C820999251004485FC /* article1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66E7F5C720999251004485FC /* article1.txt */; };
 		66E7F5CF209993D5004485FC /* article15.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66E7F5C9209993D4004485FC /* article15.txt */; };
@@ -73,12 +79,9 @@
 		66EF7CF12023758C008FBAE2 /* AllergicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CF02023758C008FBAE2 /* AllergicVC.swift */; };
 		66EF7D1A202850FD008FBAE2 /* CurrentUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7D19202850FC008FBAE2 /* CurrentUserData.swift */; };
 		66EF7D1D20285146008FBAE2 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7D1C20285146008FBAE2 /* Enums.swift */; };
-		D3573B7CC9D7E2E0DA55985C /* Pods___stone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4191588C5B10948EF1B4AEDD /* Pods___stone.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.release.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.release.xcconfig"; sourceTree = "<group>"; };
-		4191588C5B10948EF1B4AEDD /* Pods___stone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods___stone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66366B1820AD9B8200863C70 /* В-stone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "В-stone.entitlements"; sourceTree = "<group>"; };
 		668F45F8209F78FB007877DC /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 		668F45FB20A18673007877DC /* StoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneVC.swift; sourceTree = "<group>"; };
@@ -110,6 +113,12 @@
 		66CEBA8920CE1AFA000C455B /* LocalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataService.swift; sourceTree = "<group>"; };
 		66CEBA8B20CE1BBF000C455B /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		66CEBA8D20CE1BCA000C455B /* BluetoothModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothModel.swift; sourceTree = "<group>"; };
+		66E23732217AF54000CED120 /* GraphVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVC.swift; sourceTree = "<group>"; };
+		66E23735217AFE2E00CED120 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66E23737217AFE6A00CED120 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66E23739217AFE7000CED120 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66E2373B217AFE7500CED120 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66E2373D217AFE7900CED120 /* leveldb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = leveldb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E7F5C12098783E004485FC /* ArticleWithProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWithProductsCell.swift; sourceTree = "<group>"; };
 		66E7F5C720999251004485FC /* article1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article1.txt; sourceTree = "<group>"; };
 		66E7F5C9209993D4004485FC /* article15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article15.txt; sourceTree = "<group>"; };
@@ -148,7 +157,9 @@
 		66EF7CF02023758C008FBAE2 /* AllergicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergicVC.swift; sourceTree = "<group>"; };
 		66EF7D19202850FC008FBAE2 /* CurrentUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserData.swift; sourceTree = "<group>"; };
 		66EF7D1C20285146008FBAE2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		76B1E350E2F51B78C61D1642 /* Pods-В-stone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.debug.xcconfig"; sourceTree = "<group>"; };
+		896A853F22DE86AAF90BA35E /* Pods-В-stone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.debug.xcconfig"; sourceTree = "<group>"; };
+		8E76103F8BC25381C88C81A8 /* Pods-В-stone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-В-stone.release.xcconfig"; path = "Pods/Target Support Files/Pods-В-stone/Pods-В-stone.release.xcconfig"; sourceTree = "<group>"; };
+		B1F2550223E0DF10A1436F5F /* Pods___stone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___stone.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,13 +167,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3573B7CC9D7E2E0DA55985C /* Pods___stone.framework in Frameworks */,
+				66E2373E217AFE7900CED120 /* leveldb.framework in Frameworks */,
+				66E2373C217AFE7500CED120 /* nanopb.framework in Frameworks */,
+				66E2373A217AFE7000CED120 /* GoogleToolboxForMac.framework in Frameworks */,
+				66E23738217AFE6A00CED120 /* GTMSessionFetcher.framework in Frameworks */,
+				66E23736217AFE2E00CED120 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D4164897C5A5A91EDD3DF48 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				896A853F22DE86AAF90BA35E /* Pods-В-stone.debug.xcconfig */,
+				8E76103F8BC25381C88C81A8 /* Pods-В-stone.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		668F45FA20A184FD007877DC /* BluetoothControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,8 +261,8 @@
 			children = (
 				66EF7CBB201F550A008FBAE2 /* В-stone */,
 				66EF7CBA201F550A008FBAE2 /* Products */,
-				87A8F9681879C946B8A31205 /* Pods */,
-				E6EAD472BBD1FA54138E2265 /* Frameworks */,
+				1D4164897C5A5A91EDD3DF48 /* Pods */,
+				DB833EEA722B83B9427E63C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -319,15 +343,6 @@
 			path = Enumerations;
 			sourceTree = "<group>";
 		};
-		87A8F9681879C946B8A31205 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				76B1E350E2F51B78C61D1642 /* Pods-В-stone.debug.xcconfig */,
-				12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		B219DC182157A15B0035BF94 /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +375,7 @@
 				66BA93902036F4CE00C08154 /* SettingsVC.swift */,
 				66BA93922036F50300C08154 /* HomeVC.swift */,
 				66BA93942036F51E00C08154 /* AdviceVC.swift */,
+				66E23732217AF54000CED120 /* GraphVC.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -385,10 +401,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E6EAD472BBD1FA54138E2265 /* Frameworks */ = {
+		DB833EEA722B83B9427E63C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4191588C5B10948EF1B4AEDD /* Pods___stone.framework */,
+				66E2373D217AFE7900CED120 /* leveldb.framework */,
+				66E2373B217AFE7500CED120 /* nanopb.framework */,
+				66E23739217AFE7000CED120 /* GoogleToolboxForMac.framework */,
+				66E23737217AFE6A00CED120 /* GTMSessionFetcher.framework */,
+				66E23735217AFE2E00CED120 /* Charts.framework */,
+				B1F2550223E0DF10A1436F5F /* Pods___stone.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -400,11 +421,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66EF7CCD201F550B008FBAE2 /* Build configuration list for PBXNativeTarget "В-stone" */;
 			buildPhases = (
-				5E6438D9D1162EF4AB7C8E00 /* [CP] Check Pods Manifest.lock */,
+				72F6B6BBEF41DA27B44FA321 /* [CP] Check Pods Manifest.lock */,
 				66EF7CB5201F550A008FBAE2 /* Sources */,
 				66EF7CB6201F550A008FBAE2 /* Frameworks */,
 				66EF7CB7201F550A008FBAE2 /* Resources */,
-				4456A4F6727BD4DB19EEA099 /* [CP] Embed Pods Frameworks */,
+				000492065C7B344291A281CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -494,24 +515,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4456A4F6727BD4DB19EEA099 /* [CP] Embed Pods Frameworks */ = {
+		000492065C7B344291A281CC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-В-stone/Pods-В-stone-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -520,16 +545,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-В-stone/Pods-В-stone-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5E6438D9D1162EF4AB7C8E00 /* [CP] Check Pods Manifest.lock */ = {
+		72F6B6BBEF41DA27B44FA321 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-В-stone-checkManifestLockResult.txt",
 			);
@@ -568,6 +597,7 @@
 				668F45F9209F78FB007877DC /* BluetoothService.swift in Sources */,
 				66EF7CE42020667E008FBAE2 /* AuthService.swift in Sources */,
 				66EF7D1D20285146008FBAE2 /* Enums.swift in Sources */,
+				66E23733217AF54000CED120 /* GraphVC.swift in Sources */,
 				66CEBA8820CE1920000C455B /* DataModel.xcdatamodeld in Sources */,
 				66CEBA8E20CE1BCA000C455B /* BluetoothModel.swift in Sources */,
 				668F460A20A18F41007877DC /* SecondFaceVC.swift in Sources */,
@@ -721,7 +751,7 @@
 		};
 		66EF7CCE201F550B008FBAE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76B1E350E2F51B78C61D1642 /* Pods-В-stone.debug.xcconfig */;
+			baseConfigurationReference = 896A853F22DE86AAF90BA35E /* Pods-В-stone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "В-stone/В-stone.entitlements";
@@ -738,7 +768,7 @@
 		};
 		66EF7CCF201F550B008FBAE2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12A1C6F7F729CB5D0FD8C7D9 /* Pods-В-stone.release.xcconfig */;
+			baseConfigurationReference = 8E76103F8BC25381C88C81A8 /* Pods-В-stone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "В-stone/В-stone.entitlements";

@@ -6,9 +6,9 @@ target 'В-stone' do
   use_frameworks!
 
   # Pods for В-stone
-  pod 'Firebase/Core'
-  pod 'Firebase/Database'
-  pod 'Firebase/Auth'
-  pod 'Charts'
+  pod 'Firebase/Core', '~> 4.0'
+  pod 'Firebase/Database', '~> 4.0'
+  pod 'Firebase/Auth', '~> 4.0'
+  pod 'Charts', '~> 3.0'
 
 end
