@@ -178,3 +178,11 @@ extension UIImage {
     }
 }
 
+
+extension Array where Element == Double {
+    func mean() -> Element {
+        if count > 0 {
+            return reduce(0, +) / Element(count)
+        }
+    }
+}

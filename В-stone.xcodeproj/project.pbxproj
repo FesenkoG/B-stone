@@ -72,7 +72,7 @@
 		66EF7CE1202065CD008FBAE2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66EF7CE0202065CD008FBAE2 /* GoogleService-Info.plist */; };
 		66EF7CE42020667E008FBAE2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CE32020667E008FBAE2 /* AuthService.swift */; };
 		66EF7CE6202066DC008FBAE2 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CE5202066DC008FBAE2 /* DataService.swift */; };
-		66EF7CE920207514008FBAE2 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CE820207514008FBAE2 /* UIViewControllerExt.swift */; };
+		66EF7CE920207514008FBAE2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CE820207514008FBAE2 /* Extensions.swift */; };
 		66EF7CEB20208718008FBAE2 /* InflamationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CEA20208718008FBAE2 /* InflamationsVC.swift */; };
 		66EF7CED20208742008FBAE2 /* LifestyleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CEC20208742008FBAE2 /* LifestyleVC.swift */; };
 		66EF7CEF2023752B008FBAE2 /* WhereLiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF7CEE2023752B008FBAE2 /* WhereLiveVC.swift */; };
@@ -150,7 +150,7 @@
 		66EF7CE0202065CD008FBAE2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66EF7CE32020667E008FBAE2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		66EF7CE5202066DC008FBAE2 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		66EF7CE820207514008FBAE2 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		66EF7CE820207514008FBAE2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		66EF7CEA20208718008FBAE2 /* InflamationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflamationsVC.swift; sourceTree = "<group>"; };
 		66EF7CEC20208742008FBAE2 /* LifestyleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifestyleVC.swift; sourceTree = "<group>"; };
 		66EF7CEE2023752B008FBAE2 /* WhereLiveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereLiveVC.swift; sourceTree = "<group>"; };
@@ -330,7 +330,7 @@
 		66EF7CE7202074F9008FBAE2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				66EF7CE820207514008FBAE2 /* UIViewControllerExt.swift */,
+				66EF7CE820207514008FBAE2 /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -602,7 +602,7 @@
 				66CEBA8E20CE1BCA000C455B /* BluetoothModel.swift in Sources */,
 				668F460A20A18F41007877DC /* SecondFaceVC.swift in Sources */,
 				66EF7CD2201F571D008FBAE2 /* StartVC.swift in Sources */,
-				66EF7CE920207514008FBAE2 /* UIViewControllerExt.swift in Sources */,
+				66EF7CE920207514008FBAE2 /* Extensions.swift in Sources */,
 				66EF7CDF201FBA9E008FBAE2 /* WrinklesVC.swift in Sources */,
 				66E7F5C22098783E004485FC /* ArticleWithProductsCell.swift in Sources */,
 				66A26189205A71B10037E26A /* NoBlackoutTransition.swift in Sources */,
