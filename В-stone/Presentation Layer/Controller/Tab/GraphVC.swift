@@ -25,14 +25,31 @@ class GraphVC: UIViewController {
         let data = LineChartData(dataSets: [dataSet])
         graphView.data = data
         graphView.chartDescription?.text = "Парабола"
+        dataSet.mode = .cubicBezier
+        //Gradient
+        let gradientColors = [UIColor.white.cgColor, UIColor.clear.cgColor] as CFArray // Colors of the gradient
+        let colorLocations:[CGFloat] = [1.0, 0.0] // Positioning of the gradient
+        let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) // Gradient Object
+        dataSet.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
+        dataSet.drawFilledEnabled = true // Draw the Gradient
+        //Colors
+        dataSet.valueColors = [UIColor.white]
+        dataSet.colors = [UIColor.white]
+        dataSet.circleColors = [UIColor.white]
         
-        //All other additions to this function will go here
-        dataSet.colors = ChartColorTemplates.joyful()
-        dataSet.valueColors = [UIColor.black]
-
-        graphView.backgroundColor = UIColor.black
+        graphView.xAxis.drawGridLinesEnabled = false
+        graphView.xAxis.drawAxisLineEnabled = false
+        graphView.rightAxis.enabled = false
+        
+        
+        graphView.backgroundColor = #colorLiteral(red: 0.7607843137, green: 0.7803921569, blue: 0.8823529412, alpha: 1)
         graphView.chartDescription?.textColor = UIColor.white
         graphView.legend.textColor = UIColor.white
+        graphView.drawGridBackgroundEnabled = false
+        
+
+        
+        //Delegate
         graphView.delegate = self
         
         //This must stay at end of function
@@ -64,5 +81,7 @@ class GraphVC: UIViewController {
 }
 
 extension GraphVC: ChartViewDelegate {
-    
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        print(entry.x, entry.y)
+    }
 }
