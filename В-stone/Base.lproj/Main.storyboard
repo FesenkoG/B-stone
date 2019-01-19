@@ -19,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNJ-tL-a2w" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="20" width="414" height="667"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="659"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.76078431372549016" green="0.7803921568627451" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="uNJ-tL-a2w" firstAttribute="top" secondItem="ACs-aS-OrH" secondAttribute="top" id="LFd-Is-tWs"/>
+                            <constraint firstItem="uNJ-tL-a2w" firstAttribute="top" secondItem="ACs-aS-OrH" secondAttribute="top" constant="8" id="LFd-Is-tWs"/>
                             <constraint firstItem="uNJ-tL-a2w" firstAttribute="leading" secondItem="ACs-aS-OrH" secondAttribute="leading" id="OsB-Az-ykc"/>
                             <constraint firstItem="ACs-aS-OrH" firstAttribute="trailing" secondItem="uNJ-tL-a2w" secondAttribute="trailing" id="Q3b-YI-4KD"/>
                             <constraint firstItem="ACs-aS-OrH" firstAttribute="bottom" secondItem="uNJ-tL-a2w" secondAttribute="bottom" id="ZX3-42-i7r"/>
@@ -2972,26 +2972,26 @@
     </scenes>
     <resources>
         <image name="BlueBackground" width="908" height="1611"/>
-        <image name="ChooseCircleFalse" width="10" height="10"/>
+        <image name="ChooseCircleFalse" width="30" height="30"/>
         <image name="FaceLeft" width="910" height="1611"/>
         <image name="FaceRight" width="911" height="1611"/>
         <image name="GradientBackground" width="909" height="1611"/>
         <image name="StartBackground" width="908" height="1611"/>
         <image name="advice" width="25" height="25"/>
         <image name="advice_selected" width="25" height="25"/>
-        <image name="bluetoothPhone" width="87" height="156"/>
+        <image name="bluetoothPhone" width="262" height="470"/>
         <image name="coffee" width="161" height="161"/>
         <image name="countryside" width="160" height="159"/>
         <image name="diet" width="167" height="166"/>
         <image name="firstFaceBackground" width="908" height="1611"/>
         <image name="fourthFaceBackground" width="908" height="1611"/>
-        <image name="graph" width="36" height="34"/>
+        <image name="graph" width="25.920000076293945" height="25"/>
         <image name="hp" width="25" height="25"/>
         <image name="hp_selected" width="25" height="25"/>
         <image name="makeup" width="162" height="162"/>
         <image name="megalopolis" width="161" height="162"/>
-        <image name="mm" width="18" height="25"/>
-        <image name="mm_selected" width="18" height="25"/>
+        <image name="mm" width="18.333333969116211" height="25.666666030883789"/>
+        <image name="mm_selected" width="18.333333969116211" height="25.666666030883789"/>
         <image name="mountain" width="159" height="159"/>
         <image name="sea" width="170" height="162"/>
         <image name="secondFaceBackground" width="908" height="1611"/>

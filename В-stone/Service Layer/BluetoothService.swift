@@ -145,10 +145,11 @@ extension BluetoothService: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         
         if let data = characteristic.value {
-            guard let strData = String(data: data, encoding: String.Encoding.ascii) else {
+            guard let strData = String(data: data, encoding: .ascii) else {
                 print("encoding went wrong")
                 return
             }
+            
             let doubleValue : Double = NSString(string: strData).doubleValue
             let convertedValue = convertValue(value: doubleValue)
             print("original: \(doubleValue)")
